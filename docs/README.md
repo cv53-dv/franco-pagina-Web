@@ -13,10 +13,11 @@ Una plataforma moderna, rápida y escalable que transmita profesionalismo y conf
 ## Tecnologías
 
 - HTML5
-- CSS3
-- JavaScript ES6+
-- Bootstrap 5 (en revisión — se planea eliminar en Fase 3)
-- Node.js (próximamente)
+- CSS3 (sin frameworks — se eliminó Bootstrap en la Fase 3)
+- JavaScript ES6+ (vanilla)
+- Iconos: SVG en línea (sprite propio, sin fuente de iconos)
+- esbuild (bundle + minificación de CSS y JS)
+- Node.js (próximamente — backend)
 - PostgreSQL (próximamente)
 
 ---
@@ -24,16 +25,30 @@ Una plataforma moderna, rápida y escalable que transmita profesionalismo y conf
 ## Estructura
 
 ```
-frontend/        Sitio estático (index.html, css/, js/, assets/)
-docs/            Documentación (design system, roadmap, componentes)
-docs/legacy/     Notas y planificación previa
+frontend/
+  index.html
+  css/          Fuentes CSS (parciales, importadas por style.css)
+  js/           Fuentes JS (index.js es el punto de entrada del bundle)
+  dist/         Bundle generado (app.min.css / app.min.js) — versionado
+  assets/       Imágenes y logos
+docs/           Documentación
+docs/legacy/    Notas y planificación previa
+build.mjs       Script de build (esbuild)
 ```
 
-Preview local:
+## Desarrollo
 
 ```bash
-npx -y serve frontend -l 4321
+npm install
+npm run build      # genera frontend/dist/
+npm run watch      # reconstruye al guardar
+npm run serve      # sirve frontend/ en http://localhost:4321
+npm run dev        # watch + serve en paralelo
 ```
+
+`index.html` carga `dist/app.min.css` y `dist/app.min.js`, así que **después de
+tocar cualquier archivo de `css/` o `js/` hay que correr `npm run build`**
+(o dejar `npm run watch` corriendo).
 
 ---
 
@@ -50,6 +65,6 @@ npx -y serve frontend -l 4321
 
 - Fase 0 ✅ Control de versiones e higiene
 - Fase 1 ✅ Marca y contenido
-- Fase 2 ⬜ SEO + accesibilidad
-- Fase 3 ⬜ Rendimiento
+- Fase 2 ✅ SEO + accesibilidad
+- Fase 3 ✅ Rendimiento (sin Bootstrap, bundle esbuild, iconos SVG)
 - Fase 4 ⬜ Formulario, footer, deploy

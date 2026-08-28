@@ -46,6 +46,31 @@ text-decoration:none;
 
 }
 
+/* Iconos SVG en línea (reemplazan a la fuente de iconos) */
+.ic{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    line-height:0;
+
+    flex-shrink:0;
+
+}
+
+.ic svg{
+
+    width:1em;
+
+    height:1em;
+
+    fill:currentColor;
+
+}
+
 ul{
 
 list-style:none;

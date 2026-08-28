@@ -1,0 +1,17 @@
+{
+  "name": "franco-digital-studio",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Sitio web de FRANCO — Digital Studio",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "watch": "node build.mjs --watch",
+    "serve": "npx -y serve frontend -l 4321",
+    "dev": "npm-run-all --parallel watch serve"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "npm-run-all": "^4.1.5"
+  }
+}

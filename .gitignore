@@ -1,8 +1,8 @@
 # Dependencias
 node_modules/
 
-# Build / dist
-dist/
+# Build / cache
+# Nota: frontend/dist/ SÍ se versiona (el sitio se sirve sin paso de build).
 build/
 .cache/
 
