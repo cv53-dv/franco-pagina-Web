@@ -1,0 +1,32 @@
+FRANCO TECH WEBSITE v1.0
+
+Sprint 0
+✔ Branding
+✔ Arquitectura
+✔ Design System
+
+Sprint 1
+⬜ Navbar
+⬜ Hero
+
+Sprint 2
+⬜ Empresas que confían
+⬜ Servicios
+⬜ Cómo Trabajamos
+
+Sprint 3
+⬜ Portafolio
+⬜ Testimonios
+⬜ CTA
+
+Sprint 4
+⬜ Footer
+⬜ Responsive
+⬜ Animaciones
+⬜ SEO
+⬜ Performance
+
+Sprint 5
+⬜ Backend
+⬜ Formulario de contacto
+⬜ Panel administrativo (futuro)

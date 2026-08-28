@@ -1,0 +1,189 @@
+/*=========================================
+            1400px
+=========================================*/
+
+@media (max-width:1400px){
+
+    .container-custom{
+
+        max-width:1200px;
+
+        padding:0 40px;
+
+    }
+
+    .hero-grid{
+
+        gap:60px;
+
+    }
+
+    .about-grid{
+
+        gap:60px;
+
+    }
+
+    .contact-grid{
+
+        gap:60px;
+
+    }
+
+}
+
+/*=========================================
+            1200px
+=========================================*/
+@media (max-width:1200px){
+
+    .hero-grid{
+
+        grid-template-columns:58% 42%;
+
+        gap:60px;
+
+    }
+
+    .hero-title{
+
+        font-size:clamp(3rem,5vw,4.5rem);
+
+    }
+
+}
+
+@media (max-width:1200px){
+
+    .services-grid{
+
+        gap:24px;
+
+    }
+
+    .service-card{
+
+        padding:38px;
+
+    }
+
+}
+
+@media (max-width:1200px){
+
+    .portfolio-grid{
+
+        gap:28px;
+
+    }
+
+}
+
+@media (max-width:1200px){
+
+    .about-grid{
+
+        gap:50px;
+
+    }
+
+}
+
+@media (max-width:1200px){
+
+    .contact-grid{
+
+        gap:60px;
+
+    }
+
+}
+/*=========================================
+            992px
+=========================================*/
+
+/*=========================================
+            768px
+=========================================*/
+
+
+@media (max-width:768px){
+
+    /* Ocultar menú */
+
+    .nav-menu{
+
+        display:none;
+
+    }
+
+    /* Ocultar botón azul */
+
+    .navbar-content .btn-primary{
+
+        display:none;
+
+    }
+
+    /* Mostrar hamburguesa */
+
+ 
+
+    .menu-toggle{
+
+        display:flex;
+
+        justify-content:center;
+        align-items:center;
+
+    }
+
+    .nav-menu{
+
+        position:absolute;
+
+        top:90px;
+
+        left:0;
+
+        width:100%;
+
+        background:rgba(5,8,22,.97);
+
+        backdrop-filter:blur(20px);
+
+        display:flex;
+
+        flex-direction:column;
+
+        align-items:center;
+
+        gap:30px;
+
+        padding:40px 0;
+
+        transform:translateY(-30px);
+
+        opacity:0;
+
+        visibility:hidden;
+
+        transition:.35s ease;
+
+    }
+
+    .nav-menu.active{
+
+        opacity:1;
+
+        visibility:visible;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*=========================================
+            576px
+=========================================*/

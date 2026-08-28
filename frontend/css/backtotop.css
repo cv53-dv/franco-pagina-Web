@@ -1,0 +1,99 @@
+/* ==========================================
+   BACK TO TOP
+========================================== */
+
+.back-to-top{
+
+    position:fixed;
+
+    right:28px;
+    
+    bottom:28px;
+
+    width:52px;
+
+    height:52px;
+
+    border:1px solid rgba(255,255,255,.06);
+
+    border-radius:20px;
+
+    cursor:pointer;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:linear-gradient(
+        180deg,
+        #2563FF,
+        #1D4ED8
+    );
+
+    color:white;
+
+    font-size:1.2rem;
+
+    box-shadow:
+
+        0 12px 28px rgba(37,99,255,.18);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:
+    scale(.7);
+
+    transition:
+
+        opacity .45s ease,
+        transform .45s ease,
+        box-shadow .45s ease;
+
+    z-index:999;
+
+}
+
+.back-to-top.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:
+
+        scale(1);
+
+}
+
+.back-to-top:hover{
+
+    transform:
+
+        translateY(-2px)
+        scale(1.05);
+
+    box-shadow:
+
+        0 24px 55px rgba(37,99,255,.38);
+
+}
+
+.back-to-top i{
+
+    transition:
+
+        transform .35s ease;
+
+}
+
+.back-to-top:hover i{
+
+    transform:
+
+        translateY(-3px);
+
+}

@@ -1,0 +1,182 @@
+/* ==========================================
+   HERO
+========================================== */
+
+.hero{
+
+    position:relative;
+
+    overflow:hidden;
+
+    min-height:calc(100vh - 90px);
+
+    display:flex;
+
+    align-items:center;
+
+    padding-top:40px;
+
+    padding-bottom:80px;
+
+}
+
+.hero-grid{
+
+    display:grid;
+
+    grid-template-columns:55% 45%;
+
+    align-items:center;
+
+    gap:80px;
+
+}
+
+.hero-left{
+
+    max-width:720px;
+
+    padding-right:20px;
+
+}
+
+/*
+=============================================
+HERO TITLE
+=============================================
+*/
+
+.hero-title{
+
+    margin-bottom:32px;
+
+    font-family:var(--font-heading);
+
+    font-size:clamp(3rem,6vw,5rem);
+
+    font-weight:var(--fw-bold);
+
+    line-height:1.08;
+
+    letter-spacing:-2px;
+
+    color:var(--text-primary);
+
+}
+
+/*
+=============================================
+HERO DESCRIPTION
+=============================================
+*/
+
+
+.hero-description{
+
+    max-width:620px;
+
+    margin-bottom:42px;
+
+    font-size:1.15rem;
+
+    line-height:1.8;
+
+    color:var(--text-secondary);
+
+}
+
+/*
+=============================================
+HERO BADGE
+=============================================
+*/
+
+.hero .section-badge{
+
+    margin-bottom:28px;
+
+}
+
+.hero-title span{
+
+    background:linear-gradient(
+        135deg,
+        #60A5FA,
+        #2563FF,
+        #1D4ED8
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    background-clip:text;
+
+}
+
+.hero-buttons{
+
+    display:flex;
+
+    gap:18px;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+    flex-wrap:wrap;
+
+}
+
+.hero-features{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:28px;
+
+}
+
+.feature{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:var(--gray-300);
+
+    font-size:.95rem;
+
+
+
+}
+
+
+
+
+
+/*
+=============================================
+CARD HEADER
+=============================================
+*/
+
+
+
+
+
+
+.hero-right{
+
+    position:relative;
+
+    display:flex;
+
+    justify-content:center;
+
+}
+
+
