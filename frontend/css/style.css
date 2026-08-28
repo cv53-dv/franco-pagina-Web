@@ -40,3 +40,7 @@
 /* ========= RESPONSIVE ========= */
 
 @import url("responsive.css");
+
+/* ========= ACCESIBILIDAD ========= */
+
+@import url("a11y.css");

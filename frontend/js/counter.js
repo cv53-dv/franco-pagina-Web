@@ -1,5 +1,9 @@
 const counters = document.querySelectorAll(".counter");
 
+const counterReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+).matches;
+
 const counterObserver = new IntersectionObserver((entries) => {
 
     entries.forEach(entry => {
@@ -13,6 +17,16 @@ const counterObserver = new IntersectionObserver((entries) => {
         const prefix = counter.dataset.prefix || "";
 
         const suffix = counter.dataset.suffix || "";
+
+        if (counterReducedMotion) {
+
+            counter.textContent = prefix + target + suffix;
+
+            counterObserver.unobserve(counter);
+
+            return;
+
+        }
 
         let current = 0;
 

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://francodigital.com/sitemap.xml

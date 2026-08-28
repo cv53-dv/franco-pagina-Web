@@ -178,7 +178,7 @@ SERVICES
 
 .service-card a{
 
-    color:var(--primary);
+    color:var(--accent);
 
     font-weight:600;
 

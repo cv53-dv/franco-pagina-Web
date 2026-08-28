@@ -1,6 +1,18 @@
 const dot = document.querySelector(".cursor-dot");
 const outline = document.querySelector(".cursor-outline");
 
+// El cursor personalizado solo tiene sentido con puntero fino (mouse/trackpad)
+// y cuando el usuario no pidió reducir el movimiento.
+const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if (!dot || !outline || !finePointer || reducedMotion) {
+
+    if (dot) dot.remove();
+    if (outline) outline.remove();
+
+} else {
+
 let mouseX = 0;
 let mouseY = 0;
 
@@ -47,3 +59,5 @@ hoverItems.forEach(item => {
     });
 
 });
+
+}

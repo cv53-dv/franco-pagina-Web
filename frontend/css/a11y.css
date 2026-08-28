@@ -1,0 +1,105 @@
+/* ==========================================
+   ACCESIBILIDAD
+========================================== */
+
+/*
+=============================================
+SKIP LINK
+=============================================
+*/
+
+.skip-link{
+    position:absolute;
+    left:16px;
+    top:-100px;
+    z-index:calc(var(--z-tooltip) + 10);
+    padding:12px 20px;
+    border-radius:var(--radius-sm);
+    background:var(--primary);
+    color:var(--white);
+    font-weight:var(--fw-semibold);
+    transition:top .2s ease;
+}
+
+.skip-link:focus{
+    top:16px;
+    outline:2px solid var(--white);
+    outline-offset:2px;
+}
+
+/*
+=============================================
+FOCO VISIBLE
+=============================================
+*/
+
+:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+    border-radius:2px;
+}
+
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible{
+    outline:2px solid var(--white);
+    outline-offset:3px;
+}
+
+/* No mostrar el outline cuando el foco viene del mouse */
+:focus:not(:focus-visible){
+    outline:none;
+}
+
+/*
+=============================================
+CURSOR PERSONALIZADO — solo en dispositivos con puntero fino
+=============================================
+*/
+
+@media (hover:none), (pointer:coarse){
+
+    .cursor-dot,
+    .cursor-outline{
+        display:none;
+    }
+}
+
+/*
+=============================================
+PREFERENCIA: MENOS MOVIMIENTO
+=============================================
+*/
+
+@media (prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.001ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.001ms !important;
+        scroll-behavior:auto !important;
+    }
+
+    html{
+        scroll-behavior:auto;
+    }
+
+    /* El contenido con reveal debe quedar visible aunque no se anime */
+    .reveal{
+        opacity:1 !important;
+        transform:none !important;
+    }
+
+    /* Detener orbes y fondos animados */
+    .hero-orb,
+    .hero-glow,
+    body::before{
+        animation:none !important;
+    }
+
+    .cursor-dot,
+    .cursor-outline{
+        display:none;
+    }
+}

@@ -8,6 +8,59 @@
 
     <title>FRANCO — Digital Studio | Desarrollo web profesional</title>
 
+    <!-- ========================= -->
+    <!-- SEO -->
+    <!-- ========================= -->
+    <meta name="description" content="FRANCO — Digital Studio: estudio de desarrollo web en Paraguay. Landing pages, sitios corporativos, aplicaciones full stack, integraciones y SEO técnico. Respuesta en menos de 24 horas.">
+    <meta name="author" content="FRANCO — Digital Studio">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#050816">
+    <link rel="canonical" href="https://francodigital.com/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="FRANCO — Digital Studio">
+    <meta property="og:title" content="FRANCO — Digital Studio | Desarrollo web profesional">
+    <meta property="og:description" content="Estudio de desarrollo web en Paraguay. Sitios rápidos, modernos y optimizados para generar confianza y atraer clientes.">
+    <meta property="og:url" content="https://francodigital.com/">
+    <meta property="og:locale" content="es_PY">
+    <meta property="og:image" content="https://francodigital.com/assets/logos/logo_completo_sin_fondo.png">
+    <meta property="og:image:alt" content="Logotipo de FRANCO — Digital Studio">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FRANCO — Digital Studio | Desarrollo web profesional">
+    <meta name="twitter:description" content="Estudio de desarrollo web en Paraguay. Sitios rápidos, modernos y optimizados.">
+    <meta name="twitter:image" content="https://francodigital.com/assets/logos/logo_completo_sin_fondo.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="assets/logos/F_Blanco_sin_Fondo_sin_sombra.png" sizes="500x500" type="image/png">
+    <link rel="apple-touch-icon" href="assets/logos/F_Blanco_sin_Fondo_sin_sombra.png">
+
+    <!-- Datos estructurados -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "FRANCO — Digital Studio",
+      "description": "Estudio de desarrollo web y soluciones digitales: landing pages, sitios corporativos, desarrollo full stack, integraciones y SEO técnico.",
+      "url": "https://francodigital.com/",
+      "email": "soporte@francodigital.com",
+      "telephone": "+595972584557",
+      "areaServed": "PY",
+      "founder": {
+        "@type": "Person",
+        "name": "Carlos Gabriel Velázquez"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "PY"
+      },
+      "priceRange": "$$"
+    }
+    </script>
+
         <!-- Bootstrap Icons -->
     <link
     rel="stylesheet"
@@ -30,7 +83,9 @@
 
 <body>
 
-    <div class="scroll-progress"></div>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
+
+    <div class="scroll-progress" aria-hidden="true"></div>
 
     <!-- ========================= -->
     <!-- NAVBAR -->
@@ -46,7 +101,10 @@
                     <a href="#hero" class="logo" aria-label="FRANCO — Digital Studio, inicio">
 
                         <img src="assets/logos/F_Blanco_sin_Fondo_sin_sombra.png"
-                            alt="">
+                            alt=""
+                            width="500" height="500"
+                            fetchpriority="high"
+                            decoding="async">
 
                         <div class="logo-text">
 
@@ -60,7 +118,7 @@
 
                     <!-- ================= Menú ================= -->
 
-                    <ul class="nav-menu">
+                    <ul class="nav-menu" id="navMenu">
 
                         <li><a href="#hero">Inicio</a></li>
 
@@ -80,15 +138,21 @@
 
                         Iniciar Proyecto
 
-                        <i class="bi bi-arrow-right"></i>
+                        <i class="bi bi-arrow-right" aria-hidden="true"></i>
 
                     </a>
 
-                    <button class="menu-toggle" id="menuToggle">
+                    <button
+                        class="menu-toggle"
+                        id="menuToggle"
+                        type="button"
+                        aria-label="Abrir menú de navegación"
+                        aria-expanded="false"
+                        aria-controls="navMenu">
 
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
 
                     </button>
 
@@ -98,7 +162,7 @@
 
         </header>
 
-        <main>
+        <main id="main">
 
             <!-- ========================= -->
             <!-- HERO -->
@@ -164,7 +228,7 @@
 
                                     Iniciar Proyecto
 
-                                    <i class="bi bi-arrow-right"></i>
+                                    <i class="bi bi-arrow-right" aria-hidden="true"></i>
 
                                 </a>
 
@@ -228,7 +292,9 @@
 
                                             <img
                                                 src="assets/logos/F_Blanco_sin_Fondo_sin_sombra.png"
-                                                alt="">
+                                                alt=""
+                                                width="500" height="500"
+                                                decoding="async">
 
                                         </div>
 
@@ -358,7 +424,7 @@
 
                             <div class="service-icon">
 
-                                <i class="bi bi-window"></i>
+                                <i class="bi bi-window" aria-hidden="true"></i>
 
                             </div>
 
@@ -401,7 +467,7 @@
 
                             <div class="service-icon">
 
-                                <i class="bi bi-code-slash"></i>
+                                <i class="bi bi-code-slash" aria-hidden="true"></i>
 
                             </div>
 
@@ -439,7 +505,7 @@
 
                             <div class="service-icon">
 
-                                <i class="bi bi-layers"></i>
+                                <i class="bi bi-layers" aria-hidden="true"></i>
 
                             </div>
                             <div class="service-tag">
@@ -479,7 +545,7 @@
 
                             <div class="service-icon">
 
-                                <i class="bi bi-diagram-3"></i>
+                                <i class="bi bi-diagram-3" aria-hidden="true"></i>
 
                             </div>
 
@@ -516,7 +582,7 @@
 
                             <div class="service-icon">
 
-                                <i class="bi bi-graph-up-arrow"></i>
+                                <i class="bi bi-graph-up-arrow" aria-hidden="true"></i>
 
                             </div>
 
@@ -554,7 +620,7 @@
 
                             <div class="service-icon">
 
-                                <i class="bi bi-diagram-3"></i>
+                                <i class="bi bi-diagram-3" aria-hidden="true"></i>
 
                             </div>
 
@@ -626,7 +692,9 @@
 
                                 <img
                                     src="assets/projects/novaconsulting.png"
-                                    alt="Nova Consulting">
+                                    alt="Captura del sitio web de Nova Consulting"
+                                    width="1408" height="768"
+                                    loading="lazy" decoding="async">
 
                             </div>
 
@@ -677,7 +745,9 @@
 
                                 <img
                                     src="assets/projects/EliteGym.png"
-                                    alt="Elite Gym">
+                                    alt="Captura del sitio web de Elite Gym"
+                                    width="1408" height="768"
+                                    loading="lazy" decoding="async">
 
                             </div>
 
@@ -726,7 +796,9 @@
 
                                 <img
                                     src="assets/projects/restaurantBook.png"
-                                    alt="Restaurant Booking">
+                                    alt="Captura de la plataforma de reservas Restaurant Booking"
+                                    width="1408" height="768"
+                                    loading="lazy" decoding="async">
 
                             </div>
 
@@ -775,7 +847,9 @@
 
                                 <img
                                     src="assets/projects/wicommsa.png"
-                                    alt="Wicomm SA">
+                                    alt="Captura del sitio web de Wicomm SA"
+                                    width="1915" height="868"
+                                    loading="lazy" decoding="async">
 
                             </div>
 
@@ -911,7 +985,7 @@
                         <div class="about-header">
 
                             <div class="about-avatar">
-                                <i class="bi bi-person"></i>
+                                <i class="bi bi-person" aria-hidden="true"></i>
                             </div>
 
                             <span class="about-label">
@@ -1035,7 +1109,7 @@
                                 rel="noopener">
 
                                 Iniciar Proyecto
-                                <i class="bi bi-arrow-right"></i>
+                                <i class="bi bi-arrow-right" aria-hidden="true"></i>
 
                             </a>
 
@@ -1051,7 +1125,7 @@
 
                             <div class="contact-item">
 
-                                <i class="bi bi-envelope"></i>
+                                <i class="bi bi-envelope" aria-hidden="true"></i>
 
                                 <div>
 
@@ -1069,7 +1143,7 @@
 
                             <div class="contact-item">
 
-                                <i class="bi bi-whatsapp"></i>
+                                <i class="bi bi-whatsapp" aria-hidden="true"></i>
 
                                 <div>
 
@@ -1089,7 +1163,7 @@
 
                             <div class="contact-item">
 
-                                <i class="bi bi-geo-alt"></i>
+                                <i class="bi bi-geo-alt" aria-hidden="true"></i>
 
                                 <div>
 
@@ -1109,7 +1183,7 @@
 
                             <div class="contact-item">
 
-                                <i class="bi bi-clock"></i>
+                                <i class="bi bi-clock" aria-hidden="true"></i>
 
                                 <div>
 
@@ -1162,9 +1236,10 @@
     <button
         class="back-to-top"
         id="backToTop"
+        type="button"
         aria-label="Volver arriba">
 
-        <i class="bi bi-chevron-up"></i>
+        <i class="bi bi-chevron-up" aria-hidden="true"></i>
 
     </button>
 
