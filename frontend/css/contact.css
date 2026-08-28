@@ -157,6 +157,18 @@
 
 }
 
+.contact-item h4 a{
+
+    transition:color .3s ease;
+
+}
+
+.contact-item h4 a:hover{
+
+    color:var(--accent);
+
+}
+
 .contact-divider{
 
     height:1px;

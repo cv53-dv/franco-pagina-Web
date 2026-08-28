@@ -1,14 +1,12 @@
-# FRANCO TECH
+# FRANCO — Digital Studio
 
-## Tech & Digital Studio
-
-Sitio web corporativo desarrollado para representar la identidad digital de FRANCO TECH, una agencia especializada en desarrollo web, diseño UI/UX, branding y soluciones digitales.
+Sitio web corporativo de **FRANCO — Digital Studio**, estudio de desarrollo web y soluciones digitales: landing pages, sitios corporativos, desarrollo full stack, integraciones y SEO técnico.
 
 ---
 
 ## Objetivo
 
-Crear una plataforma moderna, rápida y escalable que transmita profesionalismo, confianza e innovación, convirtiéndose en la principal herramienta comercial de la empresa.
+Una plataforma moderna, rápida y escalable que transmita profesionalismo y confianza, y funcione como la principal herramienta comercial del estudio.
 
 ---
 
@@ -17,20 +15,41 @@ Crear una plataforma moderna, rápida y escalable que transmita profesionalismo,
 - HTML5
 - CSS3
 - JavaScript ES6+
-- Bootstrap 5
-- Node.js (Próximamente)
-- PostgreSQL (Próximamente)
+- Bootstrap 5 (en revisión — se planea eliminar en Fase 3)
+- Node.js (próximamente)
+- PostgreSQL (próximamente)
 
 ---
 
-## Estado del Proyecto
+## Estructura
 
-🟢 En desarrollo
+```
+frontend/        Sitio estático (index.html, css/, js/, assets/)
+docs/            Documentación (design system, roadmap, componentes)
+docs/legacy/     Notas y planificación previa
+```
 
-Versión actual:
+Preview local:
 
-v0.1
+```bash
+npx -y serve frontend -l 4321
+```
 
 ---
 
-Desarrollado por FRANCO TECH
+## Contacto
+
+- Email: soporte@francodigital.com
+- WhatsApp: +595 972 584 557
+
+---
+
+## Estado del proyecto
+
+🟢 En desarrollo — v0.2
+
+- Fase 0 ✅ Control de versiones e higiene
+- Fase 1 ✅ Marca y contenido
+- Fase 2 ⬜ SEO + accesibilidad
+- Fase 3 ⬜ Rendimiento
+- Fase 4 ⬜ Formulario, footer, deploy
