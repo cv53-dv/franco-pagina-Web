@@ -67,4 +67,5 @@ tocar cualquier archivo de `css/` o `js/` hay que correr `npm run build`**
 - Fase 1 ✅ Marca y contenido
 - Fase 2 ✅ SEO + accesibilidad
 - Fase 3 ✅ Rendimiento (sin Bootstrap, bundle esbuild, iconos SVG)
-- Fase 4 ⬜ Formulario, footer, deploy
+- Fase 4 ✅ Sección "Cómo trabajamos", footer, config de deploy (ver `DEPLOY.md`)
+- Fase 5 ⬜ Backend, formulario, panel admin

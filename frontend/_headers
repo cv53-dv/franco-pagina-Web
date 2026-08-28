@@ -1,0 +1,19 @@
+# Cabeceras para Netlify y Cloudflare Pages
+# (Cloudflare Pages y Netlify leen este archivo desde la raíz publicada)
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: geolocation=(), camera=(), microphone=()
+
+# Imágenes y logos: cambian poco, cache larga
+/assets/*
+  Cache-Control: public, max-age=2592000
+
+# Bundle sin hash en el nombre: revalidar siempre (respuesta 304 si no cambió)
+/dist/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/favicon.svg
+  Cache-Control: public, max-age=604800

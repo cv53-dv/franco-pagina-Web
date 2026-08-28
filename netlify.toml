@@ -1,0 +1,15 @@
+# Configuración de despliegue en Netlify
+
+[build]
+  command = "npm run build"
+  publish = "frontend"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Redirige el dominio con www al apex (ajustar el dominio real cuando exista)
+# [[redirects]]
+#   from = "https://www.francodigital.com/*"
+#   to = "https://francodigital.com/:splat"
+#   status = 301
+#   force = true

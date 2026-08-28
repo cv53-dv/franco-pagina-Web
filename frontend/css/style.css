@@ -32,9 +32,11 @@
 @import url("hero-background.css");
 @import url("sections.css");
 @import url("services.css");
+@import url("process.css");
 @import url("portfolio.css");
 @import url("about.css");
 @import url("contact.css");
+@import url("footer.css");
 @import url("motion.css");
 
 /* ========= RESPONSIVE ========= */

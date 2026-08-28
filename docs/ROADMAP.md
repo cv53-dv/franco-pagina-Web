@@ -1,48 +1,46 @@
 # ROADMAP
 
-## Sprint 0
+Plan de mejora por fases (ver estado en `README.md`).
 
-- [x] Arquitectura del proyecto
-- [x] Estructura de carpetas
-- [x] Design System
-- [ ] UI Kit
+## Fase 0 — Higiene ✅
 
----
+- [x] Control de versiones (git)
+- [x] .gitignore / .editorconfig / .gitattributes
+- [x] HTML válido, imports corregidos
+- [x] Una sola librería de iconos / un solo sistema de animación
 
-## Sprint 1
+## Fase 1 — Marca y contenido ✅
 
-- [ ] Navbar Premium
-- [ ] Hero
+- [x] Nombre unificado: FRANCO — Digital Studio
+- [x] Datos de contacto reales
+- [x] Enlaces internos funcionales
 
----
+## Fase 2 — SEO y accesibilidad ✅
 
-## Sprint 2
+- [x] Meta tags, Open Graph, JSON-LD
+- [x] favicon, robots.txt, sitemap.xml
+- [x] Skip link, ARIA en menú, foco visible
+- [x] prefers-reduced-motion
+- [x] Contraste, width/height + lazy en imágenes
 
-- [ ] Empresas que confían
-- [ ] Servicios
-- [ ] Cómo Trabajamos
+## Fase 3 — Rendimiento ✅
 
----
+- [x] Sin Bootstrap (CSS/JS) ni fuente de iconos
+- [x] Iconos SVG inline
+- [x] Bundle con esbuild (1 CSS + 1 JS)
+- [x] Imágenes WebP
 
-## Sprint 3
+## Fase 4 — Contenido y despliegue ✅
 
-- [ ] Portafolio
-- [ ] Testimonios
-- [ ] CTA Final
+- [x] Sección "Cómo trabajamos"
+- [x] Footer
+- [x] Configuración de deploy (Netlify / Vercel / Cloudflare Pages)
+- [ ] Publicar en producción (requiere hosting + dominio)
+- [ ] Testimonios (pendiente: testimonios reales de clientes)
 
----
+## Fase 5 — Backend (futuro)
 
-## Sprint 4
-
-- [ ] Footer
-- [ ] Responsive
-- [ ] SEO
-- [ ] Optimización
-
----
-
-## Sprint 5
-
-- [ ] Backend
-- [ ] Formulario
-- [ ] Panel Administrativo
+- [ ] Formulario de contacto con backend propio
+- [ ] Base de datos (PostgreSQL)
+- [ ] Panel administrativo
+- [ ] Páginas de casos de estudio del portafolio
