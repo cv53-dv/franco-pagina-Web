@@ -20,7 +20,7 @@ HERO CARD
 
     box-shadow:var(--card-shadow);
 
-    transition: .45s ease;
+    transition:transform var(--dur-slow) var(--ease-out), box-shadow var(--dur-slow) var(--ease-out), border-color var(--dur-slow) ease;
 
     transform-style: preserve-3d;
 
@@ -81,7 +81,7 @@ HERO CARD
 
     margin-bottom:24px;
 
-    transition:.35s;
+    transition:transform var(--dur) var(--ease-out);
 
 }
 

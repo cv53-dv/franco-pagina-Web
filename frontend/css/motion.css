@@ -10,9 +10,28 @@
 
     transition:
 
-        opacity .8s ease,
+        opacity .55s ease,
 
-        transform .8s cubic-bezier(.22,.61,.36,1);
+        transform .55s var(--ease-out);
+
+}
+
+/* Tarjetas que también se animan en hover: conservar sus transiciones
+   de sombra/borde además del fundido de entrada. */
+.reveal.service-card,
+.reveal.project-card,
+.reveal.process-step,
+.reveal.contact-content{
+
+    transition:
+
+        opacity .55s ease,
+
+        transform .55s var(--ease-out),
+
+        box-shadow var(--dur-slow) var(--ease-out),
+
+        border-color var(--dur-slow) var(--ease-out);
 
 }
 
@@ -22,7 +41,7 @@
 
 .fade-up{
 
-    transform:translateY(50px);
+    transform:translateY(32px);
 
 }
 
@@ -42,7 +61,7 @@
 
 .fade-left{
 
-    transform:translateX(-50px);
+    transform:translateX(-32px);
 
 }
 
@@ -52,7 +71,7 @@
 
 .fade-right{
 
-    transform:translateX(50px);
+    transform:translateX(32px);
 
 }
 
@@ -96,38 +115,14 @@
             DELAYS
 =========================================*/
 
-.delay-1{
+.delay-1{ transition-delay:.06s; }
 
-    transition-delay:.10s;
+.delay-2{ transition-delay:.12s; }
 
-}
+.delay-3{ transition-delay:.18s; }
 
-.delay-2{
+.delay-4{ transition-delay:.24s; }
 
-    transition-delay:.20s;
+.delay-5{ transition-delay:.30s; }
 
-}
-
-.delay-3{
-
-    transition-delay:.30s;
-
-}
-
-.delay-4{
-
-    transition-delay:.40s;
-
-}
-
-.delay-5{
-
-    transition-delay:.50s;
-
-}
-
-.delay-6{
-
-    transition-delay:.60s;
-
-}
+.delay-6{ transition-delay:.36s; }

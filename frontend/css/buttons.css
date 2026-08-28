@@ -42,13 +42,13 @@ PRIMARY BUTTON
 
     transition:
 
-    transform .45s cubic-bezier(.22,.61,.36,1),
+    transform var(--dur) var(--ease-out),
 
-    box-shadow .45s cubic-bezier(.22,.61,.36,1),
+    box-shadow var(--dur) var(--ease-out),
 
-    background .45s ease,
+    background var(--dur) ease,
 
-    filter .45s ease;
+    filter var(--dur) ease;
 
     box-shadow:var(--shadow-sm);
 
@@ -84,7 +84,7 @@ PRIMARY BUTTON
 
     );
 
-    transition:.6s;
+    transition:left .6s var(--ease-out);
 
 }
 
@@ -98,7 +98,7 @@ PRIMARY BUTTON
 
     transform:
 
-        translateY(-5px)
+        translateY(-3px)
 
         scale(1.015);
 
@@ -126,7 +126,9 @@ PRIMARY BUTTON
 
 .btn-primary:active{
 
-    transform:translateY(0);
+    transform:scale(.97);
+
+    transition-duration:var(--dur-fast);
 
 }
 
@@ -146,7 +148,7 @@ PRIMARY BUTTON
 
     transition:
 
-        transform .35s cubic-bezier(.22,.61,.36,1);
+        transform var(--dur) var(--ease-out);
 
 }
 
@@ -192,8 +194,18 @@ SECONDARY BUTTON
 
 .btn-secondary:hover{
 
-    background:rgba(255,255,255,.05);
+    background:rgba(255,255,255,.06);
 
-    transform:translateY(-3px);
+    border-color:rgba(255,255,255,.18);
+
+    transform:translateY(-2px);
+
+}
+
+.btn-secondary:active{
+
+    transform:scale(.97);
+
+    transition-duration:var(--dur-fast);
 
 }

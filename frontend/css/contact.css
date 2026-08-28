@@ -60,11 +60,11 @@
 
     transition:
 
-    transform .5s cubic-bezier(.22,.61,.36,1),
+    transform var(--dur-slow) var(--ease-out),
 
-    box-shadow .5s cubic-bezier(.22,.61,.36,1),
+    box-shadow var(--dur-slow) var(--ease-out),
 
-    border-color .5s cubic-bezier(.22,.61,.36,1);
+    border-color var(--dur-slow) var(--ease-out);
 
     position: relative;
 
@@ -217,7 +217,7 @@
 
 .contact-item{
 
-    transition:.35s ease;
+    transition:transform var(--dur) var(--ease-out);
 
 }
 

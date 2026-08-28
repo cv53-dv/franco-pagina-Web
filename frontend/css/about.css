@@ -73,9 +73,9 @@
 
 
     transition:
-        transform .55s cubic-bezier(.22,.61,.36,1),
-        box-shadow .55s cubic-bezier(.22,.61,.36,1),
-        border-color .55s cubic-bezier(.22,.61,.36,1);
+        transform var(--dur-slow) var(--ease-out),
+        box-shadow var(--dur-slow) var(--ease-out),
+        border-color var(--dur-slow) var(--ease-out);
 
 
 }
@@ -251,7 +251,7 @@
 
     transition:
 
-        transform .45s cubic-bezier(.22,.61,.36,1),
+        transform var(--dur-slow) var(--ease-out),
 
         border-color .45s,
 
@@ -426,9 +426,9 @@
 
     transition:
 
-        transform .55s cubic-bezier(.22,.61,.36,1),
+        transform var(--dur-slow) var(--ease-out),
 
-        box-shadow .55s cubic-bezier(.22,.61,.36,1);
+        box-shadow var(--dur-slow) var(--ease-out);
 
 }
 
@@ -456,7 +456,7 @@
 
     opacity:0;
 
-    transition:.5s;
+    transition:opacity var(--dur-slow) ease;
 
 }
 

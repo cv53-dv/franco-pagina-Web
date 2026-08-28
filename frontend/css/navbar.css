@@ -21,13 +21,13 @@
 
     z-index:var(--z-navbar);
 
-    background:rgba(5,8,22,.70);
+    background:rgba(5,8,22,.62);
 
-    backdrop-filter:blur(18px);
+    backdrop-filter:blur(20px) saturate(180%);
 
-    -webkit-backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(20px) saturate(180%);
 
-    border-bottom:1px solid rgba(255,255,255,.05);
+    border-bottom:1px solid rgba(255,255,255,.06);
 
 
 
@@ -166,7 +166,7 @@
     font-weight:500;
 
     transition:
-        color .35s ease;
+        color var(--dur) ease;
 
 }
 
@@ -195,7 +195,7 @@
     transform:translateX(-50%);
 
     transition:
-        width .35s ease;
+        width var(--dur) var(--ease-out);
 
     border-radius:20px;
 
@@ -216,7 +216,7 @@
 .navbar-brand{
 
     transition:
-        transform .45s cubic-bezier(.22,.61,.36,1),
+        transform var(--dur-slow) var(--ease-out),
         filter .45s ease;
 
 }
@@ -234,7 +234,7 @@
 .brand-text{
 
     transition:
-        color .35s ease;
+        color var(--dur) ease;
 
 }
 
@@ -286,7 +286,7 @@
 
     transition:
 
-        color .35s ease,
+        color var(--dur) ease,
 
         letter-spacing .35s ease;
 
@@ -302,9 +302,11 @@
 
 .navbar-custom.scrolled{
 
-    background:rgba(5,8,22,.92);
+    background:rgba(5,8,22,.88);
 
-    backdrop-filter:blur(28px);
+    backdrop-filter:blur(28px) saturate(180%);
+
+    -webkit-backdrop-filter:blur(28px) saturate(180%);
 
     box-shadow:
         0 10px 40px rgba(0,0,0,.30);

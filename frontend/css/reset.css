@@ -24,9 +24,51 @@ background:var(--bg-primary);
 
 color:var(--text-primary);
 
-font-family:'Inter',sans-serif;
+font-family:var(--font-primary);
 
 overflow-x:hidden;
+
+-webkit-font-smoothing:antialiased;
+
+-moz-osx-font-smoothing:grayscale;
+
+text-rendering:optimizeLegibility;
+
+}
+
+/* Secciones: compensar el navbar fijo al saltar por anclas */
+section[id]{
+
+scroll-margin-top:110px;
+
+}
+
+/* Tracking específico por tamaño: los títulos grandes se juntan */
+h1,h2{
+
+letter-spacing:-.02em;
+
+text-wrap:balance;
+
+}
+
+h3,h4{
+
+text-wrap:balance;
+
+}
+
+p{
+
+text-wrap:pretty;
+
+}
+
+::selection{
+
+background:rgba(37,99,255,.30);
+
+color:#fff;
 
 }
 
