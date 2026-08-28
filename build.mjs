@@ -3,11 +3,36 @@
  * Uso: node build.mjs [--watch]
  */
 import * as esbuild from "esbuild";
-import { mkdirSync } from "node:fs";
+import { mkdirSync, readdirSync, existsSync, statSync } from "node:fs";
+import sharp from "sharp";
 
 const watch = process.argv.includes("--watch");
 const outdir = "frontend/dist";
 mkdirSync(outdir, { recursive: true });
+
+/* -------- Imágenes: PNG/JPG -> WebP -------- */
+async function buildImages() {
+    const jobs = [
+        { dir: "frontend/assets/projects", width: 960, quality: 78 },
+        { dir: "frontend/assets/logos", width: 128, quality: 90, only: ["F_Blanco_sin_Fondo_sin_sombra.png"] },
+    ];
+    for (const { dir, width, quality, only } of jobs) {
+        if (!existsSync(dir)) continue;
+        for (const file of readdirSync(dir)) {
+            if (!/\.(png|jpe?g)$/i.test(file)) continue;
+            if (only && !only.includes(file)) continue;
+            const src = `${dir}/${file}`;
+            const out = `${dir}/${file.replace(/\.(png|jpe?g)$/i, ".webp")}`;
+            if (existsSync(out) && statSync(out).mtimeMs >= statSync(src).mtimeMs) continue;
+            await sharp(src)
+                .resize({ width, withoutEnlargement: true })
+                .webp({ quality })
+                .toFile(out);
+            console.log(`webp: ${out}`);
+        }
+    }
+}
+await buildImages();
 
 /** @type {import('esbuild').BuildOptions} */
 const common = {
