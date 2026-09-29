@@ -4,61 +4,58 @@ const counterReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
 ).matches;
 
+const DURATION = 1400;
+
+// ease-out exponencial: arranca rápido y se asienta suave en el valor final.
+const easeOutExpo = (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
+
+function render(counter, value){
+
+    const prefix = counter.dataset.prefix || "";
+
+    const suffix = counter.dataset.suffix || "";
+
+    counter.textContent = prefix + value + suffix;
+
+}
+
+function animate(counter){
+
+    const target = Number(counter.dataset.target);
+
+    if (counterReducedMotion) {
+
+        render(counter, target);
+
+        return;
+
+    }
+
+    const start = performance.now();
+
+    const tick = (now) => {
+
+        const t = Math.min((now - start) / DURATION, 1);
+
+        render(counter, Math.round(easeOutExpo(t) * target));
+
+        if (t < 1) requestAnimationFrame(tick);
+
+    };
+
+    requestAnimationFrame(tick);
+
+}
+
 const counterObserver = new IntersectionObserver((entries) => {
 
     entries.forEach(entry => {
 
         if (!entry.isIntersecting) return;
 
-        const counter = entry.target;
+        animate(entry.target);
 
-        const target = Number(counter.dataset.target);
-
-        const prefix = counter.dataset.prefix || "";
-
-        const suffix = counter.dataset.suffix || "";
-
-        if (counterReducedMotion) {
-
-            counter.textContent = prefix + target + suffix;
-
-            counterObserver.unobserve(counter);
-
-            return;
-
-        }
-
-        let current = 0;
-
-        const increment = target / 60;
-
-        const updateCounter = () => {
-
-            current += increment;
-
-            if (current < target) {
-
-                counter.textContent =
-                    prefix +
-                    Math.floor(current) +
-                    suffix;
-
-                requestAnimationFrame(updateCounter);
-
-            } else {
-
-                counter.textContent =
-                    prefix +
-                    target +
-                    suffix;
-
-            }
-
-        };
-
-        updateCounter();
-
-        counterObserver.unobserve(counter);
+        counterObserver.unobserve(entry.target);
 
     });
 

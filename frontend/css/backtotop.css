@@ -6,17 +6,17 @@
 
     position:fixed;
 
-    right:28px;
-    
-    bottom:28px;
+    right:clamp(16px,3vw,28px);
 
-    width:52px;
+    bottom:clamp(16px,3vw,28px);
 
-    height:52px;
+    width:48px;
 
-    border:1px solid rgba(255,255,255,.06);
+    height:48px;
 
-    border-radius:20px;
+    border:1px solid rgba(255,255,255,.10);
+
+    border-radius:16px;
 
     cursor:pointer;
 
@@ -26,34 +26,34 @@
 
     align-items:center;
 
-    background:linear-gradient(
-        180deg,
-        #2563FF,
-        #1D4ED8
-    );
+    background:rgba(17,24,39,.72);
 
-    color:white;
+    backdrop-filter:blur(16px) saturate(180%);
 
-    font-size:1.2rem;
+    -webkit-backdrop-filter:blur(16px) saturate(180%);
 
-    box-shadow:
+    color:var(--white);
 
-        0 12px 28px rgba(37,99,255,.18);
+    font-size:1.1rem;
 
+    box-shadow:0 12px 28px rgba(0,0,0,.35);
+
+    z-index:999;
+
+    /* Oculto: nunca desde scale(0), siempre algo visible del "globo" */
     opacity:0;
 
     visibility:hidden;
 
-    transform:
-    scale(.7);
+    transform:translateY(8px) scale(.9);
 
+    /* Salida más rápida que la entrada */
     transition:
-
-        opacity .45s ease,
-        transform .45s ease,
-        box-shadow .45s ease;
-
-    z-index:999;
+        opacity 160ms ease,
+        transform 160ms var(--ease-out),
+        visibility 0s linear 160ms,
+        background var(--dur) ease,
+        border-color var(--dur) ease;
 
 }
 
@@ -63,37 +63,45 @@
 
     visibility:visible;
 
-    transform:
+    transform:none;
 
-        scale(1);
+    transition:
+        opacity var(--dur) ease,
+        transform var(--dur) var(--ease-out),
+        visibility 0s,
+        background var(--dur) ease,
+        border-color var(--dur) ease;
 
 }
 
-.back-to-top:hover{
+.back-to-top:active{
 
-    transform:
+    transform:scale(.94);
 
-        translateY(-2px)
-        scale(1.05);
-
-    box-shadow:
-
-        0 24px 55px rgba(37,99,255,.38);
+    transition-duration:var(--dur-fast);
 
 }
 
 .back-to-top i{
 
-    transition:
-
-        transform .35s ease;
+    transition:transform var(--dur) var(--ease-out);
 
 }
 
-.back-to-top:hover i{
+@media (hover:hover) and (pointer:fine){
 
-    transform:
+    .back-to-top:hover{
 
-        translateY(-3px);
+        background:var(--primary);
+
+        border-color:rgba(255,255,255,.18);
+
+    }
+
+    .back-to-top:hover i{
+
+        transform:translateY(-2px);
+
+    }
 
 }

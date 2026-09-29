@@ -1,5 +1,6 @@
 /* ==========================================
    SECTION COMPONENTS
+   Única definición de badge / título / descripción / cabecera.
 ========================================== */
 
 /*
@@ -16,17 +17,17 @@ BADGE
 
     gap:12px;
 
-    margin-bottom:var(--space-md);
+    margin-bottom:20px;
 
     color:var(--accent);
 
-    font-size:var(--fs-xs);
+    font-size:.8rem;
 
     font-weight:var(--fw-semibold);
 
     text-transform:uppercase;
 
-    letter-spacing:3px;
+    letter-spacing:.22em;
 
 }
 
@@ -34,11 +35,13 @@ BADGE
 
     content:"";
 
-    width:42px;
+    width:32px;
 
     height:2px;
 
-    background:var(--primary);
+    border-radius:2px;
+
+    background:linear-gradient(90deg, transparent, var(--primary));
 
 }
 
@@ -50,17 +53,19 @@ SECTION TITLE
 
 .section-title{
 
-    max-width:700px;
+    max-width:720px;
 
-    margin-bottom:var(--space-md);
+    margin-bottom:20px;
 
     font-family:var(--font-heading);
 
-    font-size:clamp(2.5rem,5vw,4rem);
+    font-size:clamp(2.1rem,4.2vw,3.5rem);
 
     font-weight:var(--fw-bold);
 
-    line-height:1.1;
+    line-height:1.08;
+
+    letter-spacing:-.025em;
 
     color:var(--text-primary);
 
@@ -80,20 +85,46 @@ SECTION DESCRIPTION
 
 .section-description{
 
-    line-height:2;
-
-    max-width:650px;
-
-    color:var(--text-secondary);
-
-    font-size:var(--fs-md);
-
-    line-height:1.8;
+    max-width:620px;
 
     margin-bottom:var(--space-lg);
 
+    color:var(--text-secondary);
+
+    font-size:clamp(1rem,1.2vw,1.125rem);
+
+    line-height:1.75;
+
 }
 
+/*
+=============================================
+SECTION HEADER (centrada)
+=============================================
+*/
+
+.section-header{
+
+    max-width:760px;
+
+    margin:0 auto clamp(48px,6vw,72px);
+
+    text-align:center;
+
+}
+
+.section-header .section-title,
+.section-header .section-description{
+
+    margin-inline:auto;
+
+}
+
+.section-header .section-description{
+
+    margin-bottom:0;
+
+}
 
 /*
 =============================================
@@ -103,32 +134,18 @@ SECTION LAYOUT
 
 .section{
 
-    padding:120px 0;
+    padding:clamp(80px,10vw,120px) 0;
 
 }
 
 .section-sm{
 
-    padding:80px 0;
+    padding:clamp(56px,7vw,80px) 0;
 
 }
 
 .section-lg{
 
-    padding:160px 0;
-
-}
-
-/*
-=============================================
-SECTION HEADER
-=============================================
-*/
-
-.section-header{
-
-    max-width:760px;
-
-    margin-bottom:var(--space-xl);
+    padding:clamp(88px,11vw,136px) 0;
 
 }

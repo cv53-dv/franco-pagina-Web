@@ -69,17 +69,35 @@ document.addEventListener("click", (e) => {
 
 const navbar = document.querySelector(".navbar-custom");
 
-window.addEventListener("scroll", () => {
+const setScrolled = () => navbar.classList.toggle("scrolled", window.scrollY > 40);
 
-    if(window.scrollY > 40){
+window.addEventListener("scroll", setScrolled, { passive: true });
 
-        navbar.classList.add("scrolled");
+setScrolled();
 
-    }else{
+// Scroll-spy: marca en el menú la sección que está en pantalla.
+const linkById = new Map(
+    [...navLinks].map(link => [link.getAttribute("href").slice(1), link])
+);
 
-        navbar.classList.remove("scrolled");
+const spy = new IntersectionObserver((entries) => {
 
-    }
+    entries.forEach(entry => {
 
+        if(!entry.isIntersecting) return;
+
+        navLinks.forEach(link => link.removeAttribute("aria-current"));
+
+        const active = linkById.get(entry.target.id);
+
+        if(active) active.setAttribute("aria-current", "true");
+
+    });
+
+}, {
+    // Franja horizontal en el centro de la pantalla
+    rootMargin: "-45% 0px -50% 0px"
 });
+
+document.querySelectorAll("main section[id]").forEach(section => spy.observe(section));
 

@@ -2,67 +2,35 @@
 SERVICES
 =========================================*/
 
-.services{
-
-    padding:140px 0;
-
-}
-
-.section-header{
-
-    max-width:720px;
-
-    margin:0 auto 80px;
-
-    text-align:center;
-
-}
-
-.section-title{
-
-    margin:25px 0;
-
-    font-size:clamp(2.5rem,4vw,4rem);
-
-    font-weight:700;
-
-    letter-spacing:-1px;
-
-    color:var(--text-primary);
-
-}
-
-.section-description{
-
-    font-size:1.1rem;
-
-    line-height:1.9;
-
-    color:var(--text-secondary);
-
-}
-
 .services-grid{
 
     display:grid;
 
-    grid-template-columns:repeat(3,minmax(320px,1fr));
+    grid-template-columns:repeat(3,1fr);
 
-    gap:32px;
-
-    margin-top:80px;
+    gap:24px;
 
     align-items:stretch;
 
-    max-width:1200px;
-
-    margin:80px auto 0;
-
 }
 
+/* Grid interno: fila 1 = ícono + etiqueta; el resto ocupa todo el ancho.
+   Así los títulos quedan alineados tengan o no etiqueta. */
 .service-card{
 
-    padding:48px 40px;
+    position:relative;
+
+    overflow:hidden;
+
+    display:grid;
+
+    grid-template-columns:auto 1fr;
+
+    grid-template-rows:auto auto 1fr auto auto;
+
+    align-content:start;
+
+    padding:40px 36px 36px;
 
     border-radius:var(--card-radius);
 
@@ -71,45 +39,25 @@ SERVICES
     border:var(--card-border);
 
     transition:
-    transform var(--dur-slow) var(--ease-out),
-    box-shadow var(--dur-slow) var(--ease-out),
-    border-color var(--dur-slow) var(--ease-out);
-
-    position:relative;
-
-    overflow:hidden;
-
-    width:100%;
-
-    height:100%;
+        transform var(--dur-slow) var(--ease-out),
+        box-shadow var(--dur-slow) var(--ease-out),
+        border-color var(--dur-slow) var(--ease-out);
 
 }
 
-.service-card:hover{
+.service-card > *{
 
-        transform:
-        translateY(-8px)
-        scale(1.01);
-
-    border-color:rgba(37,99,255,.35);
-
-    box-shadow:
-
-        var(--card-hover-shadow),
-
-        var(--glow-primary);
-
-
+    grid-column:1 / -1;
 
 }
-
-
 
 .service-icon{
 
-    width:72px;
+    grid-column:1;
 
-    height:72px;
+    width:60px;
+
+    height:60px;
 
     display:flex;
 
@@ -117,72 +65,116 @@ SERVICES
 
     align-items:center;
 
-    border-radius:20px;
+    border-radius:18px;
 
-    background:
-    linear-gradient(
-    180deg,
-    rgba(255,255,255,.03),
-    rgba(255,255,255,.01)
+    background:linear-gradient(
+        145deg,
+        rgba(37,99,255,.18),
+        rgba(96,165,250,.04)
     );
 
-    font-size:2rem;
+    border:1px solid rgba(96,165,250,.16);
 
-    margin-bottom:30px;
+    color:var(--accent);
 
-    transition:transform var(--dur) var(--ease-out), box-shadow var(--dur) ease;
+    font-size:1.6rem;
+
+    margin-bottom:28px;
 
     box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.06),
+        0 12px 30px rgba(0,0,0,.30);
 
-    inset 0 0 20px rgba(59,130,246,.10),
-
-    0 12px 30px rgba(0,0,0,.30);
+    transition:
+        transform var(--dur) var(--ease-out),
+        box-shadow var(--dur) ease,
+        color var(--dur) ease;
 
 }
 
-.service-card:hover .service-icon{
+.service-tag{
 
-    transform:
-        translateY(-4px)
-        scale(1.06);
+    grid-column:2;
 
-    box-shadow:
+    grid-row:1;
 
-        inset 0 0 20px rgba(59,130,246,.12),
+    justify-self:start;
 
-        var(--glow-primary);
+    align-self:center;
+
+    margin:0 0 28px 16px;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    padding:5px 12px;
+
+    border-radius:999px;
+
+    background:rgba(37,99,255,.12);
+
+    border:1px solid rgba(37,99,255,.22);
+
+    color:#8EC0FF;
+
+    font-size:.75rem;
+
+    font-weight:var(--fw-semibold);
+
+    letter-spacing:.02em;
 
 }
 
 .service-card h3{
 
-    margin-bottom:22px;
+    margin-bottom:14px;
 
-    font-size:1.6rem;
+    font-family:var(--font-heading);
 
-    font-weight:700;
+    font-size:1.45rem;
+
+    font-weight:var(--fw-bold);
 
     line-height:1.25;
+
+    letter-spacing:-.01em;
 
 }
 
 .service-card p{
 
-    margin-bottom:30px;
-
     color:var(--text-secondary);
 
-    line-height:1.8;
+    line-height:1.75;
 
 }
 
-.service-card a{
+.service-divider{
+
+    height:1px;
+
+    background:rgba(255,255,255,.06);
+
+    margin:28px 0 20px;
+
+}
+
+.service-link{
+
+    justify-self:start;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
 
     color:var(--accent);
 
-    font-weight:600;
+    font-weight:var(--fw-semibold);
 
-    text-decoration:none;
+    transition:color var(--dur) ease;
 
 }
 
@@ -196,58 +188,73 @@ SERVICE NUMBER
 
     position:absolute;
 
-    top:22px;
+    top:26px;
 
-    right:28px;
+    right:30px;
 
-    font-size:2.35rem;
+    font-family:var(--font-heading);
 
-    font-weight:800;
+    font-size:2.2rem;
 
-    color: rgba(255,255,255,.055);
+    font-weight:var(--fw-bold);
+
+    color:rgba(255,255,255,.06);
 
     line-height:1;
+
+    font-variant-numeric:tabular-nums;
 
     pointer-events:none;
 
     user-select:none;
 
-}
-
-.service-divider{
-
-    width:100%;
-
-    height:1px;
-
-    background:rgba(255,255,255,.06);
-
-    margin:28px 0 22px;
+    transition:color var(--dur-slow) ease;
 
 }
 
-.service-tag{
+/*
+=============================================
+HOVER
+=============================================
+*/
 
-    display:inline-flex;
+@media (hover:hover) and (pointer:fine){
 
-    align-items:center;
+    /* Sin scale(): escalar una tarjeta con texto lo vuelve borroso */
+    .service-card:hover{
 
-    padding:6px 14px;
+        transform:translateY(-6px);
 
-    margin-bottom:22px;
+        border-color:rgba(37,99,255,.35);
 
-    border-radius:999px;
+        box-shadow:
+            var(--card-hover-shadow),
+            var(--glow-primary);
 
-    background:rgba(37,99,255,.12);
+    }
 
-    border:1px solid rgba(37,99,255,.20);
+    .service-card:hover .service-icon{
 
-    color:#7CB4FF;
+        color:var(--white);
 
-    font-size:.78rem;
+        transform:translateY(-2px);
 
-    font-weight:600;
+        box-shadow:
+            inset 0 1px 0 rgba(255,255,255,.08),
+            var(--glow-primary);
 
-    letter-spacing:.4px;
+    }
+
+    .service-card:hover .service-number{
+
+        color:rgba(96,165,250,.16);
+
+    }
+
+    .service-link:hover{
+
+        color:#9CC8FF;
+
+    }
 
 }

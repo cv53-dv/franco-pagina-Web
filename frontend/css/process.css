@@ -8,16 +8,6 @@
 
 }
 
-.process .section-header{
-
-    max-width:760px;
-
-    margin:0 auto 80px;
-
-    text-align:center;
-
-}
-
 .process-grid{
 
     list-style:none;
@@ -30,7 +20,7 @@
 
     grid-template-columns:repeat(4,1fr);
 
-    gap:28px;
+    gap:20px;
 
     counter-reset:step;
 
@@ -40,7 +30,7 @@
 
     position:relative;
 
-    padding:40px 32px;
+    padding:32px 28px;
 
     border-radius:var(--card-radius);
 
@@ -55,15 +45,19 @@
 
 }
 
-.process-step:hover{
+@media (hover:hover) and (pointer:fine){
 
-    transform:translateY(-8px);
+    .process-step:hover{
+
+    transform:translateY(-6px);
 
     border-color:rgba(37,99,255,.35);
 
     box-shadow:
         var(--card-hover-shadow),
         var(--glow-primary);
+
+}
 
 }
 
@@ -76,9 +70,9 @@
 
     top:52px;
 
-    right:-28px;
+    right:-20px;
 
-    width:28px;
+    width:20px;
 
     height:1px;
 

@@ -13,50 +13,85 @@ if (!dot || !outline || !finePointer || reducedMotion) {
 
 } else {
 
-let mouseX = 0;
-let mouseY = 0;
+let mouseX = -100;
+let mouseY = -100;
+let ringX = mouseX;
+let ringY = mouseY;
+let ringScale = 1;
+let targetScale = 1;
+let running = false;
 
-window.addEventListener("mousemove",(e)=>{
+// Se mueve con transform (compositor), nunca con left/top (layout).
+function place(el, x, y, scale = 1){
+
+    el.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) scale(${scale})`;
+
+}
+
+// El anillo persigue al punto con amortiguación: se siente físico, no pegado.
+function animateOutline(){
+
+    ringX += (mouseX - ringX) * .2;
+    ringY += (mouseY - ringY) * .2;
+    ringScale += (targetScale - ringScale) * .2;
+
+    place(outline, ringX, ringY, ringScale);
+
+    const settled =
+        Math.abs(mouseX - ringX) < .1 &&
+        Math.abs(mouseY - ringY) < .1 &&
+        Math.abs(targetScale - ringScale) < .005;
+
+    // Sin movimiento no hay bucle: no gasta CPU con el mouse quieto.
+    running = !settled;
+
+    if (running) requestAnimationFrame(animateOutline);
+
+}
+
+function wake(){
+
+    if (!running) {
+
+        running = true;
+
+        requestAnimationFrame(animateOutline);
+
+    }
+
+}
+
+window.addEventListener("mousemove", (e) => {
 
     mouseX = e.clientX;
     mouseY = e.clientY;
 
-    dot.style.left = mouseX + "px";
-    dot.style.top = mouseY + "px";
+    place(dot, mouseX, mouseY);
+
+    document.documentElement.classList.add("has-cursor");
+
+    wake();
+
+}, { passive: true });
+
+document.addEventListener("mouseleave", () => {
+
+    document.documentElement.classList.remove("has-cursor");
 
 });
 
-function animateOutline(){
+// Delegación: cubre también elementos agregados más adelante.
+const interactive = "a, button, .project-card, .contact-card";
 
-    outline.style.left = mouseX + "px";
-    outline.style.top = mouseY + "px";
+document.addEventListener("mouseover", (e) => {
 
-    requestAnimationFrame(animateOutline);
+    const hit = e.target.closest(interactive);
 
+    targetScale = hit ? 1.5 : 1;
 
-}
+    outline.classList.toggle("cursor-hover", Boolean(hit));
 
-animateOutline();
-
-const hoverItems = document.querySelectorAll(
-
-    "button, a, .project-card, .about-card, .contact-card"
-
-);
-
-hoverItems.forEach(item => {
-
-    item.addEventListener("mouseenter", () => {
-
-        outline.classList.add("cursor-hover");
-
-    });
-
-    item.addEventListener("mouseleave", () => {
-
-        outline.classList.remove("cursor-hover");
-
-    });
+    wake();
 
 });
 

@@ -78,6 +78,9 @@ display:block;
 
 max-width:100%;
 
+/* Los atributos width/height reservan espacio (sin CLS) pero no deben fijar el alto */
+height:auto;
+
 }
 
 a{
@@ -121,11 +124,14 @@ list-style:none;
 
 .container-custom{
 
-width:90%;
+width:100%;
 
 max-width:var(--container);
 
-margin:auto;
+margin-inline:auto;
+
+/* Gutter fluido: 20px en móvil, 48px en escritorio */
+padding-inline:clamp(20px,5vw,48px);
 
 }
 

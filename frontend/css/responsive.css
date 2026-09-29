@@ -1,123 +1,118 @@
-/*=========================================
-            1400px
-=========================================*/
-
-@media (max-width:1400px){
-
-    .container-custom{
-
-        max-width:1200px;
-
-        padding:0 40px;
-
-    }
-
-    .hero-grid{
-
-        gap:60px;
-
-    }
-
-    .about-grid{
-
-        gap:60px;
-
-    }
-
-    .contact-grid{
-
-        gap:60px;
-
-    }
-
-}
+/* ==========================================
+   RESPONSIVE
+   Desktop-first: 1100 → 900 → 768 → 560
+========================================== */
 
 /*=========================================
-            1200px
+            ≤ 1100px — laptop chica / tablet horizontal
 =========================================*/
-@media (max-width:1200px){
 
-    .hero-grid{
-
-        grid-template-columns:58% 42%;
-
-        gap:60px;
-
-    }
-
-    .hero-title{
-
-        font-size:clamp(3rem,5vw,4.5rem);
-
-    }
-
-}
-
-@media (max-width:1200px){
+@media (max-width:1100px){
 
     .services-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .nav-menu{
 
         gap:24px;
 
     }
 
-    .service-card{
-
-        padding:38px;
-
-    }
-
 }
 
-@media (max-width:1200px){
+/*=========================================
+            ≤ 900px — tablet: todo a una columna
+=========================================*/
 
-    .portfolio-grid{
+@media (max-width:900px){
 
-        gap:28px;
-
-    }
-
-}
-
-@media (max-width:1200px){
-
-    .about-grid{
-
-        gap:50px;
-
-    }
-
-}
-
-@media (max-width:1200px){
-
+    .hero-grid,
+    .about-grid,
     .contact-grid{
 
-        gap:60px;
+        grid-template-columns:1fr;
+
+    }
+
+    .hero-left{
+
+        max-width:none;
+
+    }
+
+    .hero-right{
+
+        justify-content:flex-start;
+
+    }
+
+    .hero-card{
+
+        max-width:560px;
+
+    }
+
+    .about-content,
+    .contact-content{
+
+        max-width:none;
+
+    }
+
+    .about-card,
+    .contact-card{
+
+        max-width:560px;
+
+    }
+
+    /* Al apilar, los desplazamientos laterales se ven raros: solo subir */
+    .reveal.fade-left,
+    .reveal.fade-right{
+
+        transform:translateY(24px);
+
+    }
+
+    .reveal.fade-left.active,
+    .reveal.fade-right.active{
+
+        transform:none;
 
     }
 
 }
-/*=========================================
-            992px
-=========================================*/
 
 /*=========================================
-            768px
+            ≤ 768px — móvil: menú hamburguesa
 =========================================*/
-
 
 @media (max-width:768px){
 
-    /* Ocultar menú */
+    :root{
 
-    .nav-menu{
+        --nav-h:72px;
 
-        display:none;
+        --nav-h-scrolled:64px;
+
+        --card-radius:22px;
 
     }
 
-    /* Ocultar botón azul */
+    .logo img{
+
+        width:42px;
+
+    }
+
+    .brand-name{
+
+        font-size:1.25rem;
+
+    }
 
     .navbar-content .btn-primary{
 
@@ -125,53 +120,57 @@
 
     }
 
-    /* Mostrar hamburguesa */
-
- 
-
     .menu-toggle{
 
         display:flex;
 
         justify-content:center;
+
         align-items:center;
 
     }
 
+    /* Panel desplegable bajo el navbar (top:100% sigue al navbar
+       aunque cambie de alto al hacer scroll) */
     .nav-menu{
 
         position:absolute;
 
-        top:90px;
+        top:100%;
 
         left:0;
 
         width:100%;
 
+        flex-direction:column;
+
+        align-items:stretch;
+
+        gap:0;
+
+        padding:8px clamp(20px,5vw,48px) 20px;
+
         background:rgba(5,8,22,.97);
 
         backdrop-filter:blur(20px);
 
-        display:flex;
+        -webkit-backdrop-filter:blur(20px);
 
-        flex-direction:column;
+        border-bottom:1px solid rgba(255,255,255,.08);
 
-        align-items:center;
-
-        gap:30px;
-
-        padding:40px 0;
-
-        transform:translateY(-12px);
+        box-shadow:0 24px 48px rgba(0,0,0,.4);
 
         opacity:0;
 
         visibility:hidden;
 
+        transform:translateY(-8px);
+
+        /* Cierre más rápido que la apertura */
         transition:
-            opacity var(--dur) var(--ease-out),
-            transform var(--dur) var(--ease-out),
-            visibility var(--dur);
+            opacity 150ms ease,
+            transform 150ms var(--ease-out),
+            visibility 0s linear 150ms;
 
     }
 
@@ -181,12 +180,127 @@
 
         visibility:visible;
 
-        transform:translateY(0);
+        transform:none;
+
+        transition:
+            opacity var(--dur) ease,
+            transform var(--dur) var(--ease-out),
+            visibility 0s;
+
+    }
+
+    .nav-menu li + li{
+
+        border-top:1px solid rgba(255,255,255,.06);
+
+    }
+
+    /* Objetivos táctiles de 48px+ */
+    .nav-menu a{
+
+        display:block;
+
+        padding:14px 4px;
+
+        font-size:1.05rem;
+
+    }
+
+    .nav-menu a::after{
+
+        display:none;
+
+    }
+
+    .nav-menu a[aria-current="true"]{
+
+        color:var(--accent);
+
+    }
+
+    .portfolio-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .hero-buttons .btn-primary,
+    .hero-buttons .btn-secondary{
+
+        flex:1 1 200px;
 
     }
 
 }
 
 /*=========================================
-            576px
+            ≤ 560px — móvil chico
 =========================================*/
+
+@media (max-width:560px){
+
+    .section-badge{
+
+        gap:10px;
+
+        font-size:.72rem;
+
+        letter-spacing:.14em;
+
+    }
+
+    .section-badge::before{
+
+        width:20px;
+
+    }
+
+    .services-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .service-card{
+
+        padding:32px 24px 28px;
+
+    }
+
+    .project-image{
+
+        padding:16px 16px 0;
+
+    }
+
+    .project-content{
+
+        padding:24px 24px 28px;
+
+    }
+
+    .hero-card{
+
+        padding:22px 20px 24px;
+
+    }
+
+    .tech-list{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .about-features{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .contact-content .btn-primary{
+
+        width:100%;
+
+    }
+
+}

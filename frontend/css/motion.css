@@ -21,7 +21,10 @@
 .reveal.service-card,
 .reveal.project-card,
 .reveal.process-step,
-.reveal.contact-content{
+.reveal.contact-content,
+.reveal.contact-card,
+.reveal.about-card,
+.reveal.about-content{
 
     transition:
 

@@ -1,45 +1,55 @@
-document.addEventListener("DOMContentLoaded", () => {
+const progressBar = document.querySelector(".scroll-progress");
+const backToTop = document.getElementById("backToTop");
 
-    const progressBar = document.querySelector(".scroll-progress");
-    const backToTop = document.getElementById("backToTop");
+let ticking = false;
 
-    window.addEventListener("scroll", () => {
+// Un solo cálculo por frame, aunque el evento scroll se dispare más seguido.
+function update(){
 
-        const scrollTop = window.scrollY;
+    const docHeight =
+        document.documentElement.scrollHeight -
+        window.innerHeight;
 
-        const docHeight =
-            document.documentElement.scrollHeight -
-            window.innerHeight;
+    const progress = docHeight > 0 ? window.scrollY / docHeight : 0;
 
-        const progress = (scrollTop / docHeight) * 100;
+    if(progressBar){
 
-        progressBar.style.width = progress + "%";
+        progressBar.style.transform = `scaleX(${progress})`;
 
-        const percentage =
-            (scrollTop / docHeight) * 100;
+    }
 
-        if(percentage > 65){
+    if(backToTop){
 
-            backToTop.classList.add("show");
+        backToTop.classList.toggle("show", progress > .35);
 
-        } else {
+    }
 
-            backToTop.classList.remove("show");
+    ticking = false;
 
-        }
+}
 
-    });
+window.addEventListener("scroll", () => {
+
+    if(!ticking){
+
+        ticking = true;
+
+        requestAnimationFrame(update);
+
+    }
+
+}, { passive: true });
+
+update();
+
+if(backToTop){
 
     backToTop.addEventListener("click", () => {
 
-        window.scrollTo({
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-            top: 0,
-
-            behavior: "smooth"
-
-        });
+        window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
 
     });
 
-});
+}

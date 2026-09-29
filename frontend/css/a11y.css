@@ -62,19 +62,8 @@ CURSOR PERSONALIZADO — solo en dispositivos con puntero fino
     .cursor-outline{
         display:none;
     }
-
-    /* En pantallas táctiles, tocar una tarjeta no debe dejarla "levantada" */
-    .service-card:hover,
-    .project-card:hover,
-    .process-step:hover,
-    .contact-card:hover,
-    .contact-item:hover,
-    .about-stat:hover,
-    .hero-card:hover,
-    .btn-primary:hover,
-    .btn-secondary:hover{
-        transform:none;
-    }
+    /* Los hover de tarjetas y botones ya viven dentro de
+       @media (hover:hover) and (pointer:fine): en táctil no quedan "pegados" */
 }
 
 /*

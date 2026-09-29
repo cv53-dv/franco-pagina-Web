@@ -84,7 +84,12 @@
 
 /* ========= CONTAINER ========= */
 
---container:1300px;
+--container:1296px;
+
+/* ========= NAVBAR ========= */
+
+--nav-h:84px;
+--nav-h-scrolled:72px;
 
 /* ========= Z-INDEX ========= */
 
@@ -127,7 +132,7 @@
     =========================================*/
 
 
-    --card-radius:32px;
+    --card-radius:26px;
 
     --card-border:1px solid rgba(255,255,255,.06);
 
