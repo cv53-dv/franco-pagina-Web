@@ -2,5 +2,6 @@
 import "./navbar.js";
 import "./scroll.js";
 import "./counter.js";
+import "./proof.js";
 import "./motion.js";
 import "./footer.js";

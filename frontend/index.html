@@ -247,21 +247,20 @@
                         <!-- Columna derecha: trabajo real como prueba -->
                         <div class="hero-right reveal fade-up delay-2">
 
-                            <figure class="hero-proof">
+                            <div class="hero-proof" data-proof>
 
+                                <!-- Ventana trasera: muestra el proyecto siguiente -->
                                 <div class="browser browser-back" aria-hidden="true">
 
                                     <div class="browser-bar">
                                         <span class="browser-dots"><i></i><i></i><i></i></span>
                                     </div>
 
-                                    <picture>
-                                        <source srcset="assets/projects/restaurantBook.webp" type="image/webp">
-                                        <img src="assets/projects/restaurantBook.png"
-                                            alt=""
-                                            width="1408" height="768"
-                                            decoding="async">
-                                    </picture>
+                                    <img src="assets/projects/novaconsulting.webp"
+                                        alt=""
+                                        width="960" height="524"
+                                        decoding="async"
+                                        data-proof-back>
 
                                 </div>
 
@@ -269,25 +268,80 @@
 
                                     <div class="browser-bar">
                                         <span class="browser-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-                                        <span class="browser-url">wicomm.com.py</span>
+                                        <span class="browser-url" data-proof-url>wicomm.com.py</span>
                                     </div>
 
-                                    <picture>
-                                        <source srcset="assets/projects/wicommsa.webp" type="image/webp">
-                                        <img src="assets/projects/wicommsa.png"
-                                            alt="Sitio web de Wicomm SA desarrollado por FRANCO"
-                                            width="1915" height="868"
+                                    <div class="browser-screen"
+                                        id="proof-panel"
+                                        role="tabpanel"
+                                        aria-labelledby="proof-tab-0">
+
+                                        <img class="is-active"
+                                            src="assets/projects/wicommsa.webp"
+                                            alt="Sitio corporativo de Wicomm SA"
+                                            width="960" height="435"
                                             fetchpriority="high"
                                             decoding="async">
-                                    </picture>
+
+                                        <img src="assets/projects/novaconsulting.webp"
+                                            alt="Landing page de Nova Consulting"
+                                            width="960" height="524"
+                                            decoding="async"
+                                            aria-hidden="true">
+
+                                        <img src="assets/projects/EliteGym.webp"
+                                            alt="Landing page de Elite Gym"
+                                            width="960" height="524"
+                                            decoding="async"
+                                            aria-hidden="true">
+
+                                        <img src="assets/projects/restaurantBook.webp"
+                                            alt="Sistema de reservas Restaurant Booking"
+                                            width="960" height="524"
+                                            decoding="async"
+                                            aria-hidden="true">
+
+                                    </div>
 
                                 </div>
 
-                                <figcaption>
-                                    Proyecto reciente: sitio corporativo de Wicomm SA
-                                </figcaption>
+                                <div class="proof-tabs" role="tablist" aria-label="Proyectos recientes">
 
-                            </figure>
+                                    <button type="button" role="tab" id="proof-tab-0"
+                                        aria-selected="true" aria-controls="proof-panel"
+                                        data-url="wicomm.com.py">
+                                        <span class="proof-name">Wicomm SA</span>
+                                        <span class="proof-type">Sitio corporativo</span>
+                                        <span class="proof-progress" aria-hidden="true"></span>
+                                    </button>
+
+                                    <button type="button" role="tab" id="proof-tab-1"
+                                        aria-selected="false" aria-controls="proof-panel" tabindex="-1"
+                                        data-url="Landing page">
+                                        <span class="proof-name">Nova Consulting</span>
+                                        <span class="proof-type">Landing page</span>
+                                        <span class="proof-progress" aria-hidden="true"></span>
+                                    </button>
+
+                                    <button type="button" role="tab" id="proof-tab-2"
+                                        aria-selected="false" aria-controls="proof-panel" tabindex="-1"
+                                        data-url="Landing page">
+                                        <span class="proof-name">Elite Gym</span>
+                                        <span class="proof-type">Landing page</span>
+                                        <span class="proof-progress" aria-hidden="true"></span>
+                                    </button>
+
+                                    <button type="button" role="tab" id="proof-tab-3"
+                                        aria-selected="false" aria-controls="proof-panel" tabindex="-1"
+                                        data-url="Sistema web">
+                                        <span class="proof-name">Restaurant Booking</span>
+                                        <span class="proof-type">Sistema web</span>
+                                        <span class="proof-progress" aria-hidden="true"></span>
+                                    </button>
+
+                                </div>
+
+                            </div>
 
                         </div>
 
