@@ -10,7 +10,7 @@ const ENTER_ITEMS = [
     ".service-item", ".services-cta",
     ".stepper-step", ".stepper-panels", ".process-cta",
     ".slide-stage", ".project-body", ".carousel-controls",
-    ".about-item", ".about-card",
+    ".about-note", ".about-promises li", ".about-card",
     ".contact-content .btn-whatsapp", ".contact-item",
 ].join(",");
 

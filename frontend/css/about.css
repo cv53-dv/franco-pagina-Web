@@ -1,5 +1,7 @@
 /* ==========================================
    NOSOTROS
+   Nota personal del fundador + tarjeta con sus datos.
+   La ventaja de un estudio chico: hablas con quien construye.
 ========================================== */
 
 .about{
@@ -12,65 +14,93 @@
 
     display:grid;
 
-    grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
+    grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);
 
-    gap:clamp(40px,6vw,80px);
+    align-items:start;
 
-    align-items:center;
-
-}
-
-.about-content{
-
-    max-width:620px;
+    gap:clamp(48px,7vw,104px);
 
 }
 
-.about-content .section-description{
+.about-content .section-title{
 
-    margin-bottom:0;
-
-}
-
-.about-features{
-
-    display:grid;
-
-    grid-template-columns:repeat(2,minmax(0,1fr));
-
-    gap:12px;
-
-    margin-top:36px;
+    margin-bottom:28px;
 
 }
 
-.about-item{
+/*
+=============================================
+NOTA EN PRIMERA PERSONA
+=============================================
+*/
 
-    display:flex;
+.about-note{
 
-    align-items:center;
+    max-width:62ch;
 
-    gap:12px;
+    padding-left:24px;
 
-    padding:14px 18px;
-
-    border-radius:14px;
-
-    background:rgba(255,255,255,.03);
-
-    border:1px solid rgba(255,255,255,.06);
-
-    color:var(--gray-200);
-
-    font-size:.95rem;
+    border-left:2px solid var(--primary);
 
 }
 
-.about-item .ic{
+.about-note p{
 
-    color:var(--accent);
+    color:var(--text-primary);
 
-    font-size:1.05rem;
+    font-size:clamp(1.05rem,1.3vw,1.2rem);
+
+    line-height:1.75;
+
+}
+
+.about-note p + p{
+
+    margin-top:16px;
+
+    color:var(--text-secondary);
+
+}
+
+/*
+=============================================
+COMPROMISOS
+=============================================
+*/
+
+.about-promises{
+
+    list-style:none;
+
+    margin:40px 0 0;
+
+    padding:0;
+
+    border-top:1px solid var(--border-color);
+
+}
+
+.about-promises li{
+
+    padding:18px 0;
+
+    border-bottom:1px solid var(--border-color);
+
+    color:var(--text-secondary);
+
+    line-height:1.65;
+
+}
+
+.about-promises strong{
+
+    display:block;
+
+    margin-bottom:2px;
+
+    color:var(--text-primary);
+
+    font-weight:var(--fw-semibold);
 
 }
 
@@ -82,58 +112,9 @@ TARJETA DEL FUNDADOR
 
 .about-card{
 
-    position:relative;
+    position:sticky;
 
-    overflow:hidden;
-
-    padding:clamp(28px,4vw,48px);
-
-    border-radius:var(--card-radius);
-
-    background:var(--card-bg);
-
-    border:var(--card-border);
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.06),
-        var(--card-shadow);
-
-}
-
-/* Halo de marca detrás del avatar */
-.about-card::before{
-
-    content:"";
-
-    position:absolute;
-
-    top:-140px;
-
-    left:50%;
-
-    width:420px;
-
-    height:420px;
-
-    transform:translateX(-50%);
-
-    background:radial-gradient(
-        circle,
-        rgba(37,99,255,.20),
-        transparent 65%
-    );
-
-    pointer-events:none;
-
-}
-
-.about-card > *{
-
-    position:relative;
-
-}
-
-.about-header{
+    top:calc(var(--nav-h-scrolled) + 32px);
 
     display:flex;
 
@@ -141,59 +122,73 @@ TARJETA DEL FUNDADOR
 
     align-items:center;
 
-    text-align:center;
+    padding:40px 32px 32px;
 
-    margin-bottom:32px;
+    border:1px solid var(--border-color);
+
+    border-radius:24px;
+
+    background:
+        radial-gradient(90% 60% at 50% 0%, rgba(37,99,255,.16), transparent 70%),
+        var(--bg-secondary);
+
+    text-align:center;
 
 }
 
+/* Monograma con anillo de color mientras no haya foto */
 .about-avatar{
+
+    display:grid;
+
+    place-items:center;
 
     width:112px;
 
     height:112px;
 
-    margin-bottom:24px;
+    margin-bottom:20px;
+
+    padding:3px;
 
     border-radius:50%;
 
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:linear-gradient(
-        135deg,
-        #2563FF,
-        #1E3A8A
-    );
-
-    border:4px solid rgba(255,255,255,.06);
-
-    color:var(--white);
-
-    font-size:2.8rem;
-
-    box-shadow:
-        0 0 0 8px rgba(37,99,255,.08),
-        0 20px 50px rgba(37,99,255,.30);
+    background:conic-gradient(from 210deg, var(--primary), var(--accent), #22D3EE, var(--primary));
 
 }
 
-.about-label{
+.about-avatar span,
+.about-avatar img{
 
-    margin-bottom:10px;
+    display:grid;
 
-    color:var(--accent);
+    place-items:center;
 
-    font-size:.72rem;
+    width:100%;
 
-    font-weight:var(--fw-semibold);
+    height:100%;
 
-    letter-spacing:.22em;
+    border-radius:50%;
 
-    text-transform:uppercase;
+    border:4px solid var(--bg-secondary);
+
+    background:#0E1526;
+
+    object-fit:cover;
+
+}
+
+.about-avatar span{
+
+    font-family:var(--font-heading);
+
+    font-size:2rem;
+
+    font-weight:var(--fw-bold);
+
+    letter-spacing:.02em;
+
+    color:var(--white);
 
 }
 
@@ -203,23 +198,41 @@ TARJETA DEL FUNDADOR
 
     font-family:var(--font-heading);
 
-    font-size:clamp(1.5rem,2.4vw,1.9rem);
+    font-size:1.35rem;
 
-    letter-spacing:-.015em;
+    font-weight:var(--fw-bold);
+
+    line-height:1.25;
+
+    color:var(--text-primary);
 
 }
 
 .about-role{
 
-    color:var(--gray-400);
+    color:var(--text-secondary);
 
-    font-size:.95rem;
+}
+
+.about-location{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    margin-top:6px;
+
+    color:var(--gray-500);
+
+    font-size:.9rem;
 
 }
 
 /*
 =============================================
-STATS
+NÚMEROS
 =============================================
 */
 
@@ -227,99 +240,96 @@ STATS
 
     display:grid;
 
-    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-columns:repeat(3,minmax(0,1fr));
 
-    gap:12px;
+    width:100%;
+
+    margin:28px 0;
+
+    padding:20px 0;
+
+    border-block:1px solid var(--border-color);
 
 }
 
+/* El número arriba y la etiqueta abajo, aunque en el HTML la etiqueta va primero */
 .about-stat{
 
-    padding:20px 16px;
+    display:flex;
 
-    border-radius:18px;
+    flex-direction:column-reverse;
 
-    background:linear-gradient(
-        180deg,
-        rgba(255,255,255,.05),
-        rgba(255,255,255,.02)
-    );
+    gap:4px;
 
-    border:1px solid rgba(255,255,255,.06);
-
-    text-align:center;
-
-    transition:
-        transform var(--dur-slow) var(--ease-out),
-        border-color var(--dur-slow) ease;
+    padding:0 6px;
 
 }
 
-.about-stat h4{
+.about-stat + .about-stat{
 
-    margin-bottom:4px;
+    border-left:1px solid var(--border-color);
+
+}
+
+.about-stat dd{
+
+    margin:0;
 
     font-family:var(--font-heading);
 
-    font-size:clamp(1.6rem,2.6vw,2rem);
+    font-size:1.6rem;
 
-    line-height:1.1;
+    font-weight:var(--fw-bold);
 
-    color:var(--white);
+    color:var(--text-primary);
 
-    /* Dígitos de ancho fijo: el contador no "baila" al animarse */
     font-variant-numeric:tabular-nums;
 
 }
 
-.about-stat span{
+.about-stat dt{
 
     color:var(--gray-400);
 
-    font-size:.85rem;
+    font-size:.78rem;
+
+    line-height:1.35;
 
 }
 
-.about-divider{
+.about-cta{
 
-    max-width:320px;
-
-    height:1px;
-
-    margin:32px auto 24px;
-
-    background:linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.12),
-        transparent
-    );
+    width:100%;
 
 }
 
-.about-quote{
+/*
+=============================================
+RESPONSIVE
+=============================================
+*/
 
-    max-width:400px;
+@media (max-width:900px){
 
-    margin:0 auto;
+    .about-card{
 
-    text-align:center;
+        position:static;
 
-    color:#DCE6FF;
-
-    font-size:1rem;
-
-    line-height:1.75;
+    }
 
 }
 
-@media (hover:hover) and (pointer:fine){
+@media (max-width:560px){
 
-    .about-stat:hover{
+    .about-note{
 
-        transform:translateY(-3px);
+        padding-left:18px;
 
-        border-color:rgba(37,99,255,.28);
+    }
+
+    .about-card{
+
+        padding:32px 20px 24px;
 
     }
 

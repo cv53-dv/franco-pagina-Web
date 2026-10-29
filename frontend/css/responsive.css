@@ -235,12 +235,6 @@
 
 @media (max-width:560px){
 
-    .about-features{
-
-        grid-template-columns:1fr;
-
-    }
-
     .contact-content .btn-whatsapp{
 
         width:100%;
