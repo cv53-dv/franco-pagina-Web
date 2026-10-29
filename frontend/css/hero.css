@@ -33,7 +33,7 @@
 
     display:grid;
 
-    grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
 
     align-items:center;
 
@@ -43,15 +43,10 @@
 
 .hero-left{
 
-    max-width:680px;
+    max-width:620px;
 
 }
 
-.hero .section-badge{
-
-    margin-bottom:24px;
-
-}
 
 /*
 =============================================
@@ -65,7 +60,7 @@ HERO TITLE
 
     font-family:var(--font-heading);
 
-    font-size:clamp(2.5rem,5.2vw,4.4rem);
+    font-size:clamp(2.4rem,4.6vw,4rem);
 
     font-weight:var(--fw-bold);
 
@@ -77,22 +72,6 @@ HERO TITLE
 
 }
 
-.hero-title span{
-
-    background:linear-gradient(
-        135deg,
-        #7DB8FF,
-        #3B7BFF 55%,
-        #2563FF
-    );
-
-    -webkit-background-clip:text;
-
-    -webkit-text-fill-color:transparent;
-
-    background-clip:text;
-
-}
 
 /*
 =============================================
@@ -130,39 +109,21 @@ HERO DESCRIPTION
 
 /*
 =============================================
-FEATURES
+ESTADO
 =============================================
 */
 
-.hero-features{
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:12px 24px;
-
-}
-
-.feature{
+.hero-status{
 
     display:flex;
 
     align-items:center;
 
-    gap:8px;
+    gap:12px;
 
-    color:var(--gray-300);
+    color:var(--gray-400);
 
     font-size:.92rem;
-
-}
-
-.feature .ic{
-
-    color:var(--accent);
-
-    font-size:1.05rem;
 
 }
 
@@ -172,8 +133,6 @@ FEATURES
 
     display:flex;
 
-    justify-content:center;
-
-    perspective:1200px;
+    justify-content:flex-end;
 
 }

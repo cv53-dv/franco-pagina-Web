@@ -1,0 +1,211 @@
+/* ==========================================
+   HERO — PRUEBA DE TRABAJO
+   Dos ventanas de navegador con proyectos reales.
+   Es el único elemento "llamativo" de la página:
+   el resto se mantiene sobrio a propósito.
+========================================== */
+
+.hero-proof{
+
+    position:relative;
+
+    width:100%;
+
+    max-width:620px;
+
+    margin:0;
+
+    /* Reserva el espacio de la ventana trasera, que sobresale arriba */
+    padding-top:12%;
+
+}
+
+/*
+=============================================
+VENTANA DE NAVEGADOR
+=============================================
+*/
+
+.browser{
+
+    overflow:hidden;
+
+    border:1px solid rgba(148,163,184,.18);
+
+    border-radius:12px;
+
+    background:var(--bg-secondary);
+
+}
+
+.browser-bar{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    height:34px;
+
+    padding:0 14px;
+
+    border-bottom:1px solid rgba(148,163,184,.12);
+
+    background:#0E1526;
+
+}
+
+.browser-dots{
+
+    display:flex;
+
+    gap:6px;
+
+}
+
+.browser-dots i{
+
+    width:9px;
+
+    height:9px;
+
+    border-radius:50%;
+
+    background:rgba(148,163,184,.35);
+
+}
+
+.browser-url{
+
+    flex:1;
+
+    max-width:220px;
+
+    padding:3px 12px;
+
+    border-radius:6px;
+
+    background:rgba(255,255,255,.05);
+
+    color:var(--gray-400);
+
+    font-size:.75rem;
+
+    line-height:1.4;
+
+}
+
+.browser img{
+
+    display:block;
+
+    width:100%;
+
+    height:auto;
+
+    aspect-ratio:16 / 9;
+
+    object-fit:cover;
+
+    object-position:top;
+
+}
+
+/* Ventana trasera: más chica, corrida y apagada para dar profundidad */
+.browser-back{
+
+    position:absolute;
+
+    top:0;
+
+    right:0;
+
+    width:72%;
+
+    opacity:.55;
+
+    transform:rotate(3deg);
+
+    transform-origin:top right;
+
+}
+
+.browser-front{
+
+    position:relative;
+
+    width:88%;
+
+    box-shadow:
+        0 1px 0 rgba(255,255,255,.06) inset,
+        0 30px 80px rgba(0,0,0,.55),
+        0 0 0 1px rgba(37,99,255,.08);
+
+}
+
+.hero-proof figcaption{
+
+    margin-top:16px;
+
+    color:var(--gray-400);
+
+    font-size:.875rem;
+
+}
+
+/*
+=============================================
+ESTADO "DISPONIBLE"
+=============================================
+*/
+
+.status-dot{
+
+    position:relative;
+
+    flex-shrink:0;
+
+    width:8px;
+
+    height:8px;
+
+    border-radius:50%;
+
+    background:#22C55E;
+
+}
+
+.status-dot::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:50%;
+
+    background:#22C55E;
+
+    animation:statusPulse 2.4s var(--ease-out) infinite;
+
+}
+
+@keyframes statusPulse{
+
+    0%{ transform:scale(1); opacity:.6; }
+
+    70%,100%{ transform:scale(2.8); opacity:0; }
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    .status-dot::after{
+
+        animation:none;
+
+    }
+
+}

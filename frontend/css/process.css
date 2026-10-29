@@ -1,14 +1,10 @@
 /* ==========================================
    CÓMO TRABAJAMOS
+   Línea de tiempo: acá los números sí aportan,
+   porque las etapas son una secuencia.
 ========================================== */
 
-.process{
-
-    position:relative;
-
-}
-
-.process-grid{
+.timeline{
 
     list-style:none;
 
@@ -18,148 +14,93 @@
 
     display:grid;
 
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:repeat(4,minmax(0,1fr));
 
-    gap:20px;
-
-    counter-reset:step;
-
-}
-
-.process-step{
+    gap:32px;
 
     position:relative;
 
-    padding:32px 28px;
-
-    border-radius:var(--card-radius);
-
-    background:var(--card-bg);
-
-    border:var(--card-border);
-
-    transition:
-        transform var(--dur-slow) var(--ease-out),
-        border-color var(--dur-slow) var(--ease-out),
-        box-shadow var(--dur-slow) var(--ease-out);
-
 }
 
-@media (hover:hover) and (pointer:fine){
-
-    .process-step:hover{
-
-    transform:translateY(-6px);
-
-    border-color:rgba(37,99,255,.35);
-
-    box-shadow:
-        var(--card-hover-shadow),
-        var(--glow-primary);
-
-}
-
-}
-
-/* Línea conectora entre pasos (solo escritorio) */
-.process-step:not(:last-child)::after{
+/* La línea que une las etapas pasa por el centro de los números */
+.timeline::before{
 
     content:"";
 
     position:absolute;
 
-    top:52px;
+    top:20px;
 
-    right:-20px;
+    left:20px;
 
-    width:20px;
+    right:0;
 
     height:1px;
 
     background:linear-gradient(
         90deg,
-        rgba(37,99,255,.5),
-        transparent
+        var(--primary),
+        rgba(37,99,255,.15)
     );
 
 }
 
-.process-num{
+.timeline-step{
 
-    display:inline-flex;
+    position:relative;
+
+}
+
+.timeline-num{
+
+    position:relative;
+
+    display:flex;
 
     align-items:center;
 
     justify-content:center;
 
-    width:52px;
+    width:40px;
 
-    height:52px;
+    height:40px;
 
     margin-bottom:24px;
 
-    border-radius:16px;
+    border-radius:50%;
 
-    background:linear-gradient(
-        180deg,
-        rgba(37,99,255,.18),
-        rgba(96,165,250,.05)
-    );
+    border:1px solid var(--primary);
 
-    border:1px solid rgba(96,165,250,.18);
+    background:var(--bg-primary);
 
-    color:var(--accent);
+    color:var(--white);
 
     font-family:var(--font-heading);
 
     font-weight:var(--fw-bold);
 
-    font-size:1.15rem;
-
 }
 
-.process-step h3{
+.timeline-step h3{
 
-    margin-bottom:14px;
+    margin-bottom:10px;
 
-    font-size:1.35rem;
+    font-family:var(--font-heading);
+
+    font-size:1.25rem;
 
     font-weight:var(--fw-bold);
 
+    letter-spacing:-.01em;
+
+    color:var(--text-primary);
+
 }
 
-.process-step p{
+.timeline-step p{
 
     color:var(--text-secondary);
 
-    line-height:1.75;
-
-    font-size:.98rem;
-
-}
-
-@media (max-width:992px){
-
-    .process-grid{
-
-        grid-template-columns:repeat(2,1fr);
-
-    }
-
-    .process-step:not(:last-child)::after{
-
-        display:none;
-
-    }
-
-}
-
-@media (max-width:560px){
-
-    .process-grid{
-
-        grid-template-columns:1fr;
-
-    }
+    line-height:1.7;
 
 }

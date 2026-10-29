@@ -146,7 +146,7 @@ TARJETA
 
     font-weight:var(--fw-semibold);
 
-    overflow-wrap:anywhere;
+    overflow-wrap:break-word;
 
 }
 

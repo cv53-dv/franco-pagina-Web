@@ -200,3 +200,74 @@ HOVER — solo con puntero fino (en táctil el hover queda "pegado")
     }
 
 }
+
+/*
+=============================================
+WHATSAPP — acción principal de contacto.
+El verde se reserva solo para esta acción:
+así el ojo encuentra el botón sin buscarlo.
+=============================================
+*/
+
+.btn-whatsapp{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    min-height:52px;
+
+    padding:14px 26px;
+
+    border-radius:var(--radius-md);
+
+    background:#25D366;
+
+    color:#04210F;
+
+    font-weight:var(--fw-semibold);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.3),
+        0 10px 28px rgba(37,211,102,.22);
+
+    transition:
+        transform var(--dur) var(--ease-out),
+        background var(--dur) ease,
+        box-shadow var(--dur) var(--ease-out);
+
+}
+
+.btn-whatsapp .ic{
+
+    font-size:1.25rem;
+
+}
+
+.btn-whatsapp:active{
+
+    transform:scale(.97);
+
+    transition-duration:var(--dur-fast);
+
+}
+
+@media (hover:hover) and (pointer:fine){
+
+    .btn-whatsapp:hover{
+
+        background:#2EE070;
+
+        transform:translateY(-2px);
+
+        box-shadow:
+            inset 0 1px 0 rgba(255,255,255,.3),
+            0 16px 36px rgba(37,211,102,.30);
+
+    }
+
+}
