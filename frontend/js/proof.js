@@ -21,9 +21,30 @@ let visible = true;
 
 proof.style.setProperty("--proof-interval", `${INTERVAL}ms`);
 
-function select(index){
+// Fundido corto para los elementos secundarios (texto de la URL, ventana de atrás)
+function fadeIn(el){
+
+    if (reduceMotion || !el.animate) return;
+
+    el.animate(
+        [{ opacity: 0, transform: "translateY(4px)" }, { opacity: 1, transform: "none" }],
+        { duration: 320, easing: "cubic-bezier(.22,1,.36,1)" }
+    );
+
+}
+
+function select(index, dir = 1){
+
+    const previous = current;
 
     current = (index + tabs.length) % tabs.length;
+
+    if (current === previous && shots[current].classList.contains("is-active")) return;
+
+    // Primero se fija la dirección y se fuerza un reflow, para que la captura
+    // nueva arranque desde el lado correcto antes de empezar la transición.
+    panel.style.setProperty("--dir", String(dir));
+    void panel.offsetWidth;
 
     tabs.forEach((tab, i) => {
 
@@ -35,6 +56,8 @@ function select(index){
 
         shots[i].classList.toggle("is-active", active);
 
+        shots[i].classList.toggle("is-leaving", i === previous && !active);
+
         if (active) shots[i].removeAttribute("aria-hidden");
         else shots[i].setAttribute("aria-hidden", "true");
 
@@ -44,10 +67,17 @@ function select(index){
 
     url.textContent = tabs[current].dataset.url;
 
+    fadeIn(url);
+
     // La ventana de atrás anticipa el proyecto siguiente
     back.src = shots[(current + 1) % shots.length].src;
 
+    fadeIn(back);
+
 }
+
+// Dirección según la posición: avanzar entra por la derecha, retroceder por la izquierda
+const dirTo = (index) => (index < current ? -1 : 1);
 
 function stop(){
 
@@ -95,7 +125,7 @@ tabs.forEach((tab, i) => {
 
         takeControl();
 
-        select(i);
+        select(i, dirTo(i));
 
     });
 
@@ -116,7 +146,9 @@ proof.querySelector('[role="tablist"]').addEventListener("keydown", (e) => {
 
     takeControl();
 
-    select(keys[e.key]);
+    const dir = e.key === "ArrowLeft" || e.key === "Home" ? -1 : 1;
+
+    select(keys[e.key], dir);
 
     tabs[current].focus();
 

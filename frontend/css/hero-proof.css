@@ -156,9 +156,15 @@ PANTALLA: capturas apiladas con fundido
 =============================================
 */
 
+/* --dir = 1 al avanzar, -1 al retroceder: la captura nueva entra
+   desde ese lado y la anterior sale por el opuesto. */
 .browser-screen{
 
+    --dir:1;
+
     position:relative;
+
+    overflow:hidden;
 
     aspect-ratio:16 / 9;
 
@@ -166,6 +172,7 @@ PANTALLA: capturas apiladas con fundido
 
 }
 
+/* Reposo: invisible, esperando del lado por el que va a entrar */
 .browser-screen img{
 
     position:absolute;
@@ -174,13 +181,37 @@ PANTALLA: capturas apiladas con fundido
 
     opacity:0;
 
-    transition:opacity 450ms var(--ease-out);
+    transform:translateX(calc(var(--dir) * 12%)) scale(1.04);
+
+    filter:blur(6px);
+
+    transition:
+        opacity 420ms var(--ease-out),
+        transform 650ms var(--ease-out),
+        filter 500ms var(--ease-out);
 
 }
 
 .browser-screen img.is-active{
 
     opacity:1;
+
+    transform:none;
+
+    filter:none;
+
+}
+
+.browser-screen img.is-leaving{
+
+    opacity:0;
+
+    transform:translateX(calc(var(--dir) * -10%)) scale(.96);
+
+    filter:blur(2px);
+
+    /* La que sale se va más rápido para no competir con la que entra */
+    transition-duration:300ms, 450ms, 300ms;
 
 }
 
@@ -355,9 +386,14 @@ mientras rota sola; al elegir una, queda llena y fija.
 
 @media (prefers-reduced-motion:reduce){
 
-    .browser-screen img{
+    .browser-screen img,
+    .browser-screen img.is-leaving{
 
-        transition:none;
+        transform:none;
+
+        filter:none;
+
+        transition:opacity 200ms linear;
 
     }
 
