@@ -11,7 +11,7 @@ const ENTER_ITEMS = [
     ".stepper-step", ".stepper-panels", ".process-cta",
     ".slide-stage", ".project-body", ".carousel-controls",
     ".about-note", ".about-promises li", ".about-card",
-    ".contact-content .btn-whatsapp", ".contact-item",
+    ".contact-form .field", ".contact-submit", ".contact-preview", ".contact-channels",
 ].join(",");
 
 // Tope de la cascada: las secciones largas no esperan de más

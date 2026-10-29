@@ -6,6 +6,7 @@ import "./proof.js";
 import "./lightbox.js";
 import "./carousel.js";
 import "./stepper.js";
+import "./contact.js";
 import "./motion.js";
 import "./enter.js";
 import "./footer.js";

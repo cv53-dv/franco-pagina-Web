@@ -1,5 +1,7 @@
 /* ==========================================
-   CONTACT
+   CONTACTO
+   Formulario que arma el mensaje de WhatsApp (js/contact.js)
+   con vista previa en vivo. No envía datos a ningún servidor.
 ========================================== */
 
 .contact{
@@ -12,175 +14,502 @@
 
     display:grid;
 
-    grid-template-columns:minmax(0,1fr) minmax(0,.85fr);
+    grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);
+
+    align-items:start;
 
     gap:clamp(40px,6vw,88px);
-
-    align-items:center;
-
-}
-
-.contact-content{
-
-    max-width:600px;
-
-}
-
-.contact-content .section-description{
-
-    max-width:540px;
-
-    margin-bottom:32px;
 
 }
 
 /*
 =============================================
-TARJETA
+FORMULARIO
 =============================================
 */
 
-.contact-card{
-
-    position:relative;
-
-    overflow:hidden;
+.contact-form{
 
     display:flex;
 
     flex-direction:column;
 
-    padding:clamp(24px,3.5vw,40px);
-
-    border-radius:var(--card-radius);
-
-    background:var(--card-bg);
-
-    border:var(--card-border);
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.06),
-        var(--card-shadow);
+    gap:28px;
 
 }
 
-.contact-card::before{
+.field{
 
-    content:"";
+    margin:0;
 
-    position:absolute;
+    padding:0;
 
-    inset:0;
-
-    background:radial-gradient(
-        circle at top,
-        rgba(37,99,255,.16),
-        transparent 65%
-    );
-
-    pointer-events:none;
-
-}
-
-.contact-item{
-
-    position:relative;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:18px;
-
-    padding:18px 0;
-
-}
-
-.contact-item > div{
+    border:0;
 
     min-width:0;
 
 }
 
-.contact-item .ic{
-
-    width:52px;
-
-    height:52px;
-
-    border-radius:16px;
-
-    font-size:1.3rem;
-
-    color:var(--white);
-
-    background:linear-gradient(
-        135deg,
-        #2563FF,
-        #1D4ED8
-    );
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.2),
-        0 10px 28px rgba(37,99,255,.25);
-
-    transition:transform var(--dur) var(--ease-out);
-
-}
-
-.contact-item span{
+.field label,
+.field legend{
 
     display:block;
 
-    margin-bottom:4px;
+    margin-bottom:10px;
 
-    color:var(--gray-400);
+    padding:0;
 
-    font-size:.85rem;
-
-}
-
-.contact-item h4{
-
-    font-size:clamp(1rem,1.6vw,1.15rem);
+    color:var(--text-primary);
 
     font-weight:var(--fw-semibold);
 
-    overflow-wrap:break-word;
+}
+
+.field-optional{
+
+    margin-left:6px;
+
+    color:var(--gray-500);
+
+    font-size:.82rem;
+
+    font-weight:var(--fw-regular);
 
 }
 
-.contact-item h4 a{
+.field input[type="text"],
+.field textarea{
 
-    transition:color var(--dur) ease;
+    width:100%;
+
+    padding:14px 16px;
+
+    border:1px solid rgba(148,163,184,.22);
+
+    border-radius:var(--radius-md);
+
+    background:var(--bg-secondary);
+
+    color:var(--text-primary);
+
+    font:inherit;
+
+    line-height:1.5;
+
+    transition:border-color var(--dur) ease, box-shadow var(--dur) ease;
 
 }
 
-.contact-divider{
+.field textarea{
+
+    resize:vertical;
+
+    min-height:120px;
+
+}
+
+.field input::placeholder,
+.field textarea::placeholder{
+
+    color:var(--gray-500);
+
+}
+
+.field input:focus,
+.field textarea:focus{
+
+    outline:none;
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 4px rgba(37,99,255,.18);
+
+}
+
+.field input[aria-invalid="true"]{
+
+    border-color:#F87171;
+
+}
+
+.field-error{
+
+    margin-top:8px;
+
+    color:#FCA5A5;
+
+    font-size:.88rem;
+
+}
+
+/* Opciones como "chips": radios nativos, accesibles con teclado */
+.chips{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+}
+
+.chip{
+
+    position:relative;
+
+    cursor:pointer;
+
+}
+
+.chip input{
+
+    position:absolute;
+
+    opacity:0;
+
+    width:1px;
 
     height:1px;
 
-    background:linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.08),
-        transparent
-    );
+}
+
+.chip span{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    min-height:44px;
+
+    padding:10px 18px;
+
+    border:1px solid rgba(148,163,184,.25);
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.02);
+
+    color:var(--text-secondary);
+
+    font-size:.92rem;
+
+    transition:
+        background var(--dur) ease,
+        border-color var(--dur) ease,
+        color var(--dur) ease;
+
+}
+
+.chip input:checked + span{
+
+    border-color:var(--primary);
+
+    background:rgba(37,99,255,.16);
+
+    color:var(--white);
+
+}
+
+.chip input:focus-visible + span{
+
+    outline:2px solid var(--accent);
+
+    outline-offset:3px;
 
 }
 
 @media (hover:hover) and (pointer:fine){
 
-    .contact-item h4 a:hover{
+    .chip:hover span{
 
-        color:var(--accent);
+        border-color:rgba(148,163,184,.5);
+
+        color:var(--text-primary);
 
     }
 
-    /* Solo reacciona la fila que tiene un enlace */
-    .contact-item:has(a):hover .ic{
+}
 
-        transform:translateY(-2px) scale(1.04);
+.contact-submit{
+
+    align-self:flex-start;
+
+    border:0;
+
+    font:inherit;
+
+    font-weight:var(--fw-semibold);
+
+    cursor:pointer;
+
+}
+
+.contact-privacy{
+
+    margin-top:-12px;
+
+    max-width:52ch;
+
+    color:var(--gray-500);
+
+    font-size:.85rem;
+
+    line-height:1.6;
+
+}
+
+/*
+=============================================
+VISTA PREVIA ESTILO WHATSAPP
+=============================================
+*/
+
+.contact-side{
+
+    position:sticky;
+
+    top:calc(var(--nav-h-scrolled) + 32px);
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+}
+
+.contact-preview{
+
+    overflow:hidden;
+
+    border:1px solid rgba(148,163,184,.16);
+
+    border-radius:20px;
+
+    background:#0B141A;
+
+}
+
+.preview-head{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:14px 18px;
+
+    background:#1F2C34;
+
+}
+
+.preview-head strong{
+
+    display:block;
+
+    color:#E9EDEF;
+
+    font-size:.95rem;
+
+}
+
+.preview-head small{
+
+    color:#8696A0;
+
+    font-size:.78rem;
+
+}
+
+.preview-avatar{
+
+    display:grid;
+
+    place-items:center;
+
+    width:38px;
+
+    height:38px;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    color:var(--white);
+
+    font-family:var(--font-heading);
+
+    font-weight:var(--fw-bold);
+
+}
+
+.preview-chat{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    min-height:200px;
+
+    padding:24px 18px;
+
+    background:
+        radial-gradient(rgba(255,255,255,.035) 1px, transparent 1px) 0 0 / 18px 18px,
+        #0B141A;
+
+}
+
+/* Burbuja "enviada": verde de WhatsApp, esquina superior derecha recta */
+.preview-bubble{
+
+    align-self:flex-end;
+
+    max-width:88%;
+
+    padding:10px 14px;
+
+    border-radius:12px 0 12px 12px;
+
+    background:#005C4B;
+
+    color:#E9EDEF;
+
+    font-size:.92rem;
+
+    line-height:1.55;
+
+    white-space:pre-line;
+
+    overflow-wrap:anywhere;
+
+}
+
+/*
+=============================================
+OTROS CANALES
+=============================================
+*/
+
+.contact-channels{
+
+    margin:0;
+
+    border-top:1px solid var(--border-color);
+
+}
+
+.contact-channels > div{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:baseline;
+
+    gap:16px;
+
+    padding:14px 0;
+
+    border-bottom:1px solid var(--border-color);
+
+}
+
+.contact-channels dt{
+
+    color:var(--gray-400);
+
+    font-size:.9rem;
+
+}
+
+.contact-channels dd{
+
+    margin:0;
+
+    color:var(--text-primary);
+
+    text-align:right;
+
+    overflow-wrap:break-word;
+
+    min-width:0;
+
+}
+
+.contact-channels a{
+
+    color:var(--text-primary);
+
+    text-decoration:underline;
+
+    text-decoration-color:rgba(148,163,184,.35);
+
+    text-underline-offset:4px;
+
+    transition:text-decoration-color var(--dur) ease;
+
+}
+
+@media (hover:hover) and (pointer:fine){
+
+    .contact-channels a:hover{
+
+        text-decoration-color:var(--accent);
+
+    }
+
+}
+
+/*
+=============================================
+RESPONSIVE
+=============================================
+*/
+
+@media (max-width:900px){
+
+    .contact-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .contact-side{
+
+        position:static;
+
+    }
+
+    /* Apilada, la vista previa queda debajo del botón y no se ve mientras
+       se completa: se oculta (WhatsApp muestra el mensaje antes de enviarlo) */
+    .contact-preview{
+
+        display:none;
+
+    }
+
+}
+
+@media (max-width:560px){
+
+    .contact-submit{
+
+        align-self:stretch;
+
+    }
+
+    .contact-channels > div{
+
+        flex-direction:column;
+
+        gap:2px;
+
+    }
+
+    .contact-channels dd{
+
+        text-align:left;
 
     }
 

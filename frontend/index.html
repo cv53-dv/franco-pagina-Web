@@ -1097,122 +1097,136 @@
 
                 <div class="container-custom">
 
+                    <div class="section-header">
+
+                        <h2 class="section-title">
+                            Cuéntanos qué necesitas
+                        </h2>
+
+                        <p class="section-description">
+                            Completa estos datos y te armamos el mensaje para WhatsApp.
+                            Respondemos en menos de 24 horas.
+                        </p>
+
+                    </div>
+
                     <div class="contact-grid">
 
-                        <!-- ========================= -->
-                        <!-- Texto -->
-                        <!-- ========================= -->
+                        <!-- Formulario: no envía nada al sitio, arma el mensaje y abre WhatsApp -->
+                        <form class="contact-form" data-contact-form novalidate>
 
-                        <div
-                            class="contact-content">
+                            <div class="field">
 
-                            <h2 class="section-title">
-                                ¿Listo para construir tu próximo proyecto?
-                            </h2>
+                                <label for="cf-name">Tu nombre</label>
 
-                            <p class="section-description">
+                                <input id="cf-name" name="name" type="text"
+                                    autocomplete="name"
+                                    required
+                                    aria-describedby="cf-name-error">
 
-                                Cuéntanos tu idea y trabajemos juntos para crear una solución
-                                digital moderna, rápida y pensada para hacer crecer tu negocio.
+                                <p class="field-error" id="cf-name-error" hidden>Escribe tu nombre para saber cómo llamarte.</p>
 
-                            </p>
+                            </div>
 
-                            <a href="https://wa.me/595994671223?text=Hola%2C%20quiero%20iniciar%20un%20proyecto%20con%20FRANCO"
-                                class="btn-whatsapp"
-                                target="_blank"
-                                rel="noopener">
+                            <fieldset class="field" aria-describedby="cf-type-error">
+
+                                <legend>¿Qué necesitas?</legend>
+
+                                <div class="chips">
+                                    <label class="chip"><input type="radio" name="type" value="una landing page" required><span>Landing page</span></label>
+                                    <label class="chip"><input type="radio" name="type" value="un sitio corporativo"><span>Sitio corporativo</span></label>
+                                    <label class="chip"><input type="radio" name="type" value="un sistema a medida"><span>Sistema a medida</span></label>
+                                    <label class="chip"><input type="radio" name="type" value="mejorar mi sitio actual"><span>Mejorar mi sitio actual</span></label>
+                                    <label class="chip"><input type="radio" name="type" value="otra cosa"><span>Otra cosa</span></label>
+                                </div>
+
+                                <p class="field-error" id="cf-type-error" hidden>Elige una opción para saber por dónde empezar.</p>
+
+                            </fieldset>
+
+                            <fieldset class="field">
+
+                                <legend>¿Cuándo te gustaría empezar? <span class="field-optional">Opcional</span></legend>
+
+                                <div class="chips">
+                                    <label class="chip"><input type="radio" name="when" value="lo antes posible"><span>Lo antes posible</span></label>
+                                    <label class="chip"><input type="radio" name="when" value="este mes"><span>Este mes</span></label>
+                                    <label class="chip"><input type="radio" name="when" value="en los próximos meses"><span>En los próximos meses</span></label>
+                                    <label class="chip"><input type="radio" name="when" value="todavía no sé, estoy averiguando"><span>Estoy averiguando</span></label>
+                                </div>
+
+                            </fieldset>
+
+                            <div class="field">
+
+                                <label for="cf-idea">Cuéntanos tu idea <span class="field-optional">Opcional</span></label>
+
+                                <textarea id="cf-idea" name="idea" rows="4"
+                                    maxlength="600"
+                                    placeholder="Por ejemplo: tengo una ferretería y quiero que me encuentren en Google."></textarea>
+
+                            </div>
+
+                            <button type="submit" class="btn-whatsapp contact-submit">
 
                                 <i class="ic" aria-hidden="true"><svg><use href="#i-whatsapp"></use></svg></i>
 
-                                Escríbenos por WhatsApp
+                                Enviar por WhatsApp
 
-                            </a>
+                            </button>
 
-                        </div>
+                            <p class="contact-privacy">
+                                Este sitio no guarda tus datos: el mensaje sale desde tu propio WhatsApp
+                                y puedes editarlo antes de enviarlo.
+                            </p>
 
-                        <!-- ========================= -->
-                        <!-- Tarjeta -->
-                        <!-- ========================= -->
+                        </form>
 
-                        <div class="contact-card">
+                        <aside class="contact-side">
 
-                            <div class="contact-item">
+                            <!-- Vista previa en vivo del mensaje -->
+                            <div class="contact-preview" aria-hidden="true">
 
-                                <i class="ic" aria-hidden="true"><svg><use href="#i-envelope"></use></svg></i>
+                                <div class="preview-head">
+                                    <span class="preview-avatar">F</span>
+                                    <div>
+                                        <strong>FRANCO</strong>
+                                        <small>Responde en menos de 24 horas</small>
+                                    </div>
+                                </div>
 
-                                <div>
-
-                                    <span>Email</span>
-
-                                    <h4>
-                                        <a href="mailto:soporte@francodigitalstudio.com">soporte@<wbr>francodigitalstudio.com</a>
-                                    </h4>
-
+                                <div class="preview-chat">
+                                    <p class="preview-bubble" data-contact-preview></p>
                                 </div>
 
                             </div>
 
-                            <div class="contact-divider"></div>
-
-                            <div class="contact-item">
-
-                                <i class="ic" aria-hidden="true"><svg><use href="#i-whatsapp"></use></svg></i>
+                            <dl class="contact-channels">
 
                                 <div>
-
-                                    <span>WhatsApp</span>
-
-                                    <h4>
+                                    <dt>WhatsApp</dt>
+                                    <dd>
                                         <a href="https://wa.me/595994671223?text=Hola%2C%20quiero%20iniciar%20un%20proyecto%20con%20FRANCO"
                                             target="_blank"
                                             rel="noopener">+595 994 671 223</a>
-                                    </h4>
-
+                                    </dd>
                                 </div>
-
-                            </div>
-
-                            <div class="contact-divider"></div>
-
-                            <div class="contact-item">
-
-                                <i class="ic" aria-hidden="true"><svg><use href="#i-geo-alt"></use></svg></i>
 
                                 <div>
-
-                                    <span>Ubicación</span>
-
-                                    <h4>
-
-                                        Paraguay
-
-                                    </h4>
-
+                                    <dt>Email</dt>
+                                    <dd>
+                                        <a href="mailto:soporte@francodigitalstudio.com">soporte@<wbr>francodigitalstudio.com</a>
+                                    </dd>
                                 </div>
-
-                            </div>
-
-                            <div class="contact-divider"></div>
-
-                            <div class="contact-item">
-
-                                <i class="ic" aria-hidden="true"><svg><use href="#i-clock"></use></svg></i>
 
                                 <div>
-
-                                    <span>Tiempo de respuesta</span>
-
-                                    <h4>
-
-                                        Menos de 24 horas
-
-                                    </h4>
-
+                                    <dt>Ubicación</dt>
+                                    <dd>Paraguay, trabajo a distancia</dd>
                                 </div>
 
-                            </div>
+                            </dl>
 
-                        </div>
+                        </aside>
 
                     </div>
 
