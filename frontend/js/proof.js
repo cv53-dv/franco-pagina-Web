@@ -1,14 +1,13 @@
-// Visor de proyectos del hero: pestañas accesibles (patrón ARIA tabs)
-// con rotación automática que se detiene en cuanto el usuario elige uno.
+// Visor de proyectos del hero: un mazo de tarjetas apiladas como fotos.
+// Pestañas accesibles (patrón ARIA tabs) con rotación automática que se
+// detiene en cuanto el usuario elige un proyecto.
 const proof = document.querySelector("[data-proof]");
 
 if (proof) {
 
 const tabs = [...proof.querySelectorAll('[role="tab"]')];
-const shots = [...proof.querySelectorAll(".browser-screen img")];
-const panel = proof.querySelector('[role="tabpanel"]');
-const url = proof.querySelector("[data-proof-url]");
-const back = proof.querySelector("[data-proof-back]");
+const cards = [...proof.querySelectorAll(".proof-card")];
+const stack = proof.querySelector('[role="tabpanel"]');
 
 const INTERVAL = 5000;
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -21,30 +20,49 @@ let visible = true;
 
 proof.style.setProperty("--proof-interval", `${INTERVAL}ms`);
 
-// Fundido corto para los elementos secundarios (texto de la URL, ventana de atrás)
-function fadeIn(el){
-
-    if (reduceMotion || !el.animate) return;
-
-    el.animate(
-        [{ opacity: 0, transform: "translateY(4px)" }, { opacity: 1, transform: "none" }],
-        { duration: 320, easing: "cubic-bezier(.22,1,.36,1)" }
-    );
-
-}
+// Posición de cada tarjeta en el mazo: 0 = arriba de todo
+const posOf = (card, top) => (card - top + cards.length) % cards.length;
 
 function select(index, dir = 1){
 
-    const previous = current;
+    const target = (index + cards.length) % cards.length;
 
-    current = (index + tabs.length) % tabs.length;
+    if (target === current) return;
 
-    if (current === previous && shots[current].classList.contains("is-active")) return;
+    cards.forEach((card, i) => {
 
-    // Primero se fija la dirección y se fuerza un reflow, para que la captura
-    // nueva arranque desde el lado correcto antes de empezar la transición.
-    panel.style.setProperty("--dir", String(dir));
-    void panel.offsetWidth;
+        const from = posOf(i, current);
+        const to = posOf(i, target);
+
+        card.classList.remove("is-to-back", "is-to-top");
+
+        if (!reduceMotion) {
+
+            // Al avanzar, las tarjetas que van al fondo salen volando por la derecha;
+            // al retroceder, la que sube desde el fondo entra volando por la izquierda.
+            // El resto solo se reacomoda con la transición normal.
+            if (dir > 0 && to > from) {
+
+                void card.offsetWidth;
+                card.classList.add("is-to-back");
+
+            } else if (dir < 0 && to < from) {
+
+                void card.offsetWidth;
+                card.classList.add("is-to-top");
+
+            }
+
+        }
+
+        card.dataset.pos = String(to);
+
+        if (to === 0) card.removeAttribute("aria-hidden");
+        else card.setAttribute("aria-hidden", "true");
+
+    });
+
+    current = target;
 
     tabs.forEach((tab, i) => {
 
@@ -54,29 +72,23 @@ function select(index, dir = 1){
 
         tab.tabIndex = active ? 0 : -1;
 
-        shots[i].classList.toggle("is-active", active);
-
-        shots[i].classList.toggle("is-leaving", i === previous && !active);
-
-        if (active) shots[i].removeAttribute("aria-hidden");
-        else shots[i].setAttribute("aria-hidden", "true");
-
     });
 
-    panel.setAttribute("aria-labelledby", tabs[current].id);
-
-    url.textContent = tabs[current].dataset.url;
-
-    fadeIn(url);
-
-    // La ventana de atrás anticipa el proyecto siguiente
-    back.src = shots[(current + 1) % shots.length].src;
-
-    fadeIn(back);
+    stack.setAttribute("aria-labelledby", tabs[current].id);
 
 }
 
-// Dirección según la posición: avanzar entra por la derecha, retroceder por la izquierda
+cards.forEach((card) => {
+
+    card.addEventListener("animationend", () => {
+
+        card.classList.remove("is-to-back", "is-to-top");
+
+    });
+
+});
+
+// Dirección según la posición: avanzar va hacia la derecha, retroceder hacia la izquierda
 const dirTo = (index) => (index < current ? -1 : 1);
 
 function stop(){
@@ -102,7 +114,7 @@ function start(){
 
     timer = setInterval(() => {
 
-        select(current + 1);
+        select(current + 1, 1);
 
     }, INTERVAL);
 
@@ -128,6 +140,15 @@ tabs.forEach((tab, i) => {
         select(i, dirTo(i));
 
     });
+
+});
+
+// Tocar la tarjeta de arriba también pasa a la siguiente, como hojear fotos
+stack.addEventListener("click", () => {
+
+    takeControl();
+
+    select(current + 1, 1);
 
 });
 
@@ -178,7 +199,5 @@ new IntersectionObserver(([entry]) => {
 }).observe(proof);
 
 if (reduceMotion) proof.classList.add("is-manual");
-
-select(0);
 
 }
