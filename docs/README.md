@@ -56,7 +56,7 @@ tocar cualquier archivo de `css/` o `js/` hay que correr `npm run build`**
 
 ## Contacto
 
-- Email: soporte@francodigital.com
+- Email: soporte@francodigitalstudio.com
 - WhatsApp: +595 972 584 557
 
 ---

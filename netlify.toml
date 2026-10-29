@@ -9,7 +9,7 @@
 
 # Redirige el dominio con www al apex (ajustar el dominio real cuando exista)
 # [[redirects]]
-#   from = "https://www.francodigital.com/*"
-#   to = "https://francodigital.com/:splat"
+#   from = "https://www.francodigitalstudio.com/*"
+#   to = "https://francodigitalstudio.com/:splat"
 #   status = 301
 #   force = true

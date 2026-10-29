@@ -36,7 +36,50 @@ const tagline = Buffer.from(`
     </text>
 </svg>`);
 
-const logo = await sharp("frontend/assets/logos/logo_completo_sin_fondo.png")
+// El logo original dice "Tech & Digital Studio"; la marca es "Digital Studio".
+// Se borra esa línea (x > 700, y 600-800 del PNG original) y se redibuja.
+const LOGO = "frontend/assets/logos/logo_completo_sin_fondo.png";
+const { width: LW, height: LH } = await sharp(LOGO).metadata();
+
+const eraser = Buffer.from(`
+<svg xmlns="http://www.w3.org/2000/svg" width="${LW}" height="${LH}">
+    <rect x="700" y="600" width="${LW - 700}" height="200" fill="#000"/>
+</svg>`);
+
+const subtitle = Buffer.from(`
+<svg xmlns="http://www.w3.org/2000/svg" width="${LW}" height="${LH}">
+    <defs>
+        <linearGradient id="l" x1="0" x2="1">
+            <stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/>
+            <stop offset="1" stop-color="#FFFFFF" stop-opacity=".7"/>
+        </linearGradient>
+        <linearGradient id="r" x1="1" x2="0">
+            <stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/>
+            <stop offset="1" stop-color="#FFFFFF" stop-opacity=".7"/>
+        </linearGradient>
+    </defs>
+    <rect x="760" y="683" width="520" height="5" fill="url(#l)"/>
+    <circle cx="1290" cy="685" r="12" fill="#60A5FA"/>
+    <rect x="2840" y="683" width="520" height="5" fill="url(#r)"/>
+    <circle cx="2830" cy="685" r="12" fill="#60A5FA"/>
+    <text x="2060" y="728" text-anchor="middle"
+        font-family="Segoe UI, Arial, sans-serif" font-size="128" letter-spacing="34" fill="#FFFFFF">
+        Digital Studio
+    </text>
+</svg>`);
+
+const cleanLogo = await sharp(LOGO)
+    .composite([{ input: eraser, blend: "dest-out" }])
+    .png()
+    .toBuffer();
+
+// sharp aplica resize antes que composite: se hace en dos pasos
+const brandedLogo = await sharp(cleanLogo)
+    .composite([{ input: subtitle }])
+    .png()
+    .toBuffer();
+
+const logo = await sharp(brandedLogo)
     .resize({ width: 920 })
     .toBuffer();
 

@@ -18,7 +18,7 @@ Elegí una:
    - **Build command:** `npm run build`
    - **Build output directory:** `frontend`
 4. Deploy. Cloudflare lee `frontend/_headers` automáticamente.
-5. **Custom domains** → agregá `francodigital.com` y `www.francodigital.com`.
+5. **Custom domains** → agregá `francodigitalstudio.com` y `www.francodigitalstudio.com`.
 
 ---
 
@@ -46,7 +46,7 @@ Alternativa sin Git: `npm run build` y arrastrá la carpeta `frontend/` a
 
 ## Después de publicar
 
-- Actualizá si hace falta las URLs absolutas que apuntan a `https://francodigital.com/`:
+- Actualizá si hace falta las URLs absolutas que apuntan a `https://francodigitalstudio.com/`:
   - `frontend/index.html` (canonical, Open Graph, Twitter, JSON-LD)
   - `frontend/sitemap.xml`
   - `frontend/robots.txt`
