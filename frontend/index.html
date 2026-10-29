@@ -106,6 +106,10 @@
         <symbol id="i-clock" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/></symbol>
         <symbol id="i-check" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/></symbol>
         <symbol id="i-cloud-check" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M10.354 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708 0"/><path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383m.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z"/></symbol>
+        <symbol id="i-chevron-left" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/></symbol>
+        <symbol id="i-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/></symbol>
+        <symbol id="i-zoom" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11M13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"/><path d="M10.344 11.742q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1 6.5 6.5 0 0 1-1.398 1.4z"/><path fill-rule="evenodd" d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5"/></symbol>
+        <symbol id="i-x" viewBox="0 0 16 16"><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/></symbol>
     </svg>
 
     <div class="scroll-progress" aria-hidden="true"></div>
@@ -573,221 +577,269 @@
                     <div class="section-header">
 
                         <h2 class="section-title">
-
                             Proyectos recientes
-
                         </h2>
 
                         <p class="section-description">
-
-                            Sitios y sistemas que diseñamos y desarrollamos de principio a fin,
-                            con foco en rendimiento y en convertir visitas en clientes.
-
+                            Sitios y sistemas que diseñamos y desarrollamos de principio a fin.
+                            Desliza para ver más y toca una captura para verla en grande.
                         </p>
 
                     </div>
 
-                    <div class="portfolio-grid">
+                </div>
 
-                        <article class="project-card">
+                <!-- Carrusel: desliza con el dedo, el trackpad o arrastrando con el mouse -->
+                <div class="carousel" data-carousel>
 
-                            <div class="project-image">
+                    <div class="carousel-track"
+                        role="region"
+                        aria-roledescription="carrusel"
+                        aria-label="Proyectos recientes"
+                        tabindex="0">
 
-                                <picture>
-                                    <source srcset="assets/projects/novaconsulting.webp" type="image/webp">
-                                    <img
-                                        src="assets/projects/novaconsulting.png"
-                                        alt="Captura del sitio web de Nova Consulting"
-                                        width="1408" height="768"
-                                        loading="lazy" decoding="async">
-                                </picture>
+                        <article class="project slide" style="--i:0;--accent-a:#F97316;--accent-b:#2563FF" aria-roledescription="diapositiva" aria-label="1 de 4">
 
-                            </div>
+                            <div class="slide-stage">
 
-                            <div class="project-content">
-
-                                <span class="project-category">
-
-                                    Landing Page
-
-                                </span>
-
-                                <h3>
-
-                                    Nova Consulting
-
-                                </h3>
-
-                                <p>
-
-                                    Landing page corporativa diseñada para transmitir confianza,
-                                    captar clientes y potenciar la presencia digital.
-
-                                </p>
-
-                                <div class="project-tech">
-
-                                    <span class="tech-tag">
-                                        HTML
-                                    </span>
-                                    <span>CSS</span>
-                                    <span>JavaScript</span>
-
-                                </div>
-
-                            </div>
-
-                        </article>
-
-                        <article class="project-card">
-
-                            <div class="project-image">
-
-                                <picture>
-                                    <source srcset="assets/projects/EliteGym.webp" type="image/webp">
-                                    <img
-                                        src="assets/projects/EliteGym.png"
-                                        alt="Captura del sitio web de Elite Gym"
-                                        width="1408" height="768"
-                                        loading="lazy" decoding="async">
-                                </picture>
-
-                            </div>
-
-                            <div class="project-content">
-
-                                <span class="project-category">
-
-                                    Landing Page
-
-                                </span>
-
-                                <h3>
-
-                                    Elite Gym
-
-                                </h3>
-
-                                <p>
-                                Landing page premium para gimnasio con enfoque en conversión,
-                                planes de membresía y diseño moderno.
-                                </p>
-
-                                <div class="project-tech">
-
-                                    <span class="tech-tag">
-                                        HTML
-                                    </span>
-                                    <span>CSS</span>
-                                    <span>JavaScript</span>
-
-                                </div>
-
-                            </div>
-
-                        </article>
-
-                        <article class="project-card">
-
-                            <div class="project-image">
-
-                                <picture>
-                                    <source srcset="assets/projects/restaurantBook.webp" type="image/webp">
-                                    <img
-                                        src="assets/projects/restaurantBook.png"
-                                        alt="Captura de la plataforma de reservas Restaurant Booking"
-                                        width="1408" height="768"
-                                        loading="lazy" decoding="async">
-                                </picture>
-
-                            </div>
-
-                            <div class="project-content">
-
-                                <span class="project-category">
-
-                                    Sistema Web
-
-                                </span>
-
-                                <h3>
-
-                                    Restaurant Booking
-
-                                </h3>
-
-                                <p>
-
-                                    Plataforma de reservas online para restaurantes,
-                                    con administración de mesas y disponibilidad en tiempo real.
-
-                                </p>
-
-                                <div class="project-tech">
-
-                                    <span>React</span>
-                                    <span>API</span>
-                                    <span>Responsive</span>
-
-                                </div>
-
-                            </div>
-
-                        </article>
-
-                            <article class="project-card">
-
-                            <div class="project-image">
+                                <button type="button" class="project-shot"
+                                data-lightbox="assets/projects/wicommsa.png"
+                                data-caption="Wicomm SA, sitio corporativo"
+                                aria-label="Ampliar captura del sitio de Wicomm SA">
 
                                 <picture>
                                     <source srcset="assets/projects/wicommsa.webp" type="image/webp">
-                                    <img
-                                        src="assets/projects/wicommsa.png"
-                                        alt="Captura del sitio web de Wicomm SA"
+                                    <img src="assets/projects/wicommsa.png"
+                                        alt=""
                                         width="1915" height="868"
                                         loading="lazy" decoding="async">
                                 </picture>
 
-                            </div>
-
-                            <div class="project-content">
-
-                                <span class="project-category">
-
-                                    Landing Page
-
+                                <span class="project-zoom" aria-hidden="true">
+                                    <i class="ic"><svg><use href="#i-zoom"></use></svg></i>
                                 </span>
 
-                                <h3>
-
-                                    Wicomm SA
-
-                                </h3>
-
-                                <p>
-
-                                    Landing page empresarial diseñada para transmitir confianza
-                                    y mostrar los servicios de soporte provistos por la empresa.
-
-                                </p>
-
-                                <div class="project-tech">
-
-                                    <span class="tech-tag">
-                                        HTML
-                                    </span>
-                                    <span>CSS</span>
-                                    <span>JavaScript</span>
-
-                                </div>
+                            </button>
 
                             </div>
-                 
+
+                            <div class="project-body">
+
+                                <p class="project-kind">Sitio corporativo</p>
+
+                                <h3>Wicomm SA</h3>
+
+                                <p>
+                                    Sitio para una empresa de soporte técnico: presenta sus
+                                    servicios con claridad y lleva a cada visitante a pedir
+                                    soporte en un solo paso.
+                                </p>
+
+                                <p class="project-stack">Hecho con HTML, CSS y JavaScript</p>
+
+                                <a class="project-cta"
+                                    href="https://wa.me/595994671223?text=Hola%2C%20vi%20el%20sitio%20de%20Wicomm%20SA%20y%20quiero%20uno%20parecido%20para%20mi%20empresa"
+                                    target="_blank" rel="noopener">
+                                    <i class="ic" aria-hidden="true"><svg><use href="#i-whatsapp"></use></svg></i>
+                                    Quiero algo así
+                                </a>
+
+                            </div>
+
+                        </article>
+
+                        <article class="project slide" style="--i:1;--accent-a:#0EA5E9;--accent-b:#6366F1" aria-roledescription="diapositiva" aria-label="2 de 4">
+
+                            <div class="slide-stage">
+
+                                <button type="button" class="project-shot"
+                                data-lightbox="assets/projects/novaconsulting.png"
+                                data-caption="Nova Consulting, landing page"
+                                aria-label="Ampliar captura de la landing de Nova Consulting">
+
+                                <picture>
+                                    <source srcset="assets/projects/novaconsulting.webp" type="image/webp">
+                                    <img src="assets/projects/novaconsulting.png"
+                                        alt=""
+                                        width="1408" height="768"
+                                        loading="lazy" decoding="async">
+                                </picture>
+
+                                <span class="project-zoom" aria-hidden="true">
+                                    <i class="ic"><svg><use href="#i-zoom"></use></svg></i>
+                                </span>
+
+                            </button>
+
+                            </div>
+
+                            <div class="project-body">
+
+                                <p class="project-kind">Landing page</p>
+
+                                <h3>Nova Consulting</h3>
+
+                                <p>
+                                    Landing corporativa para una consultora, pensada para
+                                    transmitir confianza y captar clientes.
+                                </p>
+
+                                <p class="project-stack">Hecho con HTML, CSS y JavaScript</p>
+
+                                <a class="project-cta"
+                                    href="https://wa.me/595994671223?text=Hola%2C%20vi%20el%20proyecto%20Nova%20Consulting%20y%20quiero%20una%20landing%20parecida"
+                                    target="_blank" rel="noopener">
+                                    <i class="ic" aria-hidden="true"><svg><use href="#i-whatsapp"></use></svg></i>
+                                    Quiero algo así
+                                </a>
+
+                            </div>
+
+                        </article>
+
+                        <article class="project slide" style="--i:2;--accent-a:#14B8A6;--accent-b:#22D3EE" aria-roledescription="diapositiva" aria-label="3 de 4">
+
+                            <div class="slide-stage">
+
+                                <button type="button" class="project-shot"
+                                data-lightbox="assets/projects/EliteGym.png"
+                                data-caption="Elite Gym, landing page"
+                                aria-label="Ampliar captura de la landing de Elite Gym">
+
+                                <picture>
+                                    <source srcset="assets/projects/EliteGym.webp" type="image/webp">
+                                    <img src="assets/projects/EliteGym.png"
+                                        alt=""
+                                        width="1408" height="768"
+                                        loading="lazy" decoding="async">
+                                </picture>
+
+                                <span class="project-zoom" aria-hidden="true">
+                                    <i class="ic"><svg><use href="#i-zoom"></use></svg></i>
+                                </span>
+
+                            </button>
+
+                            </div>
+
+                            <div class="project-body">
+
+                                <p class="project-kind">Landing page</p>
+
+                                <h3>Elite Gym</h3>
+
+                                <p>
+                                    Landing para un gimnasio, enfocada en mostrar los planes
+                                    de membresía y convertir visitas en socios.
+                                </p>
+
+                                <p class="project-stack">Hecho con HTML, CSS y JavaScript</p>
+
+                                <a class="project-cta"
+                                    href="https://wa.me/595994671223?text=Hola%2C%20vi%20el%20proyecto%20Elite%20Gym%20y%20quiero%20una%20landing%20parecida"
+                                    target="_blank" rel="noopener">
+                                    <i class="ic" aria-hidden="true"><svg><use href="#i-whatsapp"></use></svg></i>
+                                    Quiero algo así
+                                </a>
+
+                            </div>
+
+                        </article>
+
+                        <article class="project slide" style="--i:3;--accent-a:#F59E0B;--accent-b:#DC2626" aria-roledescription="diapositiva" aria-label="4 de 4">
+
+                            <div class="slide-stage">
+
+                                <button type="button" class="project-shot"
+                                data-lightbox="assets/projects/restaurantBook.png"
+                                data-caption="Restaurant Booking, sistema de reservas"
+                                aria-label="Ampliar captura del sistema Restaurant Booking">
+
+                                <picture>
+                                    <source srcset="assets/projects/restaurantBook.webp" type="image/webp">
+                                    <img src="assets/projects/restaurantBook.png"
+                                        alt=""
+                                        width="1408" height="768"
+                                        loading="lazy" decoding="async">
+                                </picture>
+
+                                <span class="project-zoom" aria-hidden="true">
+                                    <i class="ic"><svg><use href="#i-zoom"></use></svg></i>
+                                </span>
+
+                            </button>
+
+                            </div>
+
+                            <div class="project-body">
+
+                                <p class="project-kind">Sistema web</p>
+
+                                <h3>Restaurant Booking</h3>
+
+                                <p>
+                                    Reservas online para restaurantes, con administración de
+                                    mesas y disponibilidad en tiempo real.
+                                </p>
+
+                                <p class="project-stack">Hecho con React y una API propia</p>
+
+                                <a class="project-cta"
+                                    href="https://wa.me/595994671223?text=Hola%2C%20vi%20el%20proyecto%20Restaurant%20Booking%20y%20quiero%20un%20sistema%20parecido"
+                                    target="_blank" rel="noopener">
+                                    <i class="ic" aria-hidden="true"><svg><use href="#i-whatsapp"></use></svg></i>
+                                    Quiero algo así
+                                </a>
+
+                            </div>
+
                         </article>
 
                     </div>
 
+                    <div class="container-custom">
+
+                        <div class="carousel-controls">
+
+                            <p class="carousel-count" aria-live="polite">
+                                <span data-carousel-current>1</span> de 4
+                            </p>
+
+                            <div class="carousel-progress" aria-hidden="true">
+                                <span data-carousel-bar></span>
+                            </div>
+
+                            <div class="carousel-buttons">
+
+                                <button type="button" class="carousel-btn" data-carousel-prev aria-label="Proyecto anterior">
+                                    <i class="ic" aria-hidden="true"><svg><use href="#i-chevron-left"></use></svg></i>
+                                </button>
+
+                                <button type="button" class="carousel-btn" data-carousel-next aria-label="Proyecto siguiente">
+                                    <i class="ic" aria-hidden="true"><svg><use href="#i-chevron-right"></use></svg></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
+
+                <!-- Visor de capturas en grande -->
+                <dialog class="lightbox" aria-label="Captura ampliada">
+
+                    <button type="button" class="lightbox-close" aria-label="Cerrar">
+                        <i class="ic" aria-hidden="true"><svg><use href="#i-x"></use></svg></i>
+                    </button>
+
+                    <figure>
+                        <img src="" alt="">
+                        <figcaption></figcaption>
+                    </figure>
+
+                </dialog>
 
             </section>
 

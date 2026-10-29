@@ -1,68 +1,159 @@
 /* ==========================================
-   PORTFOLIO
+   PORTFOLIO — CARRUSEL
+   Fila horizontal a sangre (llega al borde de la pantalla) con scroll-snap:
+   se desliza nativamente con el dedo o el trackpad, y con el mouse
+   arrastrando (js/carousel.js). Cada proyecto tiene su escenario de color.
 ========================================== */
 
 .portfolio{
 
     position:relative;
 
-}
-
-.portfolio-grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(2,1fr);
-
-    gap:28px;
+    overflow:hidden;
 
 }
 
-.project-card{
+.carousel{
+
+    /* Mismo margen izquierdo que el contenido del container */
+    --gutter:clamp(20px,5vw,48px);
+    --edge:max(var(--gutter), calc(50% - var(--container) / 2 + var(--gutter)));
+
+}
+
+.carousel-track{
 
     display:flex;
 
-    flex-direction:column;
+    gap:clamp(20px,3vw,40px);
 
-    overflow:hidden;
+    overflow-x:auto;
 
-    border-radius:var(--card-radius);
+    overscroll-behavior-x:contain;
 
-    background:var(--card-bg);
+    scroll-snap-type:x mandatory;
 
-    border:var(--card-border);
+    scroll-padding-inline:var(--edge);
 
-    transition:
-        transform var(--dur-slow) var(--ease-out),
-        box-shadow var(--dur-slow) var(--ease-out),
-        border-color var(--dur-slow) var(--ease-out);
+    padding:12px var(--edge) 8px;
+
+    scrollbar-width:none;
+
+    cursor:grab;
+
+}
+
+.carousel-track::-webkit-scrollbar{
+
+    display:none;
+
+}
+
+.carousel-track.is-dragging{
+
+    cursor:grabbing;
+
+    scroll-snap-type:none;
+
+    user-select:none;
+
+}
+
+.carousel-track:focus-visible{
+
+    outline:2px solid var(--accent);
+
+    outline-offset:-2px;
 
 }
 
 /*
 =============================================
-IMAGEN
+DIAPOSITIVA
 =============================================
 */
 
-.project-image{
+.slide{
+
+    flex:0 0 min(780px, 78%);
+
+    scroll-snap-align:start;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:28px;
+
+    /* Las que no están al frente se ven más chicas y apagadas */
+    opacity:.4;
+
+    transform:scale(.94);
+
+    transform-origin:left center;
+
+    transition:
+        opacity 500ms var(--ease-out),
+        transform 600ms var(--ease-out);
+
+}
+
+.slide.is-current{
+
+    opacity:1;
+
+    transform:none;
+
+}
+
+/* Entrada escalonada cuando la sección aparece en pantalla (un solo momento) */
+.carousel:not(.is-in) .slide{
+
+    opacity:0;
+
+    transform:translateX(80px);
+
+}
+
+.carousel.is-in .slide{
+
+    transition-delay:calc(var(--i) * 90ms);
+
+}
+
+.carousel.is-ready .slide{
+
+    transition-delay:0ms;
+
+}
+
+/*
+=============================================
+ESCENARIO DE COLOR + CAPTURA
+=============================================
+*/
+
+.slide-stage{
 
     position:relative;
 
     overflow:hidden;
 
-    padding:24px 24px 0;
+    padding:clamp(24px,4vw,48px) clamp(24px,4vw,48px) 0;
 
-    background:linear-gradient(
-        180deg,
-        #1C2A4C,
-        #121A30
-    );
+    border-radius:20px;
+
+    background:
+        radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--accent-a) 55%, transparent), transparent 60%),
+        radial-gradient(110% 90% at 100% 100%, color-mix(in srgb, var(--accent-b) 50%, transparent), transparent 60%),
+        #0B1120;
+
+    perspective:1200px;
 
 }
 
-/* Brillo superior sutil sobre el "escenario" de la captura */
-.project-image::before{
+/* Líneas finas para que el color no se vea plano */
+.slide-stage::before{
 
     content:"";
 
@@ -70,33 +161,46 @@ IMAGEN
 
     inset:0;
 
-    background:radial-gradient(
-        circle at top,
-        rgba(37,99,255,.22),
-        transparent 70%
-    );
+    background-image:linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px);
+
+    background-size:100% 28px;
+
+    -webkit-mask-image:linear-gradient(180deg, #000, transparent 80%);
+
+    mask-image:linear-gradient(180deg, #000, transparent 80%);
 
     pointer-events:none;
 
 }
 
-/* Todas las capturas con la misma proporción, recortadas desde arriba,
-   apoyadas en el borde inferior como una ventana que asoma. */
-.project-image img{
+.project-shot{
+
+    --rx:0deg;
+    --ry:0deg;
 
     position:relative;
 
+    display:block;
+
     width:100%;
 
-    aspect-ratio:16 / 9;
+    padding:0;
 
-    object-fit:cover;
+    overflow:hidden;
 
-    object-position:top center;
+    border:1px solid rgba(255,255,255,.14);
 
-    border-radius:14px 14px 0 0;
+    border-bottom:0;
 
-    box-shadow:0 -1px 0 rgba(255,255,255,.08), 0 20px 45px rgba(0,0,0,.35);
+    border-radius:12px 12px 0 0;
+
+    background:var(--bg-secondary);
+
+    box-shadow:0 -10px 60px rgba(0,0,0,.45);
+
+    cursor:zoom-in;
+
+    transform:rotateX(var(--rx)) rotateY(var(--ry));
 
     transform-origin:center bottom;
 
@@ -104,104 +208,191 @@ IMAGEN
 
 }
 
+/* Mientras sigue al mouse, la inclinación responde sin retraso */
+.project-shot.is-tilting{
+
+    transition:transform 120ms linear;
+
+}
+
+.project-shot img{
+
+    display:block;
+
+    width:100%;
+
+    height:auto;
+
+    aspect-ratio:16 / 9;
+
+    object-fit:cover;
+
+    object-position:top center;
+
+    pointer-events:none;
+
+}
+
+/* Lupa: avisa que la captura se puede ampliar */
+.project-zoom{
+
+    position:absolute;
+
+    right:14px;
+
+    bottom:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:40px;
+
+    height:40px;
+
+    border-radius:50%;
+
+    background:rgba(5,8,22,.75);
+
+    backdrop-filter:blur(8px);
+
+    -webkit-backdrop-filter:blur(8px);
+
+    color:var(--white);
+
+    font-size:1.05rem;
+
+    opacity:0;
+
+    transform:translateY(6px);
+
+    transition:
+        opacity var(--dur) ease,
+        transform var(--dur) var(--ease-out);
+
+}
+
+@media (hover:none){
+
+    .project-zoom{
+
+        opacity:1;
+
+        transform:none;
+
+    }
+
+}
+
+@media (hover:hover) and (pointer:fine){
+
+    .project-shot:hover .project-zoom{
+
+        opacity:1;
+
+        transform:none;
+
+    }
+
+}
+
+.project-shot:focus-visible .project-zoom{
+
+    opacity:1;
+
+    transform:none;
+
+}
+
 /*
 =============================================
-CONTENIDO
+TEXTO
 =============================================
 */
 
-.project-content{
+.project-body{
 
-    display:flex;
+    display:grid;
 
-    flex-direction:column;
+    grid-template-columns:minmax(0,1fr) auto;
 
-    flex:1;
+    grid-template-areas:
+        "kind  cta"
+        "title cta"
+        "desc  cta"
+        "stack cta";
 
-    padding:32px 36px 36px;
+    align-items:start;
+
+    column-gap:32px;
 
 }
 
-.project-category{
+.project-kind{
 
-    align-self:flex-start;
+    grid-area:kind;
 
-    padding:6px 14px;
+    margin-bottom:6px;
 
-    border-radius:999px;
+    color:color-mix(in srgb, var(--accent-a) 70%, white);
 
-    background:rgba(37,99,255,.12);
-
-    color:var(--accent);
-
-    font-size:.78rem;
+    font-size:.875rem;
 
     font-weight:var(--fw-semibold);
 
-    margin-bottom:16px;
-
 }
 
-.project-content h3{
+.project-body h3{
+
+    grid-area:title;
+
+    margin-bottom:10px;
 
     font-family:var(--font-heading);
 
-    font-size:clamp(1.4rem,2vw,1.75rem);
+    font-size:clamp(1.5rem,2.4vw,2rem);
 
     font-weight:var(--fw-bold);
 
-    line-height:1.2;
+    line-height:1.15;
 
-    letter-spacing:-.015em;
+    letter-spacing:-.02em;
 
-    margin-bottom:12px;
+    color:var(--text-primary);
 
 }
 
-.project-content p{
+.project-body > p:not([class]){
+
+    grid-area:desc;
+
+    max-width:56ch;
+
+    margin-bottom:10px;
 
     color:var(--text-secondary);
 
-    line-height:1.75;
-
-    margin-bottom:24px;
+    line-height:1.7;
 
 }
 
-.project-tech{
+.project-stack{
 
-    display:flex;
+    grid-area:stack;
 
-    gap:8px;
+    color:var(--gray-500);
 
-    flex-wrap:wrap;
-
-    margin-bottom:28px;
+    font-size:.85rem;
 
 }
 
-/* Etiquetas informativas: no son interactivas, no llevan hover */
-.project-tech span{
+.project-cta{
 
-    padding:5px 12px;
+    grid-area:cta;
 
-    border-radius:999px;
-
-    background:rgba(255,255,255,.05);
-
-    border:1px solid rgba(255,255,255,.06);
-
-    color:var(--gray-300);
-
-    font-size:.8rem;
-
-}
-
-.project-link{
-
-    margin-top:auto;
-
-    align-self:flex-start;
+    align-self:center;
 
     display:inline-flex;
 
@@ -209,43 +400,378 @@ CONTENIDO
 
     gap:8px;
 
-    color:var(--accent);
+    min-height:44px;
+
+    padding:10px 18px;
+
+    border:1px solid rgba(37,211,102,.35);
+
+    border-radius:var(--radius-md);
+
+    color:#4ADE80;
+
+    font-size:.92rem;
 
     font-weight:var(--fw-semibold);
 
-    transition:color var(--dur) ease;
+    white-space:nowrap;
+
+    transition:
+        background var(--dur) ease,
+        border-color var(--dur) ease,
+        color var(--dur) ease;
+
+}
+
+.project-cta .ic{
+
+    font-size:1.1rem;
+
+}
+
+@media (hover:hover) and (pointer:fine){
+
+    .project-cta:hover{
+
+        background:#25D366;
+
+        border-color:#25D366;
+
+        color:#04210F;
+
+    }
 
 }
 
 /*
 =============================================
-HOVER
+CONTROLES
 =============================================
 */
 
+.carousel-controls{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:24px;
+
+    margin-top:36px;
+
+}
+
+.carousel-count{
+
+    min-width:4.5em;
+
+    color:var(--gray-400);
+
+    font-size:.92rem;
+
+    font-variant-numeric:tabular-nums;
+
+}
+
+.carousel-count span{
+
+    color:var(--text-primary);
+
+    font-weight:var(--fw-semibold);
+
+}
+
+.carousel-progress{
+
+    flex:1;
+
+    height:2px;
+
+    border-radius:2px;
+
+    background:rgba(148,163,184,.2);
+
+    overflow:hidden;
+
+}
+
+.carousel-progress span{
+
+    display:block;
+
+    height:100%;
+
+    background:var(--primary);
+
+    transform-origin:left;
+
+    transform:scaleX(.25);
+
+    transition:transform 400ms var(--ease-out);
+
+}
+
+.carousel-buttons{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.carousel-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:48px;
+
+    height:48px;
+
+    border:1px solid rgba(255,255,255,.14);
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.03);
+
+    color:var(--white);
+
+    font-size:1.1rem;
+
+    cursor:pointer;
+
+    transition:
+        background var(--dur) ease,
+        border-color var(--dur) ease,
+        opacity var(--dur) ease;
+
+}
+
+.carousel-btn:disabled{
+
+    opacity:.3;
+
+    cursor:default;
+
+}
+
 @media (hover:hover) and (pointer:fine){
 
-    .project-card:hover{
+    .carousel-btn:not(:disabled):hover{
 
-        transform:translateY(-6px);
+        background:var(--primary);
 
-        border-color:rgba(37,99,255,.35);
-
-        box-shadow:
-            var(--card-hover-shadow),
-            var(--glow-primary);
+        border-color:var(--primary);
 
     }
 
-    .project-card:hover .project-image img{
+}
 
-        transform:translateY(-4px) scale(1.02);
+/*
+=============================================
+RESPONSIVE
+=============================================
+*/
+
+@media (max-width:768px){
+
+    .slide{
+
+        flex-basis:86%;
+
+        gap:20px;
 
     }
 
-    .project-link:hover{
+    .project-body{
 
-        color:#9CC8FF;
+        grid-template-columns:1fr;
+
+        grid-template-areas:
+            "kind"
+            "title"
+            "desc"
+            "stack"
+            "cta";
+
+    }
+
+    .project-cta{
+
+        justify-self:start;
+
+        margin-top:18px;
+
+    }
+
+    .carousel-controls{
+
+        gap:16px;
+
+    }
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    .slide,
+    .project-shot{
+
+        transition:none;
+
+    }
+
+    .carousel:not(.is-in) .slide{
+
+        opacity:.4;
+
+        transform:scale(.94);
+
+    }
+
+}
+
+/*
+=============================================
+VISOR DE CAPTURAS (dialog)
+=============================================
+*/
+
+.lightbox{
+
+    width:min(1200px, 100vw - 32px);
+
+    max-width:none;
+
+    max-height:calc(100dvh - 32px);
+
+    /* El reset global quita los márgenes: sin auto, el dialog no se centra */
+    margin:auto;
+
+    padding:0;
+
+    border:0;
+
+    background:transparent;
+
+    color:var(--text-primary);
+
+    overflow:visible;
+
+}
+
+.lightbox::backdrop{
+
+    background:rgba(3,5,14,.88);
+
+    backdrop-filter:blur(6px);
+
+    -webkit-backdrop-filter:blur(6px);
+
+}
+
+.lightbox figure{
+
+    margin:0;
+
+}
+
+.lightbox img{
+
+    display:block;
+
+    width:100%;
+
+    max-height:calc(100dvh - 120px);
+
+    object-fit:contain;
+
+    border-radius:12px;
+
+    background:var(--bg-secondary);
+
+}
+
+.lightbox figcaption{
+
+    margin-top:14px;
+
+    color:var(--gray-300);
+
+    text-align:center;
+
+    font-size:.95rem;
+
+}
+
+.lightbox-close{
+
+    position:absolute;
+
+    top:-8px;
+
+    right:-8px;
+
+    z-index:1;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:44px;
+
+    height:44px;
+
+    border:1px solid rgba(255,255,255,.14);
+
+    border-radius:50%;
+
+    background:var(--bg-card);
+
+    color:var(--white);
+
+    font-size:1.4rem;
+
+    cursor:pointer;
+
+}
+
+/* Apertura: la captura crece desde un poco más chica (respuesta al clic) */
+.lightbox[open]{
+
+    animation:lightboxIn 320ms var(--ease-out);
+
+}
+
+.lightbox[open]::backdrop{
+
+    animation:lightboxFade 320ms ease;
+
+}
+
+@keyframes lightboxIn{
+
+    from{ opacity:0; transform:scale(.96); }
+
+}
+
+@keyframes lightboxFade{
+
+    from{ opacity:0; }
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    .lightbox[open],
+    .lightbox[open]::backdrop{
+
+        animation:none;
 
     }
 

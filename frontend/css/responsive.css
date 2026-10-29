@@ -234,12 +234,6 @@
 
     }
 
-    .portfolio-grid{
-
-        grid-template-columns:1fr;
-
-    }
-
     .hero-buttons .btn-whatsapp,
     .hero-buttons .btn-secondary{
 
@@ -260,19 +254,6 @@
         grid-template-columns:1fr;
 
         row-gap:36px;
-
-    }
-
-
-    .project-image{
-
-        padding:16px 16px 0;
-
-    }
-
-    .project-content{
-
-        padding:24px 24px 28px;
 
     }
 

@@ -3,5 +3,7 @@ import "./navbar.js";
 import "./scroll.js";
 import "./counter.js";
 import "./proof.js";
+import "./lightbox.js";
+import "./carousel.js";
 import "./motion.js";
 import "./footer.js";
