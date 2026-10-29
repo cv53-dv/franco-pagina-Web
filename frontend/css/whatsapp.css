@@ -1,0 +1,68 @@
+/* ==========================================
+   WHATSAPP FLOTANTE
+========================================== */
+
+.whatsapp-float{
+
+    position:fixed;
+
+    right:clamp(16px,3vw,28px);
+
+    bottom:clamp(16px,3vw,28px);
+
+    width:56px;
+
+    height:56px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#25D366;
+
+    color:var(--white);
+
+    font-size:1.6rem;
+
+    box-shadow:0 12px 28px rgba(0,0,0,.35);
+
+    z-index:999;
+
+    transition:
+        transform var(--dur) var(--ease-out),
+        background var(--dur) ease;
+
+}
+
+.whatsapp-float:active{
+
+    transform:scale(.94);
+
+    transition-duration:var(--dur-fast);
+
+}
+
+@media (hover:hover) and (pointer:fine){
+
+    .whatsapp-float:hover{
+
+        background:#1EBE5A;
+
+        transform:translateY(-2px);
+
+    }
+
+}
+
+/* El botón "volver arriba" se apila encima del de WhatsApp */
+.back-to-top{
+
+    bottom:calc(clamp(16px,3vw,28px) + 56px + 12px);
+
+    right:calc(clamp(16px,3vw,28px) + 4px);
+
+}
