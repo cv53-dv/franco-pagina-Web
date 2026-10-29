@@ -1,31 +1,36 @@
 /* ==========================================
-   CÓMO TRABAJAMOS
-   Línea de tiempo: acá los números sí aportan,
-   porque las etapas son una secuencia.
+   CÓMO TRABAJAMOS — STEPPER
+   Las etapas son una secuencia: la línea se llena hasta la etapa
+   elegida y el panel muestra qué hacemos, qué recibe el cliente
+   y qué le toca a él (js/stepper.js).
 ========================================== */
 
-.timeline{
+.stepper{
 
-    list-style:none;
-
-    margin:0;
-
-    padding:0;
-
-    display:grid;
-
-    grid-template-columns:repeat(4,minmax(0,1fr));
-
-    gap:32px;
-
-    position:relative;
+    --steps:4;
 
 }
 
-/* La línea que une las etapas pasa por el centro de los números */
-.timeline::before{
+/*
+=============================================
+PISTA CON LAS ETAPAS
+=============================================
+*/
 
-    content:"";
+.stepper-track{
+
+    position:relative;
+
+    display:grid;
+
+    grid-template-columns:repeat(var(--steps),minmax(0,1fr));
+
+    gap:16px;
+
+}
+
+/* Línea que une los números; el relleno avanza hasta la etapa activa */
+.stepper-line{
 
     position:absolute;
 
@@ -33,27 +38,63 @@
 
     left:20px;
 
-    right:0;
+    right:calc((100% - 3 * 16px) / var(--steps) - 20px);
 
-    height:1px;
+    height:2px;
 
-    background:linear-gradient(
-        90deg,
-        var(--primary),
-        rgba(37,99,255,.15)
-    );
+    border-radius:2px;
+
+    background:rgba(148,163,184,.2);
 
 }
 
-.timeline-step{
+.stepper-fill{
+
+    display:block;
+
+    height:100%;
+
+    border-radius:inherit;
+
+    background:linear-gradient(90deg, var(--primary), var(--accent));
+
+    transform-origin:left;
+
+    transform:scaleX(var(--progress, 0));
+
+    transition:transform 600ms var(--ease-out);
+
+}
+
+.stepper-step{
 
     position:relative;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:4px;
+
+    padding:0 0 20px;
+
+    border:0;
+
+    background:none;
+
+    color:inherit;
+
+    font:inherit;
+
+    text-align:left;
+
+    cursor:pointer;
 
 }
 
 .timeline-num{
-
-    position:relative;
 
     display:flex;
 
@@ -65,42 +106,388 @@
 
     height:40px;
 
-    margin-bottom:24px;
+    margin-bottom:14px;
 
     border-radius:50%;
 
-    border:1px solid var(--primary);
+    border:1px solid rgba(148,163,184,.35);
 
     background:var(--bg-primary);
 
-    color:var(--white);
+    color:var(--gray-400);
 
     font-family:var(--font-heading);
 
     font-weight:var(--fw-bold);
+
+    transition:
+        background var(--dur) ease,
+        border-color var(--dur) ease,
+        color var(--dur) ease,
+        transform var(--dur) var(--ease-out);
 
 }
 
-.timeline-step h3{
+/* Etapas ya recorridas y etapa actual */
+.stepper-step.is-done .timeline-num{
 
-    margin-bottom:10px;
+    border-color:var(--primary);
+
+    color:var(--white);
+
+}
+
+.stepper-step[aria-selected="true"] .timeline-num{
+
+    border-color:var(--primary);
+
+    background:var(--primary);
+
+    color:var(--white);
+
+    transform:scale(1.08);
+
+    box-shadow:0 0 0 6px rgba(37,99,255,.18);
+
+}
+
+.stepper-name{
 
     font-family:var(--font-heading);
 
-    font-size:1.25rem;
+    font-size:1.15rem;
 
     font-weight:var(--fw-bold);
 
-    letter-spacing:-.01em;
+    color:var(--gray-400);
+
+    transition:color var(--dur) ease;
+
+}
+
+.stepper-summary{
+
+    color:var(--gray-500);
+
+    font-size:.9rem;
+
+    line-height:1.5;
+
+}
+
+.stepper-step[aria-selected="true"] .stepper-name,
+.stepper-step.is-done .stepper-name{
 
     color:var(--text-primary);
 
 }
 
-.timeline-step p{
+.stepper-step[aria-selected="true"] .stepper-summary{
 
     color:var(--text-secondary);
 
+}
+
+@media (hover:hover) and (pointer:fine){
+
+    .stepper-step:hover .stepper-name{
+
+        color:var(--text-primary);
+
+    }
+
+    .stepper-step:hover .timeline-num{
+
+        border-color:var(--accent);
+
+    }
+
+}
+
+/*
+=============================================
+PANEL DE LA ETAPA
+=============================================
+*/
+
+.stepper-panels{
+
+    margin-top:20px;
+
+    padding:clamp(24px,4vw,40px);
+
+    border:1px solid var(--border-color);
+
+    border-radius:20px;
+
+    background:
+        radial-gradient(80% 120% at 0% 0%, rgba(37,99,255,.10), transparent 60%),
+        var(--bg-secondary);
+
+}
+
+.stepper-panel{
+
+    --dir:1;
+
+}
+
+.stepper-panel.is-active{
+
+    animation:panelIn 480ms var(--ease-out);
+
+}
+
+@keyframes panelIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(calc(var(--dir) * 24px));
+
+    }
+
+}
+
+.stepper-panel:focus-visible{
+
+    outline:2px solid var(--accent);
+
+    outline-offset:8px;
+
+    border-radius:8px;
+
+}
+
+.stepper-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,minmax(0,1fr));
+
+    gap:clamp(24px,4vw,48px);
+
+    margin:0;
+
+}
+
+.stepper-grid dt{
+
+    margin-bottom:8px;
+
+    color:var(--accent);
+
+    font-size:.875rem;
+
+    font-weight:var(--fw-semibold);
+
+}
+
+.stepper-grid dd{
+
+    margin:0;
+
+    color:var(--text-primary);
+
     line-height:1.7;
+
+}
+
+.stepper-next{
+
+    margin-top:28px;
+
+    padding:0;
+
+    border:0;
+
+    background:none;
+
+    color:var(--gray-400);
+
+    font:inherit;
+
+    font-size:.92rem;
+
+    font-weight:var(--fw-medium);
+
+    text-decoration:underline;
+
+    text-decoration-color:rgba(148,163,184,.35);
+
+    text-underline-offset:4px;
+
+    cursor:pointer;
+
+    transition:color var(--dur) ease, text-decoration-color var(--dur) ease;
+
+}
+
+@media (hover:hover) and (pointer:fine){
+
+    .stepper-next:hover{
+
+        color:var(--text-primary);
+
+        text-decoration-color:var(--accent);
+
+    }
+
+}
+
+/*
+=============================================
+LLAMADO AL FINAL
+=============================================
+*/
+
+.process-cta{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:16px 32px;
+
+    margin-top:40px;
+
+}
+
+.process-cta p{
+
+    font-family:var(--font-heading);
+
+    font-size:clamp(1.15rem,2vw,1.4rem);
+
+    font-weight:var(--fw-bold);
+
+    color:var(--text-primary);
+
+}
+
+/*
+=============================================
+RESPONSIVE
+=============================================
+*/
+
+@media (max-width:900px){
+
+    .stepper-grid{
+
+        grid-template-columns:1fr;
+
+        gap:20px;
+
+    }
+
+}
+
+@media (max-width:640px){
+
+    .stepper-track{
+
+        gap:8px;
+
+    }
+
+    .stepper-line{
+
+        right:calc((100% - 3 * 8px) / var(--steps) - 20px);
+
+    }
+
+    .stepper-summary{
+
+        display:none;
+
+    }
+
+    .stepper-name{
+
+        font-size:.82rem;
+
+    }
+
+    .process-cta .btn-whatsapp{
+
+        width:100%;
+
+    }
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    .stepper-fill,
+    .timeline-num{
+
+        transition:none;
+
+    }
+
+    .stepper-panel.is-active{
+
+        animation:none;
+
+    }
+
+}
+
+/*
+=============================================
+CELULAR: la fila muestra solo los números y el
+nombre de la etapa pasa a ser el título del panel
+=============================================
+*/
+
+.stepper-panel-title{
+
+    display:none;
+
+}
+
+@media (max-width:640px){
+
+    .stepper-name{
+
+        display:none;
+
+    }
+
+    .stepper-step{
+
+        align-items:center;
+
+        padding-bottom:4px;
+
+    }
+
+    .stepper-track{
+
+        justify-items:start;
+
+    }
+
+    .stepper-panel-title{
+
+        display:block;
+
+        margin-bottom:18px;
+
+        font-family:var(--font-heading);
+
+        font-size:1.2rem;
+
+        font-weight:var(--fw-bold);
+
+        color:var(--text-primary);
+
+    }
 
 }

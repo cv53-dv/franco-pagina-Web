@@ -516,51 +516,176 @@
                         </h2>
 
                         <p class="section-description">
-                            Un proceso claro en cuatro etapas para que sepas
-                            en todo momento en qué punto está tu proyecto.
+                            Cuatro etapas, cada una con algo concreto para revisar.
+                            Nada avanza sin tu aprobación.
                         </p>
 
                     </div>
 
-                    <ol class="timeline">
+                    <div class="stepper" data-stepper>
 
-                        <li class="timeline-step">
-                            <span class="timeline-num" aria-hidden="true">1</span>
-                            <h3>Descubrimiento</h3>
-                            <p>
-                                Analizamos tu negocio, tus objetivos y tu competencia
-                                para definir el alcance y los contenidos.
-                            </p>
-                        </li>
+                        <div class="stepper-track" role="tablist" aria-label="Etapas del proceso">
 
-                        <li class="timeline-step">
-                            <span class="timeline-num" aria-hidden="true">2</span>
-                            <h3>Diseño</h3>
-                            <p>
-                                Creamos la estructura y la identidad visual de cada
-                                pantalla, pensadas para convertir visitas en clientes.
-                            </p>
-                        </li>
+                            <span class="stepper-line" aria-hidden="true"><span class="stepper-fill"></span></span>
 
-                        <li class="timeline-step">
-                            <span class="timeline-num" aria-hidden="true">3</span>
-                            <h3>Desarrollo</h3>
-                            <p>
-                                Programamos el sitio con código limpio: rápido,
-                                adaptado a celulares y listo para Google.
-                            </p>
-                        </li>
+                            <button type="button" class="stepper-step" role="tab"
+                                id="step-tab-1" aria-controls="step-panel-1" aria-selected="true">
+                                <span class="timeline-num" aria-hidden="true">1</span>
+                                <span class="stepper-name">Descubrimiento</span>
+                                <span class="stepper-summary">Entendemos tu negocio</span>
+                            </button>
 
-                        <li class="timeline-step">
-                            <span class="timeline-num" aria-hidden="true">4</span>
-                            <h3>Lanzamiento</h3>
-                            <p>
-                                Publicamos el proyecto, medimos su rendimiento y te
-                                acompañamos con soporte después de la puesta en marcha.
-                            </p>
-                        </li>
+                            <button type="button" class="stepper-step" role="tab"
+                                id="step-tab-2" aria-controls="step-panel-2" aria-selected="false" tabindex="-1">
+                                <span class="timeline-num" aria-hidden="true">2</span>
+                                <span class="stepper-name">Diseño</span>
+                                <span class="stepper-summary">Ves tu sitio antes de programarlo</span>
+                            </button>
 
-                    </ol>
+                            <button type="button" class="stepper-step" role="tab"
+                                id="step-tab-3" aria-controls="step-panel-3" aria-selected="false" tabindex="-1">
+                                <span class="timeline-num" aria-hidden="true">3</span>
+                                <span class="stepper-name">Desarrollo</span>
+                                <span class="stepper-summary">Lo construimos y lo pruebas</span>
+                            </button>
+
+                            <button type="button" class="stepper-step" role="tab"
+                                id="step-tab-4" aria-controls="step-panel-4" aria-selected="false" tabindex="-1">
+                                <span class="timeline-num" aria-hidden="true">4</span>
+                                <span class="stepper-name">Lanzamiento</span>
+                                <span class="stepper-summary">Sale al aire y te acompañamos</span>
+                            </button>
+
+                        </div>
+
+                        <div class="stepper-panels">
+
+                            <div class="stepper-panel is-active" role="tabpanel"
+                                id="step-panel-1" aria-labelledby="step-tab-1" tabindex="0">
+
+                                <p class="stepper-panel-title">Etapa 1: Descubrimiento</p>
+
+                                <dl class="stepper-grid">
+                                    <div>
+                                        <dt>Qué hacemos</dt>
+                                        <dd>Conversamos sobre tu negocio, tus clientes y tu competencia para definir qué necesita el sitio y qué debe lograr.</dd>
+                                    </div>
+                                    <div>
+                                        <dt>Qué recibes</dt>
+                                        <dd>Una propuesta con el alcance, las páginas, los plazos y el presupuesto.</dd>
+                                    </div>
+                                    <div>
+                                        <dt>Tu parte</dt>
+                                        <dd>Contarnos tu idea y, si los tienes, compartir tu logo, textos y fotos.</dd>
+                                    </div>
+                                </dl>
+
+                                <button type="button" class="stepper-next" data-stepper-next>
+                                    Siguiente: Diseño
+                                </button>
+
+                            </div>
+
+                            <div class="stepper-panel" role="tabpanel"
+                                id="step-panel-2" aria-labelledby="step-tab-2" tabindex="0" hidden>
+
+                                <p class="stepper-panel-title">Etapa 2: Diseño</p>
+
+                                <dl class="stepper-grid">
+                                    <div>
+                                        <dt>Qué hacemos</dt>
+                                        <dd>Diseñamos la estructura y el aspecto de cada pantalla, pensadas para que quien entra te escriba o te compre.</dd>
+                                    </div>
+                                    <div>
+                                        <dt>Qué recibes</dt>
+                                        <dd>El diseño de las pantallas principales para que lo veas tal como va a quedar.</dd>
+                                    </div>
+                                    <div>
+                                        <dt>Tu parte</dt>
+                                        <dd>Revisarlo y aprobarlo o pedirnos cambios. Recién entonces empezamos a programar.</dd>
+                                    </div>
+                                </dl>
+
+                                <button type="button" class="stepper-next" data-stepper-next>
+                                    Siguiente: Desarrollo
+                                </button>
+
+                            </div>
+
+                            <div class="stepper-panel" role="tabpanel"
+                                id="step-panel-3" aria-labelledby="step-tab-3" tabindex="0" hidden>
+
+                                <p class="stepper-panel-title">Etapa 3: Desarrollo</p>
+
+                                <dl class="stepper-grid">
+                                    <div>
+                                        <dt>Qué hacemos</dt>
+                                        <dd>Programamos el sitio aprobado: rápido, adaptado a celulares y preparado para aparecer en Google.</dd>
+                                    </div>
+                                    <div>
+                                        <dt>Qué recibes</dt>
+                                        <dd>Un enlace de prueba con el sitio funcionando para que lo uses desde tu celular y tu computadora.</dd>
+                                    </div>
+                                    <div>
+                                        <dt>Tu parte</dt>
+                                        <dd>Probarlo y avisarnos cualquier ajuste antes de publicarlo.</dd>
+                                    </div>
+                                </dl>
+
+                                <button type="button" class="stepper-next" data-stepper-next>
+                                    Siguiente: Lanzamiento
+                                </button>
+
+                            </div>
+
+                            <div class="stepper-panel" role="tabpanel"
+                                id="step-panel-4" aria-labelledby="step-tab-4" tabindex="0" hidden>
+
+                                <p class="stepper-panel-title">Etapa 4: Lanzamiento</p>
+
+                                <dl class="stepper-grid">
+                                    <div>
+                                        <dt>Qué hacemos</dt>
+                                        <dd>Publicamos el sitio en tu dominio, lo conectamos con Google y revisamos que todo cargue rápido.</dd>
+                                    </div>
+                                    <div>
+                                        <dt>Qué recibes</dt>
+                                        <dd>Tu sitio en línea y los accesos para que siempre sea tuyo.</dd>
+                                    </div>
+                                    <div>
+                                        <dt>Tu parte</dt>
+                                        <dd>Compartirlo con tus clientes. Si algo necesita ajustes después, seguimos a tu lado.</dd>
+                                    </div>
+                                </dl>
+
+                                <button type="button" class="stepper-next" data-stepper-next>
+                                    Volver al inicio del proceso
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="process-cta">
+
+                        <p>
+                            El primer paso es contarnos tu idea. Sin compromiso.
+                        </p>
+
+                        <a href="https://wa.me/595994671223?text=Hola%2C%20quiero%20empezar%20un%20proyecto%20con%20FRANCO"
+                            class="btn-whatsapp"
+                            target="_blank"
+                            rel="noopener">
+
+                            <i class="ic" aria-hidden="true"><svg><use href="#i-whatsapp"></use></svg></i>
+
+                            Empezar por el paso 1
+
+                        </a>
+
+                    </div>
 
                 </div>
 

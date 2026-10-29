@@ -8,7 +8,7 @@ const ENTER_ITEMS = [
     ".hero-title", ".hero-description", ".hero-buttons", ".hero-status", ".hero-proof",
     ".section-title", ".section-description",
     ".service-item", ".services-cta",
-    ".timeline-step",
+    ".stepper-step", ".stepper-panels", ".process-cta",
     ".slide-stage", ".project-body", ".carousel-controls",
     ".about-item", ".about-card",
     ".contact-content .btn-whatsapp", ".contact-item",

@@ -9,20 +9,6 @@
 
 @media (max-width:1100px){
 
-    .timeline{
-
-        grid-template-columns:repeat(2,minmax(0,1fr));
-
-        row-gap:48px;
-
-    }
-
-    .timeline::before{
-
-        display:none;
-
-    }
-
 
     .nav-menu{
 
@@ -248,14 +234,6 @@
 =========================================*/
 
 @media (max-width:560px){
-
-    .timeline{
-
-        grid-template-columns:1fr;
-
-        row-gap:36px;
-
-    }
 
     .about-features{
 
