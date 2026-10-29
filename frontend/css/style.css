@@ -2,6 +2,10 @@
    FRANCO TECH - Main Stylesheet
 ========================================== */
 
+/* ========= TIPOGRAFÍAS ========= */
+
+@import url("fonts.css");
+
 /* ========= VARIABLES ========= */
 
 @import url("variables.css");

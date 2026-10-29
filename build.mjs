@@ -48,6 +48,8 @@ const cssCtx = await esbuild.context({
     entryPoints: { "app.min": "frontend/css/style.css" },
     outdir,
     loader: { ".png": "file", ".jpg": "file", ".svg": "file", ".woff2": "file" },
+    // Nombres estables (sin hash) para poder precargar las fuentes desde index.html
+    assetNames: "fonts/[name]",
 });
 
 const jsCtx = await esbuild.context({

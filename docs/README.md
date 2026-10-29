@@ -16,6 +16,7 @@ Una plataforma moderna, rápida y escalable que transmita profesionalismo y conf
 - CSS3 (sin frameworks — se eliminó Bootstrap en la Fase 3)
 - JavaScript ES6+ (vanilla)
 - Iconos: SVG en línea (sprite propio, sin fuente de iconos)
+- Tipografías auto-alojadas (Inter y Space Grotesk vía @fontsource-variable, sin Google Fonts)
 - esbuild (bundle + minificación de CSS y JS)
 - Node.js (próximamente — backend)
 - PostgreSQL (próximamente)
@@ -44,6 +45,7 @@ npm run build      # genera frontend/dist/
 npm run watch      # reconstruye al guardar
 npm run serve      # sirve frontend/ en http://localhost:4321
 npm run dev        # watch + serve en paralelo
+npm run og         # regenera assets/og-image.jpg (imagen para compartir en redes)
 ```
 
 `index.html` carga `dist/app.min.css` y `dist/app.min.js`, así que **después de
