@@ -1,8 +1,8 @@
 /*=========================================
 SERVICES
-Lista en dos columnas separada por líneas finas:
-los servicios no son una secuencia, así que no llevan número
-ni tarjetas idénticas.
+Lista desplegable a todo el ancho (js/services.js): cada fila
+muestra el servicio y su resumen; al abrirla aparece qué incluye,
+para quién es ideal y un acceso directo a consultar por WhatsApp.
 =========================================*/
 
 .service-list{
@@ -13,27 +13,55 @@ ni tarjetas idénticas.
 
     padding:0;
 
-    display:grid;
-
-    grid-template-columns:repeat(2,minmax(0,1fr));
-
-    column-gap:clamp(40px,6vw,96px);
-
     border-top:1px solid var(--border-color);
 
 }
 
 .service-item{
 
+    border-bottom:1px solid var(--border-color);
+
+}
+
+.service-heading{
+
+    margin:0;
+
+    font:inherit;
+
+}
+
+/*
+=============================================
+FILA (botón que abre y cierra)
+=============================================
+*/
+
+.service-toggle{
+
     display:grid;
 
-    grid-template-columns:44px 1fr;
+    grid-template-columns:44px minmax(0,.9fr) minmax(0,1.4fr) 36px;
 
-    gap:20px;
+    align-items:center;
 
-    padding:32px 0;
+    gap:24px;
 
-    border-bottom:1px solid var(--border-color);
+    width:100%;
+
+    padding:28px 0;
+
+    border:0;
+
+    background:none;
+
+    color:inherit;
+
+    font:inherit;
+
+    text-align:left;
+
+    cursor:pointer;
 
 }
 
@@ -57,9 +85,11 @@ ni tarjetas idénticas.
 
     font-size:1.25rem;
 
+    transition:background var(--dur) ease, color var(--dur) ease;
+
 }
 
-.service-item h3{
+.service-title{
 
     display:flex;
 
@@ -69,11 +99,9 @@ ni tarjetas idénticas.
 
     gap:8px 12px;
 
-    margin-bottom:8px;
-
     font-family:var(--font-heading);
 
-    font-size:1.25rem;
+    font-size:clamp(1.15rem,1.6vw,1.35rem);
 
     font-weight:var(--fw-bold);
 
@@ -105,15 +133,251 @@ ni tarjetas idénticas.
 
 }
 
-.service-item p{
+.service-summary{
 
-    max-width:46ch;
+    color:var(--text-secondary);
+
+    line-height:1.6;
+
+}
+
+/* "+" que se convierte en "−" al abrir */
+.service-plus{
+
+    position:relative;
+
+    justify-self:end;
+
+    width:36px;
+
+    height:36px;
+
+    border:1px solid rgba(148,163,184,.3);
+
+    border-radius:50%;
+
+    transition:border-color var(--dur) ease, background var(--dur) ease;
+
+}
+
+.service-plus::before,
+.service-plus::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:50%;
+
+    left:50%;
+
+    width:12px;
+
+    height:1.5px;
+
+    border-radius:2px;
+
+    background:var(--text-primary);
+
+    transform:translate(-50%,-50%);
+
+    transition:transform 350ms var(--ease-out);
+
+}
+
+.service-plus::after{
+
+    transform:translate(-50%,-50%) rotate(90deg);
+
+}
+
+.service-item[data-open] .service-plus{
+
+    border-color:var(--primary);
+
+    background:var(--primary);
+
+}
+
+.service-item[data-open] .service-plus::after{
+
+    transform:translate(-50%,-50%) rotate(0deg);
+
+}
+
+.service-item[data-open] .service-icon{
+
+    background:var(--primary);
+
+    color:var(--white);
+
+}
+
+@media (hover:hover) and (pointer:fine){
+
+    .service-toggle:hover .service-plus{
+
+        border-color:var(--accent);
+
+    }
+
+    .service-toggle:hover .service-title{
+
+        color:var(--white);
+
+    }
+
+}
+
+/*
+=============================================
+PANEL (se despliega con grid 0fr → 1fr)
+=============================================
+*/
+
+.service-panel{
+
+    display:grid;
+
+    grid-template-rows:0fr;
+
+    visibility:hidden;
+
+    /* Al cerrar, el contenido deja de ser enfocable recién al terminar */
+    transition:
+        grid-template-rows 450ms var(--ease-out),
+        visibility 0s linear 450ms;
+
+}
+
+.service-item[data-open] .service-panel{
+
+    grid-template-rows:1fr;
+
+    visibility:visible;
+
+    transition:
+        grid-template-rows 450ms var(--ease-out),
+        visibility 0s;
+
+}
+
+.service-panel-inner{
+
+    display:grid;
+
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+
+    gap:32px clamp(32px,5vw,72px);
+
+    min-height:0;
+
+    overflow:hidden;
+
+    padding-left:68px;
+
+}
+
+/* El espacio inferior va dentro del contenido para que también se anime */
+.service-includes,
+.service-fit{
+
+    padding-bottom:32px;
+
+    opacity:0;
+
+    transform:translateY(-6px);
+
+    transition:opacity 300ms ease, transform 400ms var(--ease-out);
+
+}
+
+.service-item[data-open] .service-includes,
+.service-item[data-open] .service-fit{
+
+    opacity:1;
+
+    transform:none;
+
+    transition-delay:120ms;
+
+}
+
+.service-label{
+
+    margin-bottom:12px;
+
+    color:var(--accent);
+
+    font-size:.875rem;
+
+    font-weight:var(--fw-semibold);
+
+}
+
+.service-includes ul{
+
+    list-style:none;
+
+    margin:0;
+
+    padding:0;
+
+}
+
+.service-includes li{
+
+    position:relative;
+
+    padding:6px 0 6px 22px;
+
+    color:var(--text-primary);
+
+    line-height:1.5;
+
+}
+
+.service-includes li::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:2px;
+
+    top:.85em;
+
+    width:8px;
+
+    height:8px;
+
+    border-radius:50%;
+
+    border:2px solid var(--primary);
+
+}
+
+.service-fit > p:not(.service-label){
+
+    margin-bottom:20px;
 
     color:var(--text-secondary);
 
     line-height:1.7;
 
 }
+
+.service-fit .project-cta{
+
+    align-self:auto;
+
+}
+
+/*
+=============================================
+LINK FINAL
+=============================================
+*/
 
 .services-cta{
 
@@ -144,6 +408,88 @@ ni tarjetas idénticas.
     .services-cta a:hover{
 
         text-decoration-color:var(--accent);
+
+    }
+
+}
+
+/*
+=============================================
+RESPONSIVE
+=============================================
+*/
+
+@media (max-width:768px){
+
+    /* El resumen pasa debajo del título */
+    .service-toggle{
+
+        grid-template-columns:44px minmax(0,1fr) 36px;
+
+        grid-template-areas:
+            "icon title plus"
+            ".    summary .";
+
+        row-gap:6px;
+
+        column-gap:16px;
+
+        padding:22px 0;
+
+    }
+
+    .service-icon{ grid-area:icon; }
+
+    .service-title{ grid-area:title; }
+
+    .service-summary{
+
+        grid-area:summary;
+
+        font-size:.95rem;
+
+    }
+
+    .service-plus{ grid-area:plus; }
+
+    .service-panel-inner{
+
+        grid-template-columns:1fr;
+
+        gap:0;
+
+        padding-left:60px;
+
+    }
+
+    .service-includes{
+
+        padding-bottom:20px;
+
+    }
+
+}
+
+@media (max-width:420px){
+
+    .service-panel-inner{
+
+        padding-left:0;
+
+    }
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    .service-panel,
+    .service-item[data-open] .service-panel,
+    .service-includes,
+    .service-fit,
+    .service-plus::before,
+    .service-plus::after{
+
+        transition:none;
 
     }
 

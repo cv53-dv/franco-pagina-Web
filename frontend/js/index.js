@@ -2,6 +2,7 @@
 import "./navbar.js";
 import "./scroll.js";
 import "./counter.js";
+import "./services.js";
 import "./proof.js";
 import "./lightbox.js";
 import "./carousel.js";

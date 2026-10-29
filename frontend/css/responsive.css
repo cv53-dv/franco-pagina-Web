@@ -78,12 +78,6 @@
 
 @media (max-width:768px){
 
-    .service-list{
-
-        grid-template-columns:1fr;
-
-    }
-
     .hero-proof{
 
         max-width:none;
