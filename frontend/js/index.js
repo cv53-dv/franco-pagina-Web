@@ -6,4 +6,5 @@ import "./proof.js";
 import "./lightbox.js";
 import "./carousel.js";
 import "./motion.js";
+import "./enter.js";
 import "./footer.js";

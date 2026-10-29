@@ -1,0 +1,47 @@
+/* ==========================================
+   ENTRADA AL NAVEGAR (js/enter.js)
+   Al tocar un botón que lleva a una sección, su contenido se oculta
+   mientras la página se desplaza y entra en cascada al llegar.
+========================================== */
+
+.enter-hide{
+
+    opacity:0;
+
+}
+
+.enter-run{
+
+    animation:enterUp 650ms var(--ease-out) both;
+
+    animation-delay:calc(var(--enter-i, 0) * 70ms);
+
+}
+
+@keyframes enterUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(28px);
+
+    }
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    .enter-hide{
+
+        opacity:1;
+
+    }
+
+    .enter-run{
+
+        animation:none;
+
+    }
+
+}
