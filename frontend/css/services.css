@@ -63,6 +63,9 @@ FILA (botón que abre y cierra)
 
     cursor:pointer;
 
+    /* Al llegar desde un enlace (pie de página), que no quede bajo el navbar */
+    scroll-margin-top:110px;
+
 }
 
 .service-icon{
