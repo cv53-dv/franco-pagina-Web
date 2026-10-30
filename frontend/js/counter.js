@@ -4,10 +4,35 @@ const counterReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
 ).matches;
 
-const DURATION = 1400;
+const DURATION = 1200;
 
-// ease-out exponencial: arranca rápido y se asienta suave en el valor final.
-const easeOutExpo = (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
+// ease-out cúbico: sube rápido y frena suave en el valor final, sin
+// quemar casi todo el conteo en los primeros cuadros.
+const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+// Si el contador está dentro de un bloque que entra con animación al hacer
+// scroll (js/enter.js), espera a que ese bloque empiece a verse.
+function whenVisible(counter, callback){
+
+    const host = counter.closest(".enter-hide, .enter-run");
+
+    const check = () => {
+
+        if (!host || (!host.classList.contains("enter-hide") && Number(getComputedStyle(host).opacity) > .1)) {
+
+            callback();
+
+            return;
+
+        }
+
+        requestAnimationFrame(check);
+
+    };
+
+    check();
+
+}
 
 function render(counter, value){
 
@@ -37,7 +62,7 @@ function animate(counter){
 
         const t = Math.min((now - start) / DURATION, 1);
 
-        render(counter, Math.round(easeOutExpo(t) * target));
+        render(counter, Math.round(easeOutCubic(t) * target));
 
         if (t < 1) requestAnimationFrame(tick);
 
@@ -53,7 +78,7 @@ const counterObserver = new IntersectionObserver((entries) => {
 
         if (!entry.isIntersecting) return;
 
-        animate(entry.target);
+        whenVisible(entry.target, () => animate(entry.target));
 
         counterObserver.unobserve(entry.target);
 

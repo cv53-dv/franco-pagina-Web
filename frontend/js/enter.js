@@ -19,6 +19,8 @@ const MAX_STEP = 10;
 
 let pending = null;
 
+let scrollObserver = null;
+
 function hide(items){
 
     items.forEach((el, i) => {
@@ -62,6 +64,9 @@ function enter(section){
     const items = [...section.querySelectorAll(ENTER_ITEMS)];
 
     if (!items.length) return;
+
+    // Esta entrada manda: el scroll ya no los anima por su cuenta
+    if (scrollObserver) items.forEach((el) => scrollObserver.unobserve(el));
 
     hide(items);
 
@@ -133,6 +138,38 @@ if (!enterReducedMotion) {
     const hero = document.getElementById("hero");
 
     if (toTop && hero) toTop.addEventListener("click", () => enter(hero));
+
+    // Al hacer scroll: cada elemento de las secciones (menos el inicio, que
+    // ya tiene su propia entrada) aparece al asomarse en pantalla. Los que
+    // entran juntos lo hacen en cascada, en el orden de la página.
+    // En el carrusel, las diapositivas de los costados nunca se asoman en
+    // vertical: entra el carrusel entero en lugar de cada proyecto.
+    const scrollItems = [...document.querySelectorAll("main section:not(#hero)")]
+        .flatMap((section) => [...section.querySelectorAll(`${ENTER_ITEMS}, .carousel-track`)])
+        .filter((el) => !el.parentElement.closest(".carousel-track"));
+
+    scrollItems.forEach((el) => el.classList.add("enter-hide"));
+
+    scrollObserver = new IntersectionObserver((entries, obs) => {
+
+        const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .map((entry) => entry.target)
+            .sort((a, b) => (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1));
+
+        visible.forEach((el, i) => {
+
+            obs.unobserve(el);
+
+            el.style.setProperty("--enter-i", String(Math.min(i, MAX_STEP)));
+
+        });
+
+        run(visible);
+
+    }, { rootMargin: "0px 0px -10% 0px" });
+
+    scrollItems.forEach((el) => scrollObserver.observe(el));
 
     // Al terminar, se limpia la clase para que la próxima vez se pueda repetir
     document.addEventListener("animationend", (e) => {
