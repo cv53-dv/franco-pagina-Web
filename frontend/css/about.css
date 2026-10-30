@@ -1,6 +1,8 @@
 /* ==========================================
    NOSOTROS
-   Nota personal del fundador + tarjeta con sus datos.
+   Encabezado compartido (sections.css) con los compromisos como
+   beneficios, y una tarjeta del fundador en tres columnas:
+   perfil | nota en primera persona | números y contacto.
    La ventaja de un estudio chico: hablas con quien construye.
 ========================================== */
 
@@ -10,111 +12,71 @@
 
 }
 
-.about-grid{
+/* El título es largo: la columna izquierda gana un poco de ancho */
+.about-header{
 
-    display:grid;
-
-    grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);
-
-    align-items:start;
-
-    gap:clamp(48px,7vw,104px);
-
-}
-
-.about-content .section-title{
-
-    margin-bottom:28px;
+    grid-template-columns:minmax(0,1.1fr) minmax(0,1.3fr);
 
 }
 
 /*
 =============================================
-NOTA EN PRIMERA PERSONA
-=============================================
-*/
-
-.about-note{
-
-    max-width:62ch;
-
-    padding-left:24px;
-
-    border-left:2px solid var(--primary);
-
-}
-
-.about-note p{
-
-    color:var(--text-primary);
-
-    font-size:clamp(1.05rem,1.3vw,1.2rem);
-
-    line-height:1.75;
-
-}
-
-.about-note p + p{
-
-    margin-top:16px;
-
-    color:var(--text-secondary);
-
-}
-
-/*
-=============================================
-COMPROMISOS
-=============================================
-*/
-
-.about-promises{
-
-    list-style:none;
-
-    margin:40px 0 0;
-
-    padding:0;
-
-    border-top:1px solid var(--border-color);
-
-}
-
-.about-promises li{
-
-    padding:18px 0;
-
-    border-bottom:1px solid var(--border-color);
-
-    color:var(--text-secondary);
-
-    line-height:1.65;
-
-}
-
-.about-promises strong{
-
-    display:block;
-
-    margin-bottom:2px;
-
-    color:var(--text-primary);
-
-    font-weight:var(--fw-semibold);
-
-}
-
-/*
-=============================================
-TARJETA DEL FUNDADOR
+TARJETA (misma que el servicio abierto)
 =============================================
 */
 
 .about-card{
 
-    position:sticky;
+    display:grid;
 
-    top:calc(var(--nav-h-scrolled) + 32px);
+    grid-template-columns:minmax(0,.8fr) minmax(0,1.35fr) minmax(0,1fr);
+
+    padding:clamp(24px,3vw,36px) clamp(20px,2.5vw,32px);
+
+    border:1px solid rgba(96,165,250,.32);
+
+    border-radius:var(--radius-lg);
+
+    background:
+        radial-gradient(60% 80% at 0% 0%, rgba(37,99,255,.12), transparent 60%),
+        linear-gradient(180deg,rgba(23,36,68,.72),rgba(16,24,44,.72));
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.04),
+        0 20px 50px rgba(0,0,0,.28);
+
+}
+
+/* Columnas separadas por divisores verticales */
+.about-card > div{
+
+    padding:0 clamp(20px,2.5vw,36px);
+
+    border-left:1px solid rgba(148,163,184,.12);
+
+}
+
+.about-card > div:first-child{
+
+    padding-left:0;
+
+    border-left:0;
+
+}
+
+.about-card > div:last-child{
+
+    padding-right:0;
+
+}
+
+/*
+=============================================
+PERFIL
+=============================================
+*/
+
+.about-profile{
 
     display:flex;
 
@@ -122,15 +84,7 @@ TARJETA DEL FUNDADOR
 
     align-items:center;
 
-    padding:40px 32px 32px;
-
-    border:1px solid var(--border-color);
-
-    border-radius:24px;
-
-    background:
-        radial-gradient(90% 60% at 50% 0%, rgba(37,99,255,.16), transparent 70%),
-        var(--bg-secondary);
+    justify-content:center;
 
     text-align:center;
 
@@ -170,7 +124,7 @@ TARJETA DEL FUNDADOR
 
     border-radius:50%;
 
-    border:4px solid var(--bg-secondary);
+    border:4px solid #142039;
 
     background:#0E1526;
 
@@ -198,7 +152,7 @@ TARJETA DEL FUNDADOR
 
     font-family:var(--font-heading);
 
-    font-size:1.35rem;
+    font-size:1.3rem;
 
     font-weight:var(--fw-bold);
 
@@ -212,6 +166,8 @@ TARJETA DEL FUNDADOR
 
     color:var(--text-secondary);
 
+    font-size:.95rem;
+
 }
 
 .about-location{
@@ -224,7 +180,7 @@ TARJETA DEL FUNDADOR
 
     margin-top:6px;
 
-    color:var(--gray-500);
+    color:var(--gray-400);
 
     font-size:.9rem;
 
@@ -232,9 +188,49 @@ TARJETA DEL FUNDADOR
 
 /*
 =============================================
-NÚMEROS
+NOTA EN PRIMERA PERSONA
 =============================================
 */
+
+.about-note{
+
+    padding-left:20px;
+
+    border-left:2px solid var(--primary);
+
+}
+
+.about-note p{
+
+    color:var(--text-primary);
+
+    font-size:clamp(1rem,1.2vw,1.1rem);
+
+    line-height:1.75;
+
+}
+
+.about-note p + p{
+
+    margin-top:14px;
+
+    color:var(--text-secondary);
+
+}
+
+/*
+=============================================
+NÚMEROS Y CONTACTO
+=============================================
+*/
+
+.about-numbers{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
 
 .about-stats{
 
@@ -242,13 +238,7 @@ NÚMEROS
 
     grid-template-columns:repeat(3,minmax(0,1fr));
 
-    width:100%;
-
-    margin:28px 0;
-
-    padding:20px 0;
-
-    border-block:1px solid var(--border-color);
+    margin:0 0 24px;
 
 }
 
@@ -259,15 +249,23 @@ NÚMEROS
 
     flex-direction:column-reverse;
 
+    justify-content:flex-end;
+
     gap:4px;
 
-    padding:0 6px;
+    padding:0 10px;
+
+}
+
+.about-stat:first-child{
+
+    padding-left:0;
 
 }
 
 .about-stat + .about-stat{
 
-    border-left:1px solid var(--border-color);
+    border-left:1px solid rgba(148,163,184,.12);
 
 }
 
@@ -301,6 +299,30 @@ NÚMEROS
 
     width:100%;
 
+    min-height:48px;
+
+    margin-top:auto;
+
+    padding:12px 14px;
+
+    font-size:.92rem;
+
+}
+
+.about-cta .ic{
+
+    font-size:1.1rem;
+
+}
+
+@media (hover:hover) and (pointer:fine){
+
+    .about-cta:hover .ic{
+
+        transform:translateX(2px) rotate(-6deg);
+
+    }
+
 }
 
 /*
@@ -309,27 +331,136 @@ RESPONSIVE
 =============================================
 */
 
-@media (max-width:900px){
+/* Tablet: perfil y nota arriba, números a todo el ancho abajo */
+@media (max-width:1199px){
+
+    .about-header{
+
+        grid-template-columns:1fr;
+
+    }
 
     .about-card{
 
-        position:static;
+        grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);
+
+    }
+
+    .about-card > div:nth-child(2){
+
+        padding-right:0;
+
+    }
+
+    .about-card > .about-numbers{
+
+        grid-column:1 / -1;
+
+        display:grid;
+
+        grid-template-columns:minmax(0,1fr) auto;
+
+        grid-template-areas:
+            "label label"
+            "stats cta";
+
+        align-items:center;
+
+        column-gap:32px;
+
+        margin-top:28px;
+
+        padding:24px 0 0;
+
+        border-left:0;
+
+        border-top:1px solid rgba(148,163,184,.12);
+
+    }
+
+    .about-numbers .detail-label{ grid-area:label; }
+
+    .about-stats{
+
+        grid-area:stats;
+
+        margin:0;
+
+    }
+
+    .about-cta{
+
+        grid-area:cta;
+
+        width:auto;
+
+        margin:0;
+
+        padding:12px 24px;
 
     }
 
 }
 
-@media (max-width:560px){
-
-    .about-note{
-
-        padding-left:18px;
-
-    }
+/* Móvil: una columna */
+@media (max-width:767px){
 
     .about-card{
 
-        padding:32px 20px 24px;
+        grid-template-columns:1fr;
+
+        padding:24px 18px;
+
+    }
+
+    .about-card > div,
+    .about-card > div:nth-child(2){
+
+        padding:24px 0 0;
+
+        margin-top:24px;
+
+        border-left:0;
+
+        border-top:1px solid rgba(148,163,184,.12);
+
+    }
+
+    .about-card > div:first-child{
+
+        margin-top:0;
+
+        padding-top:0;
+
+        border-top:0;
+
+    }
+
+    .about-card > .about-numbers{
+
+        display:flex;
+
+        align-items:stretch;
+
+        margin-top:24px;
+
+    }
+
+    .about-stats{
+
+        margin-bottom:20px;
+
+    }
+
+    .about-cta{
+
+        width:100%;
+
+    }
+
+    .about-note{
+
+        padding-left:16px;
 
     }
 

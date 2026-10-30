@@ -7,11 +7,11 @@ const enterReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
 const ENTER_ITEMS = [
     ".hero-title", ".hero-description", ".hero-buttons", ".hero-status", ".hero-proof",
     ".section-title", ".section-description",
-    ".service-item", ".services-cta",
+    ".section-eyebrow", ".header-benefit", ".service-item", ".services-cta",
     ".stepper-step", ".stepper-panels", ".process-cta",
     ".slide-stage", ".project-body", ".carousel-controls",
-    ".about-note", ".about-promises li", ".about-card",
-    ".contact-form .field", ".contact-submit", ".contact-preview", ".contact-channels",
+    ".about-card",
+    ".contact-form .field", ".contact-submit", ".contact-side",
 ].join(",");
 
 // Tope de la cascada: las secciones largas no esperan de más

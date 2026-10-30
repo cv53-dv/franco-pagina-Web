@@ -2,6 +2,7 @@
    CONTACTO
    Formulario que arma el mensaje de WhatsApp (js/contact.js)
    con vista previa en vivo. No envía datos a ningún servidor.
+   Encabezado compartido (sections.css) y todo dentro de una tarjeta.
 ========================================== */
 
 .contact{
@@ -10,6 +11,7 @@
 
 }
 
+/* Tarjeta (misma que el servicio abierto): formulario | vista previa y canales */
 .contact-grid{
 
     display:grid;
@@ -18,7 +20,35 @@
 
     align-items:start;
 
-    gap:clamp(40px,6vw,88px);
+    padding:clamp(24px,3vw,36px) clamp(20px,2.5vw,32px);
+
+    border:1px solid rgba(96,165,250,.32);
+
+    border-radius:var(--radius-lg);
+
+    background:
+        radial-gradient(60% 80% at 0% 0%, rgba(37,99,255,.12), transparent 60%),
+        linear-gradient(180deg,rgba(23,36,68,.72),rgba(16,24,44,.72));
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.04),
+        0 20px 50px rgba(0,0,0,.28);
+
+}
+
+/* El divisor va en el formulario (la columna más alta) para que
+   la columna derecha pueda quedar fija al hacer scroll */
+.contact-form{
+
+    padding-right:clamp(24px,3.5vw,48px);
+
+    border-right:1px solid rgba(148,163,184,.12);
+
+}
+
+.contact-side{
+
+    padding-left:clamp(24px,3.5vw,48px);
 
 }
 
@@ -88,7 +118,7 @@ FORMULARIO
 
     border-radius:var(--radius-md);
 
-    background:var(--bg-secondary);
+    background:rgba(5,8,22,.45);
 
     color:var(--text-primary);
 
@@ -232,7 +262,9 @@ FORMULARIO
 
 .contact-submit{
 
-    align-self:flex-start;
+    width:100%;
+
+    min-height:48px;
 
     border:0;
 
@@ -244,17 +276,33 @@ FORMULARIO
 
 }
 
+.contact-submit .ic{
+
+    font-size:1.1rem;
+
+}
+
+@media (hover:hover) and (pointer:fine){
+
+    .contact-submit:hover .ic{
+
+        transform:translateX(2px) rotate(-6deg);
+
+    }
+
+}
+
 .contact-privacy{
 
-    margin-top:-12px;
+    margin-top:-14px;
 
-    max-width:52ch;
+    color:var(--gray-400);
 
-    color:var(--gray-500);
-
-    font-size:.85rem;
+    font-size:.82rem;
 
     line-height:1.6;
+
+    text-align:center;
 
 }
 
@@ -274,11 +322,17 @@ VISTA PREVIA ESTILO WHATSAPP
 
     flex-direction:column;
 
-    gap:24px;
+}
+
+.contact-side .detail-label{
+
+    margin-bottom:12px;
 
 }
 
 .contact-preview{
+
+    margin-bottom:28px;
 
     overflow:hidden;
 
@@ -395,8 +449,6 @@ OTROS CANALES
 
     margin:0;
 
-    border-top:1px solid var(--border-color);
-
 }
 
 .contact-channels > div{
@@ -411,15 +463,35 @@ OTROS CANALES
 
     padding:14px 0;
 
-    border-bottom:1px solid var(--border-color);
+    border-bottom:1px solid rgba(148,163,184,.12);
+
+}
+
+.contact-channels > div:last-child{
+
+    border-bottom:0;
 
 }
 
 .contact-channels dt{
 
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    flex-shrink:0;
+
     color:var(--gray-400);
 
     font-size:.9rem;
+
+}
+
+.contact-channels dt .ic{
+
+    color:var(--accent);
 
 }
 
@@ -475,29 +547,109 @@ RESPONSIVE
 
     }
 
+    .contact-form{
+
+        padding-right:0;
+
+        border-right:0;
+
+    }
+
     .contact-side{
 
         position:static;
+
+        margin-top:28px;
+
+        padding:24px 0 0;
+
+        border-top:1px solid rgba(148,163,184,.12);
 
     }
 
     /* Apilada, la vista previa queda debajo del botón y no se ve mientras
        se completa: se oculta (WhatsApp muestra el mensaje antes de enviarlo) */
-    .contact-preview{
+    .contact-preview,
+    .contact-preview-label{
 
         display:none;
+
+    }
+
+    /* Tablet: los tres canales en una fila */
+    .contact-channels{
+
+        display:grid;
+
+        grid-template-columns:repeat(3,minmax(0,1fr));
+
+    }
+
+    .contact-channels > div,
+    .contact-channels > div:last-child{
+
+        flex-direction:column;
+
+        gap:4px;
+
+        padding:0 16px;
+
+        border-bottom:0;
+
+        border-left:1px solid rgba(148,163,184,.12);
+
+    }
+
+    .contact-channels > div:first-child{
+
+        padding-left:0;
+
+        border-left:0;
+
+    }
+
+    .contact-channels dd{
+
+        text-align:left;
+
+    }
+
+}
+
+@media (max-width:767px){
+
+    .contact-grid{
+
+        padding:24px 18px;
+
+    }
+
+    .contact-channels{
+
+        display:block;
+
+    }
+
+    .contact-channels > div,
+    .contact-channels > div:first-child{
+
+        padding:12px 0;
+
+        border-left:0;
+
+        border-bottom:1px solid rgba(148,163,184,.12);
+
+    }
+
+    .contact-channels > div:last-child{
+
+        border-bottom:0;
 
     }
 
 }
 
 @media (max-width:560px){
-
-    .contact-submit{
-
-        align-self:stretch;
-
-    }
 
     .contact-channels > div{
 

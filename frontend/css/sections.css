@@ -91,6 +91,322 @@ como el resto del contenido.
 
 /*
 =============================================
+SPLIT HEADER
+Variante con distintivo, título y descripción a la
+izquierda y tres beneficios a la derecha (Servicios,
+Proceso).
+=============================================
+*/
+
+.split-header{
+
+    display:grid;
+
+    grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr);
+
+    align-items:end;
+
+    gap:32px clamp(32px,4vw,64px);
+
+    margin-bottom:clamp(40px,5vw,64px);
+
+}
+
+.split-header .section-description{
+
+    margin-bottom:0;
+
+}
+
+.section-eyebrow{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-bottom:20px;
+
+    padding:6px 14px;
+
+    border:1px solid rgba(96,165,250,.25);
+
+    border-radius:999px;
+
+    background:rgba(37,99,255,.08);
+
+    color:var(--accent);
+
+    font-size:.75rem;
+
+    font-weight:var(--fw-semibold);
+
+    letter-spacing:.12em;
+
+    text-transform:uppercase;
+
+}
+
+.section-eyebrow::before{
+
+    content:"";
+
+    width:6px;
+
+    height:6px;
+
+    border-radius:50%;
+
+    background:var(--accent);
+
+}
+
+/* Palabra destacada del título */
+.title-accent{
+
+    background:linear-gradient(100deg,#60A5FA 0%,#2563FF 60%,#3B82F6 100%);
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    color:transparent;
+
+}
+
+/* Beneficios: tres columnas separadas por divisores verticales */
+.header-benefits{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,minmax(0,1fr));
+
+    list-style:none;
+
+    margin:0;
+
+    padding:0;
+
+}
+
+.header-benefit{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+    padding:4px clamp(16px,2vw,28px);
+
+    border-left:1px solid var(--border-color);
+
+}
+
+.header-benefit:first-child{
+
+    padding-left:0;
+
+    border-left:0;
+
+}
+
+.header-benefit-title{
+
+    margin-bottom:4px;
+
+    color:var(--text-primary);
+
+    font-weight:var(--fw-semibold);
+
+}
+
+.header-benefit-text{
+
+    color:var(--text-secondary);
+
+    font-size:.92rem;
+
+    line-height:1.55;
+
+}
+
+@media (hover:hover) and (pointer:fine){
+
+    .header-benefit:hover .icon-tile{
+
+        transform:translateY(-3px);
+
+        border-color:rgba(96,165,250,.4);
+
+    }
+
+}
+
+/* Tablet: el encabezado se apila y los beneficios quedan en una fila */
+@media (max-width:1199px){
+
+    .split-header{
+
+        grid-template-columns:1fr;
+
+        align-items:start;
+
+    }
+
+}
+
+/* Móvil: beneficios como tarjetas en una o dos columnas */
+@media (max-width:767px){
+
+    .split-header{
+
+        gap:28px;
+
+    }
+
+    .header-benefits{
+
+        grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+        gap:12px;
+
+    }
+
+    .header-benefit,
+    .header-benefit:first-child{
+
+        flex-direction:row;
+
+        align-items:flex-start;
+
+        padding:16px;
+
+        border:1px solid var(--border-color);
+
+        border-radius:var(--radius-md);
+
+        background:rgba(17,24,39,.5);
+
+    }
+
+}
+
+/*
+=============================================
+PIEZAS DE DETALLE
+Ícono en recuadro, etiqueta de columna y tiempo estimado:
+compartidos por las tarjetas de Servicios y de Proceso.
+=============================================
+*/
+
+.icon-tile{
+
+    display:flex;
+
+    flex-shrink:0;
+
+    justify-content:center;
+
+    align-items:center;
+
+    width:44px;
+
+    height:44px;
+
+    border:1px solid rgba(96,165,250,.18);
+
+    border-radius:12px;
+
+    background:linear-gradient(180deg,#0F1D3D,#0B1530);
+
+    color:var(--accent);
+
+    font-size:1.2rem;
+
+    transition:
+        transform var(--dur) var(--ease-out),
+        background var(--dur) ease,
+        border-color var(--dur) ease,
+        color var(--dur) ease;
+
+}
+
+.detail-label{
+
+    margin-bottom:14px;
+
+    color:var(--accent);
+
+    font-size:.8rem;
+
+    font-weight:var(--fw-semibold);
+
+    letter-spacing:.08em;
+
+    text-transform:uppercase;
+
+}
+
+.estimate{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.estimate strong{
+
+    display:block;
+
+    font-family:var(--font-heading);
+
+    font-size:1.35rem;
+
+    font-weight:var(--fw-bold);
+
+    line-height:1.2;
+
+    color:var(--text-primary);
+
+}
+
+.estimate small{
+
+    display:block;
+
+    margin-top:2px;
+
+    color:var(--gray-400);
+
+    font-size:.78rem;
+
+    line-height:1.4;
+
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    .icon-tile{
+
+        transition:none;
+
+    }
+
+    .header-benefit:hover .icon-tile{
+
+        transform:none;
+
+    }
+
+}
+
+/*
+=============================================
 SECTION LAYOUT
 =============================================
 */

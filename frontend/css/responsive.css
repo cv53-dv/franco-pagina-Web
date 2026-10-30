@@ -24,8 +24,7 @@
 
 @media (max-width:900px){
 
-    .hero-grid,
-    .about-grid{
+    .hero-grid{
 
         grid-template-columns:1fr;
 
@@ -40,18 +39,6 @@
     .hero-right{
 
         justify-content:flex-start;
-
-    }
-
-    .about-content{
-
-        max-width:none;
-
-    }
-
-    .about-card{
-
-        max-width:560px;
 
     }
 
